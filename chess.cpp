@@ -10,6 +10,7 @@
 #include <cassert>        // for ASSERT
 #include <fstream>        // for IFSTREAM
 #include <string>         // for STRING
+#include "position.h"
 using namespace std;
 
 /***********************************************
