@@ -4,13 +4,11 @@
 //
 //  Created by Michael LeFevre on 9/28/22.
 //
+#pragma once
 #include <array>
 #include "position.h"
 #include "piece.h"
 #include "move.h"
-#pragma once
-
-
 
 class Board
 {

@@ -4,10 +4,11 @@
 //
 //  Created by Michael LeFevre on 9/28/22.
 //
+#pragma once
 #include "position.h"
 #include <string>
 
-#pragma once
+
 class Move
 {
 private:
