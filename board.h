@@ -7,6 +7,7 @@
 #include <array>
 #include "position.h"
 #include "piece.h"
+#include "move.h"
 #pragma once
 
 
@@ -29,6 +30,6 @@ public:
    Piece * get(Position pos) { return NULL; }
    void free() {}
    void reset() {}
-   //void move(Move move) {}
+   void move(Move move) {}
 
 };
