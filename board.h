@@ -6,14 +6,15 @@
 //
 #include <array>
 #include "position.h"
+#include "piece.h"
 #pragma once
-class Piece {};
+
 
 
 class Board
 {
 private:
-   std::array<Piece, 64> board;
+   std::array<Piece*, 64> board;
    int currentMove;
    ogstream gout;
    
@@ -25,7 +26,7 @@ public:
    int getCurrentMove() { return -1; }
    bool whiteTurn() { return false; }
    void display(int posHover, int posSel) {}
-   Piece get(Position pos) { return * new Piece; }
+   Piece * get(Position pos) { return NULL; }
    void free() {}
    void reset() {}
    //void move(Move move) {}
