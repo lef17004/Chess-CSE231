@@ -12,6 +12,9 @@
 #include <string>         // for STRING
 #include "position.h"
 #include "board.h"
+#include "testRunner.h"
+#include "testMove.h"
+#include "testPiece.h"
 using namespace std;
 
 /***********************************************
