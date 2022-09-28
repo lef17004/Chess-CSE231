@@ -11,6 +11,7 @@
 #include <fstream>        // for IFSTREAM
 #include <string>         // for STRING
 #include "position.h"
+#include "board.h"
 using namespace std;
 
 /***********************************************
