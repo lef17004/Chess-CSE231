@@ -32,6 +32,7 @@
 		33A7CC0028E509AD003F4845 /* testRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testRunner.h; sourceTree = "<group>"; };
 		33A7CC0128E50A1C003F4845 /* testMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testMove.h; sourceTree = "<group>"; };
 		33A7CC0228E50A66003F4845 /* testPiece.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testPiece.h; sourceTree = "<group>"; };
+		33A7CC0328E50B41003F4845 /* move.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move.h; sourceTree = "<group>"; };
 		C12A3BDD255D79CF00C22728 /* Lab01 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab01; sourceTree = BUILT_PRODUCTS_DIR; };
 		C12A3BF4255D7A5500C22728 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		C12A3BF6255D7A5C00C22728 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -62,6 +63,7 @@
 				33A7CC0228E50A66003F4845 /* testPiece.h */,
 				33A7CC0128E50A1C003F4845 /* testMove.h */,
 				33A7CC0028E509AD003F4845 /* testRunner.h */,
+				33A7CC0328E50B41003F4845 /* move.h */,
 				33A7CBFF28E503CE003F4845 /* board.h */,
 				33A7CBFE28E4FF09003F4845 /* position.h */,
 				C13286112578104000FCEC47 /* chess.cpp */,
