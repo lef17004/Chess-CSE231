@@ -103,6 +103,13 @@
     <ClCompile Include="uiInteract.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="board.h" />
+    <ClInclude Include="piece.h" />
+    <ClInclude Include="point.h" />
+    <ClInclude Include="position.h" />
+    <ClInclude Include="testMove.h" />
+    <ClInclude Include="testPiece.h" />
+    <ClInclude Include="testRunner.h" />
     <ClInclude Include="uiDraw.h" />
     <ClInclude Include="uiInteract.h" />
   </ItemGroup>
