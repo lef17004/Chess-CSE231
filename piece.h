@@ -17,11 +17,17 @@ protected:
 public:
    void piece(int r, int c, bool white) {}
    void assign(Position position) {}
-   void assign(Piece piece) {}
-   bool isWhite() { return False;  }
+   void assign(Piece & piece) {}
+   bool isWhite() { return false;  }
    int getNMoves() { return 0; }
    Position getPosition() { return *new Position; }
-   bool justMoved() { return False; }
+   bool justMoved() { return false; }
    virtual char getLetter() = 0;
    virtual void display(ogstream gout) = 0;
    //virtual void getMoves(Board board) = 0;
+};
+
+class Pawn: public Piece
+{
+   
+};

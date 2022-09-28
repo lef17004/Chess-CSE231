@@ -15,6 +15,7 @@
 #include "testRunner.h"
 #include "testMove.h"
 #include "testPiece.h"
+#include "move.h"
 #include "piece.h"
 using namespace std;
 
