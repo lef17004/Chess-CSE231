@@ -6,14 +6,17 @@
 //
 
 #pragma once
-class TestPiece
+#include <iostream>
+using namespace std;
+class TestPawn
 {
 public:
-   TestPiece() {}
+   TestPawn() {}
    
    void run()
    {
       
+      cout << "TestPawn Completed" << endl;
    }
    
    

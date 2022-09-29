@@ -13,10 +13,11 @@
 #include "position.h"
 #include "board.h"
 #include "testRunner.h"
-#include "testMove.h"
-#include "testPiece.h"
+#include "testKing.h"
+#include "testPawn.h"
 #include "move.h"
 #include "piece.h"
+#include "testRunner.h"
 using namespace std;
 
 /***********************************************
@@ -533,7 +534,8 @@ int main(int argc, char** argv)
    if (argc == 2)
       readFile(argv[1], board);
 #endif // !_WIN32
-
+   TestRunner tests;
+   tests.run();
    // set everything into action
    ui.run(callBack, board);             
 

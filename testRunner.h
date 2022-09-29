@@ -4,8 +4,12 @@
 //
 //  Created by Michael LeFevre on 9/28/22.
 //
-
 #pragma once
+#include "testPawn.h"
+#include "testKing.h"
+#include <iostream>
+using namespace std;
+
 class TestRunner
 {
 public:
@@ -13,6 +17,12 @@ public:
    
    void run()
    {
+      TestPawn pawnTests;
+      pawnTests.run();
       
+      TestKing pawnKing;
+      pawnKing.run();
+      
+      cout << "Test Runner Completed" << endl;
    }
 };
