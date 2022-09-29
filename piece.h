@@ -6,6 +6,10 @@
 //
 #pragma once
 #include "board.h"
+#include <set>
+#include <vector>
+#include "move.h"
+using namespace std;
 class Board;
 
 class Piece
@@ -26,7 +30,8 @@ public:
    bool justMoved() { return false; }
    virtual char getLetter() = 0;
    virtual void display(ogstream & gout) = 0;
-   virtual void getMoves(Board * board) = 0;
+   virtual set<Move> getMoves(Board * board) = 0;
+   
 };
 
 class Pawn: public Piece
@@ -34,15 +39,16 @@ class Pawn: public Piece
 public:
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
-   virtual void getMoves(Board * board) {}
+   virtual set<Move> getMoves(Board * board) { return *new set<Move>; }
 };
 
+   
 class Rook: public Piece
 {
 public:
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
-   virtual void getMoves(Board * board) {}
+   virtual set<Move> getMoves(Board * board) { return *new set<Move>; }
 };
 
 class Knight: public Piece
@@ -50,7 +56,7 @@ class Knight: public Piece
 public:
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
-   virtual void getMoves(Board * board) {}
+   virtual set<Move> getMoves(Board * board) { return *new set<Move>; }
 };
 
 class Bishop: public Piece
@@ -58,7 +64,7 @@ class Bishop: public Piece
 public:
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
-   virtual void getMoves(Board * board) {}
+   virtual set<Move> getMoves(Board * board) { return *new set<Move>; }
 };
 
 class King: public Piece
@@ -66,7 +72,7 @@ class King: public Piece
 public:
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
-   virtual void getMoves(Board * board) {}
+   virtual set<Move> getMoves(Board * board) { return *new set<Move>; }
 };
 
 class Queen: public Piece
@@ -74,5 +80,5 @@ class Queen: public Piece
 public:
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
-   virtual void getMoves(Board * board) {}
+   virtual set<Move> getMoves(Board * board) { return *new set<Move>; }
 };

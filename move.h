@@ -41,4 +41,7 @@ public:
    void assign(string move) {}
    // operator <<()
    // operator >>()
+   bool operator< (const Move & rhs) const {
+      return true;
+   }
 };
