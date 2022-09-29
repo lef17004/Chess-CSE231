@@ -9,6 +9,7 @@
 #include "position.h"
 #include "piece.h"
 #include "move.h"
+#include "board.h"
 
 class Board
 {
@@ -19,8 +20,11 @@ private:
    
    void swap(Position pos1, Position pos2) {}
    void assertBoard() {}
+   friend class TestPawn;
    
 public:
+   
+   Board() {}
    Board(ogstream gout, bool reset) {}
    int getCurrentMove() { return -1; }
    bool whiteTurn() { return false; }
@@ -29,5 +33,5 @@ public:
    void free() {}
    void reset() {}
    void move(Move move) {}
-
+   void setBoardArray(std::array<Piece*, 64>) {}
 };

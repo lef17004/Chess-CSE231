@@ -12,9 +12,10 @@ private:
    char location;
    //squareWidth: Double Static
    //squareHeight: Double Static
-   
+   friend class TestPawn;
 public:
    Position() {}
+   Position(int location) {}
    int getLocation() { return 0; }
    int getRow() { return 0; }
    int getColumn() { return 0; }

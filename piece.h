@@ -19,9 +19,10 @@ protected:
    bool fWhite;
    int nMoves;
    int lastMove;
+   friend class TestPawn;
 
 public:
-   void piece(int r, int c, bool white) {}
+   Piece(int r, int c, bool white) {}
    void assign(Position position) {}
    void assign(Piece & piece) {}
    bool isWhite() { return false;  }
@@ -37,6 +38,7 @@ public:
 class Pawn: public Piece
 {
 public:
+   Pawn(int r, int c, bool white): Piece(r, c, white) {}
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
@@ -78,6 +80,15 @@ public:
 class Queen: public Piece
 {
 public:
+   virtual char getLetter() { return 'M'; }
+   virtual void display(ogstream & gout) {}
+   virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
+};
+
+class Space: public Piece
+{
+public:
+   Space(int r, int c): Piece(r, c, false) {}
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
