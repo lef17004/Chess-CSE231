@@ -6,14 +6,17 @@
 //
 
 #pragma once
-class TestMove
+#include <iostream>
+using namespace std;
+class TestKing
 {
 public:
-   TestMove() {}
+   TestKing() {}
    
    void run()
    {
       
+      cout << "TestKing Completed" << endl;
    }
    
    
