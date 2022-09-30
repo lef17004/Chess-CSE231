@@ -23,6 +23,7 @@ protected:
 
 public:
    Piece(int r, int c, bool white) {}
+   virtual ~Piece() {};
    void assign(Position position) {}
    void assign(Piece & piece) {}
    bool isWhite() { return false;  }

@@ -13,7 +13,7 @@ class Move
 {
 private:
    Position source;
-   bool dest;
+   Position dest;
    char piece;
    char capture;
    bool enpassant;

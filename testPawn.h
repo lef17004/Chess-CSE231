@@ -11,6 +11,7 @@
 #include "board.h"
 #include "position.h"
 #include "move.h"
+#include <algorithm>
 using namespace std;
 class TestPawn
 {
@@ -27,12 +28,22 @@ public:
     
         A   B   C   D   E   F   G   H
     
+    These sets are testing the pawn class with regards to move, but move is not being tested.
+    So that's why moves methods are being used while pawn's attributes are accessed directly.
+    
     */
    TestPawn() {}
    
+   /*
+    
+    
+    
+    */
    void run()
    {
       test_pawnBlocked();
+      test_pawnSimpleMove();
+      test_pawnPromotion();
       cout << "TestPawn Completed" << endl;
    }
    
@@ -56,7 +67,104 @@ public:
       assert(whitePawnMoves.size() == 0);
       
       // Teardown
-      // Need to figure out what/how to tear down. 
+      delete whitePawn;
+      delete blackPawn;
+      tearDownBoard(testBoard);
+   }
+   
+   void test_pawnSimpleMove()
+   {
+      // Setup
+      Pawn * whitePawn = new Pawn(0, 0, true);
+      whitePawn->position.location = 33;
+      whitePawn->fWhite = true;
+      whitePawn->lastMove = 0;
+      whitePawn->nMoves = 0;
+      
+      Board * testBoard = buildSimpleBoard();
+      testBoard->board[33] = whitePawn;
+      
+      
+      
+      // Exercise
+      set<Move> whitePawnsMoves = whitePawn->getMoves(*testBoard);
+      
+      // Verify
+      set<string> * moves = compileMoves(whitePawnsMoves);
+      
+      assert(moves->find("64b5")          != moves->end());
+      assert(whitePawn->fWhite            == true);
+      assert(whitePawn->position.location == 33);
+      assert(whitePawn->nMoves            == 0);
+      assert(whitePawn->lastMove          == 0);
+      
+      
+      // Teardown
+      delete whitePawn;
+      tearDownBoard(testBoard);
+      delete moves;
+      
+   }
+   
+   void test_pawnPromotion()
+   {
+      // Setup
+      Pawn * whitePawn = new Pawn(0, 0, true);
+      whitePawn->position.location = 9;
+      whitePawn->fWhite = true;
+      whitePawn->lastMove = 0;
+      whitePawn->nMoves = 0;
+      
+      Board * testBoard = buildSimpleBoard();
+      testBoard->board[9] = whitePawn;
+      
+      // Exercise
+      set<Move> whitePawnMoves = whitePawn->getMoves(*testBoard);
+      
+      // Verify
+      set<string> * moves = compileMoves(whitePawnMoves);
+      
+      assert(moves->find("67680")          != moves->end());
+      assert(whitePawn->fWhite            == true);
+      assert(whitePawn->position.location == 9);
+      assert(whitePawn->nMoves            == 0);
+      assert(whitePawn->lastMove          == 0);
+      
+      // Teardown
+      delete whitePawn;
+      tearDownBoard(testBoard);
+      delete moves;
+      
+   }
+   
+   void test_PawnEmpassant()
+   {
+      // Setup
+      Pawn * whitePawn = new Pawn(0, 0, true);
+      whitePawn->position.location = 25;
+      whitePawn->fWhite = true;
+      whitePawn->lastMove = 0;
+      whitePawn->nMoves = 0;
+      
+      Board * testBoard = buildSimpleBoard();
+      testBoard->board[9] = whitePawn;
+      
+      // Exercise
+      set<Move> whitePawnMoves = whitePawn->getMoves(*testBoard);
+      
+      // Verify
+      set<string> * moves = compileMoves(whitePawnMoves);
+      
+      assert(moves->find("67680")          != moves->end());
+      assert(whitePawn->fWhite            == true);
+      assert(whitePawn->position.location == 9);
+      assert(whitePawn->nMoves            == 0);
+      assert(whitePawn->lastMove          == 0);
+      
+      // Teardown
+      delete whitePawn;
+      tearDownBoard(testBoard);
+      delete moves;
    }
    
    Board * buildSimpleBoard()
@@ -76,5 +184,23 @@ public:
       return board;
    }
    
-
+   void tearDownBoard(Board * board)
+   {
+      
+      for (int i = 0; i < board->board.size(); i++)
+      {
+         //delete board->board[i];
+      }
+      delete board;
+   }
+   
+   set<string> * compileMoves(const set<Move> & moves)
+   {
+      std::set<string> * movesAsStrings = new set<string>;
+      for (Move move: moves)
+      {
+         movesAsStrings->insert(move.getText());
+      }
+      return movesAsStrings;
+   }
 };
