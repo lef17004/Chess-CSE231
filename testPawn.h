@@ -39,17 +39,17 @@ public:
     
     
     */
-   void run()
+   void run()  // Runs the Pawn Test Cases
    {
       test_pawnBlocked();
       test_pawnSimpleMove();
       test_pawnPromotion();
-      test_PawnEmpassant();
+      test_PawnEnpassant();
       testPawnCapture();
       cout << "TestPawn Completed" << endl;
    }
    
-   void test_pawnBlocked()
+   void test_pawnBlocked()  // Tests to see if the pawn can move or not
    {
       // Setup
       Pawn * whitePawn = new Pawn(4, 3, true);
@@ -74,7 +74,7 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_pawnSimpleMove()
+   void test_pawnSimpleMove()  // Tests the basic moves of the pawn and its return values
    {
       // Setup
       Pawn * whitePawn = new Pawn(0, 0, true);
@@ -108,7 +108,7 @@ public:
       
    }
    
-   void test_pawnPromotion()
+   void test_pawnPromotion()  // Tests to see if promotion can happen and its return values
    {
       // Setup
       Pawn * whitePawn = new Pawn(0, 0, true);
@@ -139,7 +139,7 @@ public:
       
    }
    
-   void test_PawnEmpassant()
+   void test_PawnEnpassant()  // Tests the right values for en passant
    {
       // Setup
       Pawn * whitePawn = new Pawn(0, 0, true);
@@ -198,7 +198,7 @@ public:
    }
    
    
-   void testPawnCapture()
+   void testPawnCapture()  // Tests if the Pawn is Captured
    {
       // Setup
       Pawn * whitePawn = new Pawn(0, 0, true);
@@ -274,7 +274,7 @@ public:
       return board;
    }
    
-   void tearDownBoard(Board * board)
+   void tearDownBoard(Board * board)  // Frees all of the memory of the Board
    {
       
       for (int i = 0; i < board->board.size(); i++)

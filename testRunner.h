@@ -10,7 +10,7 @@
 #include <iostream>
 using namespace std;
 
-class TestRunner
+class TestRunner // Runs all of the tests.
 {
 public:
    TestRunner() {}
