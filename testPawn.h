@@ -146,8 +146,31 @@ public:
       whitePawn->lastMove = 0;
       whitePawn->nMoves = 0;
       
+      
+      Pawn * blackPawn1 = new Pawn(0, 0, true);
+      blackPawn1->fWhite = false;
+      blackPawn1->position.location = 8;
+      blackPawn1->lastMove = 0;
+      blackPawn1->nMoves = 0;
+      
+      Pawn * blackPawn2 = new Pawn(0, 0, true);
+      blackPawn2->fWhite = false;
+      blackPawn2->position.location = 16;
+      blackPawn2->lastMove = 1;
+      blackPawn2->nMoves = 0;
+      
+      Pawn * blackPawn3 = new Pawn(0, 0, true);
+      blackPawn3->fWhite = false;
+      blackPawn3->position.location = 18;
+      blackPawn3->lastMove = 1;
+      blackPawn3->nMoves = 0;
+      
+      
       Board * testBoard = buildSimpleBoard();
-      testBoard->board[9] = whitePawn;
+      testBoard->board[25] = whitePawn;
+      testBoard->board[8]  = blackPawn1;
+      testBoard->board[16] = blackPawn2;
+      testBoard->board[18] = blackPawn3;
       
       // Exercise
       set<Move> whitePawnMoves = whitePawn->getMoves(*testBoard);
@@ -155,17 +178,82 @@ public:
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
       
-      assert(moves->find("67680")          != moves->end());
+      assert(moves->find("65c6E") != moves->end());
+      assert(moves->find("b5a6E") != moves->end());
+      
       assert(whitePawn->fWhite            == true);
-      assert(whitePawn->position.location == 9);
+      assert(whitePawn->position.location == 25);
       assert(whitePawn->nMoves            == 0);
       assert(whitePawn->lastMove          == 0);
       
       // Teardown
       delete whitePawn;
+      delete blackPawn1;
+      delete blackPawn2;
+      delete blackPawn3;
       tearDownBoard(testBoard);
       delete moves;
    }
+   
+   
+   void testPawnCapture()
+   {
+      // Setup
+      Pawn * whitePawn = new Pawn(0, 0, true);
+      whitePawn->position.location = 17;
+      whitePawn->fWhite = true;
+      whitePawn->lastMove = 0;
+      whitePawn->nMoves = 0;
+      
+      
+      Pawn * blackPawn1 = new Pawn(0, 0, true);
+      blackPawn1->fWhite = false;
+      blackPawn1->position.location = 8;
+      blackPawn1->lastMove = 0;
+      blackPawn1->nMoves = 0;
+      
+      Pawn * blackPawn2 = new Pawn(0, 0, true);
+      blackPawn2->fWhite = false;
+      blackPawn2->position.location = 9;
+      blackPawn2->lastMove = 1;
+      blackPawn2->nMoves = 0;
+      
+      Pawn * blackPawn3 = new Pawn(0, 0, true);
+      blackPawn3->fWhite = false;
+      blackPawn3->position.location = 10;
+      blackPawn3->lastMove = 1;
+      blackPawn3->nMoves = 0;
+      
+      
+      Board * testBoard = buildSimpleBoard();
+      testBoard->board[25] = whitePawn;
+      testBoard->board[8]  = blackPawn1;
+      testBoard->board[16] = blackPawn2;
+      testBoard->board[18] = blackPawn3;
+      
+      // Exercise
+      set<Move> whitePawnMoves = whitePawn->getMoves(*testBoard);
+      
+      // Verify
+      set<string> * moves = compileMoves(whitePawnMoves);
+      
+      assert(moves->find("b6a7p") != moves->end());
+      assert(moves->find("b6c7p") != moves->end());
+      
+      assert(whitePawn->fWhite            == true);
+      assert(whitePawn->position.location == 17);
+      assert(whitePawn->nMoves            == 0);
+      assert(whitePawn->lastMove          == 0);
+      
+      // Teardown
+      delete whitePawn;
+      delete blackPawn1;
+      delete blackPawn2;
+      delete blackPawn3;
+      tearDownBoard(testBoard);
+      delete moves;
+   }
+   
    
    Board * buildSimpleBoard()
    {
