@@ -1,16 +1,26 @@
-//
-//  board.h
-//  Lab01
-//
-//  Created by Michael LeFevre on 9/28/22.
-//
+/******************************************************************************
+ * Header File:
+ *    Board : The representation of the board
+ * 
+ * Lab01
+ *
+ * Created by Michael LeFevre on 9/28/22.
+ *******************************************************************************/
+
+
 #pragma once
+
 #include <array>
 #include "position.h"
 #include "piece.h"
 #include "move.h"
 #include "board.h"
 
+
+/******************************************************************************
+ * BOARD 
+ * The board object
+ ******************************************************************************/
 class Board
 {
 private:

@@ -1,11 +1,15 @@
-//
-//  testPiece.h
-//  Lab01
-//
-//  Created by Michael LeFevre on 9/28/22.
-//
+/******************************************************************************
+ * Header File:
+ *    TestPawn : contains unit tests for the Pawn class
+ * 
+ * Lab01
+ *
+ * Created by Michael LeFevre on 9/28/22.
+ *******************************************************************************/
+
 
 #pragma once
+
 #include <iostream>
 #include "piece.h"
 #include "board.h"
@@ -13,6 +17,12 @@
 #include "move.h"
 #include <algorithm>
 using namespace std;
+
+
+/******************************************************************************
+ * TEST-PAWN
+ * Containts test cases for the Pawn class
+ ******************************************************************************/
 class TestPawn
 {
 public:
@@ -39,7 +49,11 @@ public:
     
     
     */
-   void run()  // Runs the Pawn Test Cases
+
+   /**************************************************************************
+    * Runs the Pawn Test Cases
+    ***************************************************************************/
+   void run()
    {
       test_pawnBlocked();
       test_pawnSimpleMove();
@@ -49,7 +63,10 @@ public:
       cout << "TestPawn Completed" << endl;
    }
    
-   void test_pawnBlocked()  // Tests to see if the pawn can move or not
+   /**************************************************************************
+    * Tests to see if the pawn can move or not
+    ***************************************************************************/
+   void test_pawnBlocked()
    {
       // Setup
       Pawn * whitePawn = new Pawn(4, 3, true);
@@ -74,7 +91,10 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_pawnSimpleMove()  // Tests the basic moves of the pawn and its return values
+   /**************************************************************************
+    * Tests the basic moves of the pawn and its return values
+    ***************************************************************************/
+   void test_pawnSimpleMove()
    {
       // Setup
       Pawn * whitePawn = new Pawn(0, 0, true);
@@ -108,7 +128,10 @@ public:
       
    }
    
-   void test_pawnPromotion()  // Tests to see if promotion can happen and its return values
+   /**************************************************************************
+    * Tests to see if promotion can happen and its return values
+    ***************************************************************************/
+   void test_pawnPromotion()
    {
       // Setup
       Pawn * whitePawn = new Pawn(0, 0, true);
@@ -139,7 +162,10 @@ public:
       
    }
    
-   void test_PawnEnpassant()  // Tests the right values for en passant
+   /**************************************************************************
+    * Tests the right values for en passant
+    ***************************************************************************/
+   void test_PawnEnpassant()
    {
       // Setup
       Pawn * whitePawn = new Pawn(0, 0, true);
@@ -197,8 +223,10 @@ public:
       delete moves;
    }
    
-   
-   void testPawnCapture()  // Tests if the Pawn is Captured
+   /**************************************************************************
+    * Tests if the Pawn is Captured
+    ***************************************************************************/
+   void testPawnCapture()
    {
       // Setup
       Pawn * whitePawn = new Pawn(0, 0, true);
@@ -256,7 +284,9 @@ public:
       delete moves;
    }
    
-   
+   /**************************************************************************
+    * Builds the board
+    ***************************************************************************/
    Board * buildSimpleBoard()
    {
       Board * board = new Board();
@@ -274,6 +304,9 @@ public:
       return board;
    }
    
+   /**************************************************************************
+    * Clears the board memory
+    ***************************************************************************/
    void tearDownBoard(Board * board)  // Frees all of the memory of the Board
    {
       
@@ -284,6 +317,10 @@ public:
       delete board;
    }
    
+   /**************************************************************************
+    * Converts the moves into string set's to more easily verify that the 
+    * moves are correct
+    ***************************************************************************/
    set<string> * compileMoves(const set<Move> & moves)
    {
       std::set<string> * movesAsStrings = new set<string>;

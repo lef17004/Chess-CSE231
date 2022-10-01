@@ -1,11 +1,15 @@
-//
-//  testMove.h
-//  Lab01
-//
-//  Created by Michael LeFevre on 9/28/22.
-//
+/******************************************************************************
+ * Header File:
+ *    TestKing : contains unit tests for the King class
+ * 
+ * Lab01
+ *
+ * Created by Michael LeFevre on 9/28/22.
+ *******************************************************************************/
+
 
 #pragma once
+
 #include <iostream>
 #include "piece.h"
 #include "board.h"
@@ -25,12 +29,20 @@ using namespace std;
      A   B   C   D   E   F   G   H
  */
 
+
+/******************************************************************************
+ * TEST-KING
+ * Containts test cases for the King class
+ ******************************************************************************/
 class TestKing
 {
 public:
    TestKing() {}
    
-   void run()   //  Runs the test cases
+   /***************************************************************************
+    * Runs the test cases
+    ***************************************************************************/
+   void run()
    {
       test_kingFree();
       test_kingBlocked();
@@ -44,7 +56,10 @@ public:
       cout << "TestKing Completed" << endl;
    }
    
-   void test_kingFree()   //  Test's that the king moves correctly when placed alone on the board
+   /***************************************************************************
+    * Test's that the king moves correctly when placed alone on the board
+    ***************************************************************************/
+   void test_kingFree()
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -83,7 +98,10 @@ public:
       
    }
    
-   void test_kingBlocked()   //  Verifies that the king can't move when surounded by friendly pawns
+   /***************************************************************************
+    * Verifies that the king can't move when surounded by friendly pawns
+    ***************************************************************************/
+   void test_kingBlocked()
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -156,7 +174,10 @@ public:
      
    }
    
-   void test_kingCapture()   //  verifies that the king can capture enemy pawns
+   /***************************************************************************
+    * verifies that the king can capture enemy pawns
+    ***************************************************************************/
+   void test_kingCapture()
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -238,7 +259,10 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_kingCastleKingMove()   //  Verifies that the king moves correclty in the castle procedure
+   /***************************************************************************
+    * Verifies that the king moves correclty in the castle procedure
+    ***************************************************************************/
+   void test_kingCastleKingMove()
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -301,7 +325,10 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_kingCastleRookMove()   //  verifies that the rook moves correctly in the castle move
+   /***************************************************************************
+    * verifies that the rook moves correctly in the castle move
+    ***************************************************************************/
+   void test_kingCastleRookMove()
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -366,7 +393,10 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_kingCastleBlocked()   //  Verifies that the caslte option is not avaliable when it shouldn't be
+   /***************************************************************************
+    * Verifies that the caslte option is not avaliable when it shouldn't be
+    ***************************************************************************/
+   void test_kingCastleBlocked()
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -430,7 +460,10 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_kingCastle()   //  verifies the castle option is available when proper conditions are filled
+   /***************************************************************************
+    * verifies the castle option is available when proper conditions are filled
+    ***************************************************************************/
+   void test_kingCastle()
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -497,8 +530,10 @@ public:
       tearDownBoard(testBoard);
    }
    
-   
-   void tearDownBoard(Board * board)   //  clears the board memory
+   /***************************************************************************
+    * clears the board memory
+    ***************************************************************************/
+   void tearDownBoard(Board * board)
    {
       
       for (int i = 0; i < board->board.size(); i++)
@@ -508,7 +543,11 @@ public:
       delete board;
    }
    
-   set<string> * compileMoves(const set<Move> & moves)   //  converts the moves into string set's to more easily verify that the moves are correct
+   /***************************************************************************
+    * converts the moves into string set's to more easily verify that the 
+    * moves are correct
+    ***************************************************************************/
+   set<string> * compileMoves(const set<Move> & moves)
    {
       std::set<string> * movesAsStrings = new set<string>;
       for (Move move: moves)
@@ -518,7 +557,10 @@ public:
       return movesAsStrings;
    }
    
-   Board * buildSimpleBoard()   //  sets up the basic board
+   /***************************************************************************
+    * sets up the basic board
+    ***************************************************************************/
+   Board * buildSimpleBoard()
    {
       Board * board = new Board();
       array<Piece*, 64> pieceArray = {

@@ -12,6 +12,7 @@
 
 #include <iostream>
 
+
  /*********************************************
   * POINT
   * A single position.

@@ -1,11 +1,20 @@
-//
-//  position.h
-//  Lab01
-//
-//  Created by Michael LeFevre on 9/28/22.
-//
+/******************************************************************************
+ * Header File:
+ *    Position : The representation of a position on the board
+ * 
+ * Lab01
+ *
+ * Created by Michael LeFevre on 9/28/22.
+ *******************************************************************************/
+
 
 #pragma once
+
+
+/******************************************************************************
+ * POSITION
+ * A class to represent a position on the board
+ ******************************************************************************/
 class Position
 {
 private:

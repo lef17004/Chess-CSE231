@@ -1,17 +1,26 @@
-//
-//  piece.h
-//  Lab01
-//
-//  Created by Jane Orr on 9/28/22.
-//
+/******************************************************************************\
+ * Header File:
+ *    Piece : Representation of a basic peice object
+ * 
+ * Lab01
+ *
+ * Created by Jane Orr on 9/28/22.
+ *******************************************************************************/
+
 #pragma once
+
 #include "board.h"
 #include <set>
 #include <vector>
 #include "move.h"
 using namespace std;
+
 class Board;
 
+/******************************************************************************
+ * PIECE
+ * represents a basic playable piece on the board
+ ******************************************************************************/
 class Piece
 {
 protected:
