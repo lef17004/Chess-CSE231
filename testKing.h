@@ -30,7 +30,7 @@ class TestKing
 public:
    TestKing() {}
    
-   void run()
+   void run()   //  Runs the test cases
    {
       test_kingFree();
       test_kingBlocked();
@@ -44,7 +44,7 @@ public:
       cout << "TestKing Completed" << endl;
    }
    
-   void test_kingFree()
+   void test_kingFree()   //  Test's that the king moves correctly when placed alone on the board
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -83,7 +83,7 @@ public:
       
    }
    
-   void test_kingBlocked()
+   void test_kingBlocked()   //  Verifies that the king can't move when surounded by friendly pawns
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -156,7 +156,7 @@ public:
      
    }
    
-   void test_kingCapture()
+   void test_kingCapture()   //  verifies that the king can capture enemy pawns
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -238,7 +238,7 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_kingCastleKingMove()
+   void test_kingCastleKingMove()   //  Verifies that the king moves correclty in the castle procedure
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -301,7 +301,7 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_kingCastleRookMove()
+   void test_kingCastleRookMove()   //  verifies that the rook moves correctly in the castle move
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -366,7 +366,7 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_kingCastleBlocked()
+   void test_kingCastleBlocked()   //  Verifies that the caslte option is not avaliable when it shouldn't be
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -430,7 +430,7 @@ public:
       tearDownBoard(testBoard);
    }
    
-   void test_kingCastle()
+   void test_kingCastle()   //  verifies the castle option is available when proper conditions are filled
    {
       // Setup
       King * whiteKing = new King(0, 0, false);
@@ -498,7 +498,7 @@ public:
    }
    
    
-   void tearDownBoard(Board * board)
+   void tearDownBoard(Board * board)   //  clears the board memory
    {
       
       for (int i = 0; i < board->board.size(); i++)
@@ -508,7 +508,7 @@ public:
       delete board;
    }
    
-   set<string> * compileMoves(const set<Move> & moves)
+   set<string> * compileMoves(const set<Move> & moves)   //  converts the moves into string set's to more easily verify that the moves are correct
    {
       std::set<string> * movesAsStrings = new set<string>;
       for (Move move: moves)
@@ -518,7 +518,7 @@ public:
       return movesAsStrings;
    }
    
-   Board * buildSimpleBoard()
+   Board * buildSimpleBoard()   //  sets up the basic board
    {
       Board * board = new Board();
       array<Piece*, 64> pieceArray = {
