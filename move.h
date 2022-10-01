@@ -1,8 +1,10 @@
 /******************************************************************************
- *  move.h
- *  Lab01
+ * Header File:
+ *    Move : handles the logic of the piece movements and game rules
+ * 
+ * Lab01
  *
- *  Created by Michael LeFevre on 9/28/22.
+ * Created by Michael LeFevre on 9/28/22.
  *******************************************************************************/
 
 
@@ -12,6 +14,10 @@
 #include <string>
 
 
+ /******************************************************************************
+  * MOVE
+  * Game rules and movements Logic
+  ******************************************************************************/
 class Move
 {
 private:
