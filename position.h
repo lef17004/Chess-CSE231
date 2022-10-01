@@ -13,6 +13,7 @@ private:
    //squareWidth: Double Static
    //squareHeight: Double Static
    friend class TestPawn;
+   friend class TestKing;
 public:
    Position() {}
    Position(int location) {}

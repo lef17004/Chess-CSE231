@@ -19,7 +19,9 @@ protected:
    bool fWhite;
    int nMoves;
    int lastMove;
+   
    friend class TestPawn;
+   friend class TestKing;
 
 public:
    Piece(int r, int c, bool white) {}
@@ -49,6 +51,7 @@ public:
 class Rook: public Piece
 {
 public:
+   Rook(int r, int c, bool white): Piece(r, c, white) {}
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
@@ -73,9 +76,12 @@ public:
 class King: public Piece
 {
 public:
+   King(int r, int c, bool white): Piece(r, c, white) {}
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
+   
+   friend class TestKing;
 };
 
 class Queen: public Piece

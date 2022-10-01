@@ -44,6 +44,8 @@ public:
       test_pawnBlocked();
       test_pawnSimpleMove();
       test_pawnPromotion();
+      test_PawnEmpassant();
+      testPawnCapture();
       cout << "TestPawn Completed" << endl;
    }
    

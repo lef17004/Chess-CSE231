@@ -21,6 +21,7 @@ private:
    void swap(Position pos1, Position pos2) {}
    void assertBoard() {}
    friend class TestPawn;
+   friend class TestKing;
    
 public:
    
