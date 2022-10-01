@@ -108,8 +108,8 @@
     <ClInclude Include="piece.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="position.h" />
-    <ClInclude Include="testMove.h" />
-    <ClInclude Include="testPiece.h" />
+    <ClInclude Include="testKing.h" />
+    <ClInclude Include="testPawn.h" />
     <ClInclude Include="testRunner.h" />
     <ClInclude Include="uiDraw.h" />
     <ClInclude Include="uiInteract.h" />

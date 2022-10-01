@@ -50,13 +50,13 @@
     <ClInclude Include="testRunner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testPiece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testMove.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="move.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testPawn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testKing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
