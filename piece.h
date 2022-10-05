@@ -33,7 +33,10 @@ protected:
    friend class TestKing;
 
 public:
-   Piece(int r, int c, bool white) {}
+   Piece(char colLetter, char rowNumber, bool white)
+   {
+      
+   }
    virtual ~Piece() {};
    void assign(Position position) {}
    void assign(Piece & piece) {}
@@ -50,7 +53,7 @@ public:
 class Pawn: public Piece
 {
 public:
-   Pawn(int r, int c, bool white): Piece(r, c, white) {}
+   Pawn(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white) {}
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
@@ -85,7 +88,7 @@ public:
 class King: public Piece
 {
 public:
-   King(int r, int c, bool white): Piece(r, c, white) {}
+   King(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white) {}
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }

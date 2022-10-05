@@ -38,6 +38,8 @@ public:
     
         A   B   C   D   E   F   G   H
     
+    // 
+    
     These sets are testing the pawn class with regards to move, but move is not being tested.
     So that's why moves methods are being used while pawn's attributes are accessed directly.
     

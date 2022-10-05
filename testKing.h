@@ -535,6 +535,8 @@ public:
     ***************************************************************************/
    void tearDownBoard(Board * board)
    {
+      // Brother Helfrich, if you could comment the correct way to release all the memory in board
+      // or go over it in class that would be helpful!
       
       for (int i = 0; i < board->board.size(); i++)
       {
