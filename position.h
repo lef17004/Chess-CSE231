@@ -10,8 +10,8 @@
 
 #pragma once
 #include <math.h>
-
-
+#include <vector>
+using namespace std;
  /******************************************************************************
   * POSITION
   * A class to represent a position on the board
@@ -30,18 +30,23 @@ public:
    {
       location = calculateLocation(colLetter, rowNumber);
    }
+   
+   Position(Position & position, vector<int> & delta)
+   {
+      location = calculateLocation((char) delta[0] + getColumn(), delta[1] + getRow());
+   }
    Position(int location): location(location) {}
 
-   
+   bool isValid()
+   {
+      return 0 <= location  && location < 64;
+   }
    int getLocation() const { return location; }
    int getRow() { return calculateRow(location); }
    char getColumn() { return calculateCol(location); }
    int getX() { return 0; }
    int getY() { return 0; }
-   bool isValid()
-   {
-      return 0 <= location && location <= 63;
-   }
+ 
 
    void set(char colLetter, int rowNumber)
    {
