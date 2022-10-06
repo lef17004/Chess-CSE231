@@ -49,10 +49,10 @@ public:
    }
    
    bool operator == (Position & rhs) { return location == rhs.location; }
-   Position & operator = (Position & rhs)
+   Position & operator = (const Position & rhs)
    {
-      Position * pos = new Position(location);
-      return *pos;
+      location = rhs.location;
+      return *this;
       
    }
    //Position operator + (Position & rhs) { return *new Position; }

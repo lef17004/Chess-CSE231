@@ -15,7 +15,20 @@
 #include "move.h"
 using namespace std;
 
+// Forward Declaraion. Keep unless you want lots of errors.
 class Board;
+
+enum PieceType
+{
+   SPACE,
+   BLANK,
+   PAWN,
+   ROOK,
+   BISHOP,
+   KNIGHT,
+   QUEEN,
+   KING
+};
 
  /******************************************************************************
   * PIECE
@@ -28,6 +41,7 @@ protected:
    bool fWhite;
    int nMoves;
    int lastMove;
+   PieceType type;
    
    friend class TestPawn;
    friend class TestKing;
@@ -35,15 +49,19 @@ protected:
 public:
    Piece(char colLetter, char rowNumber, bool white)
    {
-      
+      position = Position(colLetter, rowNumber);
+      fWhite = white;
+      lastMove = -1;
+      nMoves = 0;
    }
    virtual ~Piece() {};
    void assign(Position position) {}
    void assign(Piece & piece) {}
-   bool isWhite() { return false;  }
-   int getNMoves() { return 0; }
-   Position getPosition() { return *new Position; }
-   bool justMoved() { return false; }
+   bool isWhite() { return fWhite;  }
+   int getNMoves() { return nMoves; }
+   Position & getPosition() { return position; }
+   bool justMoved(int currentTurn) { return currentTurn == lastMove + 1; }
+   
    virtual char getLetter() = 0;
    virtual void display(ogstream & gout) = 0;
    virtual set<Move> getMoves(Board & board) = 0;
@@ -53,7 +71,10 @@ public:
 class Pawn: public Piece
 {
 public:
-   Pawn(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white) {}
+   Pawn(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white)
+   {
+      type = PAWN;
+   }
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
@@ -63,7 +84,10 @@ public:
 class Rook: public Piece
 {
 public:
-   Rook(int r, int c, bool white): Piece(r, c, white) {}
+   Rook(int r, int c, bool white): Piece(r, c, white)
+   {
+      type = ROOK;
+   }
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
@@ -72,6 +96,10 @@ public:
 class Knight: public Piece
 {
 public:
+   Knight(int r, int c, bool white): Piece(r, c, white)
+   {
+      type = KNIGHT;
+   }
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
@@ -80,6 +108,10 @@ public:
 class Bishop: public Piece
 {
 public:
+   Bishop(int r, int c, bool white): Piece(r, c, white)
+   {
+      type = BISHOP;
+   }
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
@@ -88,7 +120,10 @@ public:
 class King: public Piece
 {
 public:
-   King(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white) {}
+   King(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white)
+   {
+      type = KING;
+   }
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
@@ -99,6 +134,10 @@ public:
 class Queen: public Piece
 {
 public:
+   Queen(int r, int c, bool white): Piece(r, c, white)
+   {
+      type = QUEEN;
+   }
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
@@ -107,7 +146,10 @@ public:
 class Space: public Piece
 {
 public:
-   Space(int r, int c): Piece(r, c, false) {}
+   Space(int r, int c): Piece(r, c, false)
+   {
+      type = SPACE;
+   }
    virtual char getLetter() { return 'M'; }
    virtual void display(ogstream & gout) {}
    virtual set<Move> getMoves(Board & board) { return *new set<Move>; }
