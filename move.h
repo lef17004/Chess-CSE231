@@ -13,6 +13,8 @@
 #include "position.h"
 #include <string>
 
+// Forward Declaration. Delete and die from errors. 
+class Board;
 
  /******************************************************************************
   * MOVE
@@ -51,7 +53,7 @@ public:
    void setDes(const Position& des) { dest = des; }
    void setEnPassant() { enpassant = true; }
    void setPromote(char letter) { piece = letter; }
-   void complete(const Board& board) {}
+   void complete(const Board & board) {}
    void setCastle(bool isKing)
    {
       if (isKing)
@@ -64,8 +66,9 @@ public:
    void assign(string move) {}
    // operator <<()
    // operator >>()
-   bool operator< (const Move & rhs) const {
-      return true;
+   bool operator < (const Move & rhs) const
+   {
+      return dest.getLocation() < rhs.dest.getLocation();
    }
    // friend ostream & operator << (ostream& out, Move & rhs);
    // friend istream & operator >> (istream& in, Move& rhs);

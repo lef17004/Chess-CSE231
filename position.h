@@ -49,6 +49,7 @@ public:
    }
    
    bool operator == (Position & rhs) { return location == rhs.location; }
+   bool operator < (Position & rhs) { return location > rhs.location; }
    Position & operator = (const Position & rhs)
    {
       location = rhs.location;
