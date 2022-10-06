@@ -62,7 +62,7 @@ public:
    void test_kingFree()
    {
       // Setup
-      King * whiteKing = new King(0, 0, false);
+      King * whiteKing = new King('A', 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 28;
       whiteKing->lastMove = 0;
@@ -104,37 +104,37 @@ public:
    void test_kingBlocked()
    {
       // Setup
-      King * whiteKing = new King(0, 0, false);
+      King * whiteKing = new King('A', 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 28;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * whitePawn1 = new Pawn(0, 0, false);
+      Pawn * whitePawn1 = new Pawn('A', 1, false);
       whitePawn1->position.location = 27;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn(0, 0, false);
+      Pawn * whitePawn2 = new Pawn('A', 1, false);
       whitePawn2->position.location = 20;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn(0, 0, false);
+      Pawn * whitePawn3 = new Pawn('A', 1, false);
       whitePawn3->position.location = 21;
       whitePawn3->fWhite = true;
       
-      Pawn * whitePawn4 = new Pawn(0, 0, false);
+      Pawn * whitePawn4 = new Pawn('A', 1, false);
       whitePawn4->position.location = 29;
       whitePawn4->fWhite = true;
       
-      Pawn * whitePawn5 = new Pawn(0, 0, false);
+      Pawn * whitePawn5 = new Pawn('A', 1, false);
       whitePawn5->position.location = 35;
       whitePawn5->fWhite = true;
       
-      Pawn * whitePawn6 = new Pawn(0, 0, false);
+      Pawn * whitePawn6 = new Pawn('A', 1, false);
       whitePawn6->position.location = 36;
       whitePawn6->fWhite = true;
       
-      Pawn * whitePawn7 = new Pawn(0, 0, false);
+      Pawn * whitePawn7 = new Pawn('A', 1, false);
       whitePawn7->position.location = 37;
       whitePawn7->fWhite = true;
 
@@ -180,37 +180,37 @@ public:
    void test_kingCapture()
    {
       // Setup
-      King * whiteKing = new King(0, 0, false);
+      King * whiteKing = new King('A', 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 28;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * blackPawn1 = new Pawn(0, 0, false);
+      Pawn * blackPawn1 = new Pawn('A', 1, false);
       blackPawn1->position.location = 27;
       blackPawn1->fWhite = false;
       
-      Pawn * blackPawn2 = new Pawn(0, 0, false);
+      Pawn * blackPawn2 = new Pawn('A', 1, false);
       blackPawn2->position.location = 20;
       blackPawn2->fWhite = false;
       
-      Pawn * blackPawn3 = new Pawn(0, 0, false);
+      Pawn * blackPawn3 = new Pawn('A', 1, false);
       blackPawn3->position.location = 21;
       blackPawn3->fWhite = false;
       
-      Pawn * blackPawn4 = new Pawn(0, 0, false);
+      Pawn * blackPawn4 = new Pawn('A', 1, false);
       blackPawn4->position.location = 29;
       blackPawn4->fWhite = false;
       
-      Pawn * blackPawn5 = new Pawn(0, 0, false);
+      Pawn * blackPawn5 = new Pawn('A', 1, false);
       blackPawn5->position.location = 35;
       blackPawn5->fWhite = false;
       
-      Pawn * blackPawn6 = new Pawn(0, 0, false);
+      Pawn * blackPawn6 = new Pawn('A', 1, false);
       blackPawn6->position.location = 36;
       blackPawn6->fWhite = false;
       
-      Pawn * blackPawn7 = new Pawn(0, 0, false);
+      Pawn * blackPawn7 = new Pawn('A', 1, false);
       blackPawn7->position.location = 37;
       blackPawn7->fWhite = false;
       
@@ -265,29 +265,29 @@ public:
    void test_kingCastleKingMove()
    {
       // Setup
-      King * whiteKing = new King(0, 0, false);
+      King * whiteKing = new King('A', 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 60;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 1;
       
-      Pawn * whitePawn1 = new Pawn(0, 0, false);
+      Pawn * whitePawn1 = new Pawn('A', 1, false);
       whitePawn1->position.location = 51;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn(0, 0, false);
+      Pawn * whitePawn2 = new Pawn('A', 1, false);
       whitePawn2->position.location = 52;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn(0, 0, false);
+      Pawn * whitePawn3 = new Pawn('A', 1, false);
       whitePawn3->position.location = 53;
       whitePawn3->fWhite = true;
       
-      Rook * whiteRook1 = new Rook(0, 0, false);
+      Rook * whiteRook1 = new Rook('A', 1, false);
       whiteRook1->position.location = 56;
       whiteRook1->fWhite = true;
       
-      Rook * whiteRook2 = new Rook(0, 0, false);
+      Rook * whiteRook2 = new Rook('A', 1, false);
       whiteRook2->position.location = 63;
       whiteRook2->fWhite = true;
 
@@ -331,30 +331,30 @@ public:
    void test_kingCastleRookMove()
    {
       // Setup
-      King * whiteKing = new King(0, 0, false);
+      King * whiteKing = new King('A', 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 60;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * whitePawn1 = new Pawn(0, 0, false);
+      Pawn * whitePawn1 = new Pawn('A', 1, false);
       whitePawn1->position.location = 51;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn(0, 0, false);
+      Pawn * whitePawn2 = new Pawn('A', 1, false);
       whitePawn2->position.location = 52;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn(0, 0, false);
+      Pawn * whitePawn3 = new Pawn('A', 1, false);
       whitePawn3->position.location = 53;
       whitePawn3->fWhite = true;
       
-      Rook * whiteRook1 = new Rook(0, 0, false);
+      Rook * whiteRook1 = new Rook('A', 1, false);
       whiteRook1->position.location = 56;
       whiteRook1->fWhite = true;
       whiteRook1->nMoves = 1;
       
-      Rook * whiteRook2 = new Rook(0, 0, false);
+      Rook * whiteRook2 = new Rook('A', 1, false);
       whiteRook2->position.location = 63;
       whiteRook2->fWhite = true;
       whiteRook2->nMoves = 1;
@@ -399,29 +399,29 @@ public:
    void test_kingCastleBlocked()
    {
       // Setup
-      King * whiteKing = new King(0, 0, false);
+      King * whiteKing = new King('A', 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 60;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * whitePawn1 = new Pawn(0, 0, false);
+      Pawn * whitePawn1 = new Pawn('A', 1, false);
       whitePawn1->position.location = 51;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn(0, 0, false);
+      Pawn * whitePawn2 = new Pawn('A', 1, false);
       whitePawn2->position.location = 52;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn(0, 0, false);
+      Pawn * whitePawn3 = new Pawn('A', 1, false);
       whitePawn3->position.location = 53;
       whitePawn3->fWhite = true;
       
-      Pawn * whitePawn4 = new Pawn(0, 0, false);
+      Pawn * whitePawn4 = new Pawn('A', 1, false);
       whitePawn4->position.location = 57;
       whitePawn4->fWhite = true;
       
-      Pawn * whitePawn5 = new Pawn(0, 0, false);
+      Pawn * whitePawn5 = new Pawn('A', 1, false);
       whitePawn5->position.location = 54;
       whitePawn5->fWhite = true;
       
@@ -466,30 +466,30 @@ public:
    void test_kingCastle()
    {
       // Setup
-      King * whiteKing = new King(0, 0, false);
+      King * whiteKing = new King('A', 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 60;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * whitePawn1 = new Pawn(0, 0, false);
+      Pawn * whitePawn1 = new Pawn('A', 1, false);
       whitePawn1->position.location = 51;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn(0, 0, false);
+      Pawn * whitePawn2 = new Pawn('A', 1, false);
       whitePawn2->position.location = 52;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn(0, 0, false);
+      Pawn * whitePawn3 = new Pawn('A', 1, false);
       whitePawn3->position.location = 53;
       whitePawn3->fWhite = true;
       
-      Rook * whiteRook1 = new Rook(0, 0, false);
+      Rook * whiteRook1 = new Rook('A', 1, false);
       whiteRook1->position.location = 56;
       whiteRook1->fWhite = true;
       whiteRook1->nMoves = 0;
       
-      Rook * whiteRook2 = new Rook(0, 0, false);
+      Rook * whiteRook2 = new Rook('A', 1, false);
       whiteRook2->position.location = 63;
       whiteRook2->fWhite = true;
       whiteRook2->nMoves = 0;
@@ -565,17 +565,13 @@ public:
    Board * buildSimpleBoard()
    {
       Board * board = new Board();
-      array<Piece*, 64> pieceArray = {
-         new Space(0, 0), new Space(0, 1), new Space(0 ,2), new Space(0, 3), new Space(0, 4), new Space(0, 5), new Space(0, 6), new Space(0, 7),
-         new Space(1, 0), new Space(1, 1), new Space(1 ,2), new Space(1, 3), new Space(1, 4), new Space(1, 5), new Space(1, 6), new Space(1, 7),
-         new Space(2, 0), new Space(2, 1), new Space(2 ,2), new Space(2, 3), new Space(2, 4), new Space(2, 5), new Space(2, 6), new Space(2, 7),
-         new Space(3, 0), new Space(3, 1), new Space(3 ,2), new Space(3, 3), new Space(3, 4), new Space(3, 5), new Space(3, 6), new Space(3, 7),
-         new Space(4, 0), new Space(4, 1), new Space(4 ,2), new Space(4, 3), new Space(4, 4), new Space(4, 5), new Space(4, 6), new Space(4, 7),
-         new Space(5, 0), new Space(5, 1), new Space(5 ,2), new Space(5, 3), new Space(5, 4), new Space(5, 5), new Space(5, 6), new Space(5, 7),
-         new Space(6, 0), new Space(6, 1), new Space(6 ,2), new Space(6, 3), new Space(6, 4), new Space(6, 5), new Space(6, 6), new Space(6, 7),
-         new Space(7, 0), new Space(7, 1), new Space(7 ,2), new Space(7, 3), new Space(7, 4), new Space(7, 5), new Space(7, 6), new Space(7, 7)
-      };
-      board->board = (pieceArray);
+      array<Piece*, 64> pieceArray = {};
+      for (int index = 0; index < 64; index++)
+      {
+         pieceArray[index] = new Space('A', 1);
+      }
+      
+      
       return board;
    }
    

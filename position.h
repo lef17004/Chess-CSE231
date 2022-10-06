@@ -33,7 +33,7 @@ public:
    Position(int location): location(location) {}
 
    
-   int getLocation() { return location; }
+   int getLocation() const { return location; }
    int getRow() { return calculateRow(location); }
    char getColumn() { return calculateCol(location); }
    int getX() { return 0; }
@@ -76,10 +76,11 @@ public:
       return pos;
    }
    
+   
    static int calculateRow(int location)
    {
       int row = ceil((64.0 - location) / 8.0);
-      assert(0 <= row && row <= 7);
+      assert(0 <= row && row <= 8);
       return row;
    }
    

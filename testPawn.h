@@ -71,11 +71,13 @@ public:
    void test_pawnBlocked()
    {
       // Setup
-      Pawn * whitePawn = new Pawn(4, 3, true);
-      Pawn * blackPawn = new Pawn(3, 3, false);
+      Pawn * whitePawn = new Pawn('A', 3, true);
+      Pawn * blackPawn = new Pawn('A', 3, false);
       whitePawn->position.location = 35;
       blackPawn->position.location = 27;
-      Board * testBoard = buildSimpleBoard();
+      Board * testBoard = new Board();
+      testBoard->setBoardToEmpty();
+      //Board * testBoard = buildSimpleBoard();
       
       
       testBoard->board[35] = whitePawn;
@@ -99,7 +101,7 @@ public:
    void test_pawnSimpleMove()
    {
       // Setup
-      Pawn * whitePawn = new Pawn(0, 0, true);
+      Pawn * whitePawn = new Pawn('A', 1, true);
       whitePawn->position.location = 33;
       whitePawn->fWhite = true;
       whitePawn->lastMove = 0;
@@ -136,7 +138,7 @@ public:
    void test_pawnPromotion()
    {
       // Setup
-      Pawn * whitePawn = new Pawn(0, 0, true);
+      Pawn * whitePawn = new Pawn('A', 1, true);
       whitePawn->position.location = 9;
       whitePawn->fWhite = true;
       whitePawn->lastMove = 0;
@@ -170,26 +172,26 @@ public:
    void test_PawnEnpassant()
    {
       // Setup
-      Pawn * whitePawn = new Pawn(0, 0, true);
+      Pawn * whitePawn = new Pawn('A', 1, true);
       whitePawn->position.location = 25;
       whitePawn->fWhite = true;
       whitePawn->lastMove = 0;
       whitePawn->nMoves = 0;
       
       
-      Pawn * blackPawn1 = new Pawn(0, 0, true);
+      Pawn * blackPawn1 = new Pawn('A', 1, true);
       blackPawn1->fWhite = false;
       blackPawn1->position.location = 8;
       blackPawn1->lastMove = 0;
       blackPawn1->nMoves = 0;
       
-      Pawn * blackPawn2 = new Pawn(0, 0, true);
+      Pawn * blackPawn2 = new Pawn('A', 1, true);
       blackPawn2->fWhite = false;
       blackPawn2->position.location = 16;
       blackPawn2->lastMove = 1;
       blackPawn2->nMoves = 0;
       
-      Pawn * blackPawn3 = new Pawn(0, 0, true);
+      Pawn * blackPawn3 = new Pawn('A', 1, true);
       blackPawn3->fWhite = false;
       blackPawn3->position.location = 18;
       blackPawn3->lastMove = 1;
@@ -231,26 +233,26 @@ public:
    void testPawnCapture()
    {
       // Setup
-      Pawn * whitePawn = new Pawn(0, 0, true);
+      Pawn * whitePawn = new Pawn('A', 1, true);
       whitePawn->position.location = 17;
       whitePawn->fWhite = true;
       whitePawn->lastMove = 0;
       whitePawn->nMoves = 0;
       
       
-      Pawn * blackPawn1 = new Pawn(0, 0, true);
+      Pawn * blackPawn1 = new Pawn('A', 1, true);
       blackPawn1->fWhite = false;
       blackPawn1->position.location = 8;
       blackPawn1->lastMove = 0;
       blackPawn1->nMoves = 0;
       
-      Pawn * blackPawn2 = new Pawn(0, 0, true);
+      Pawn * blackPawn2 = new Pawn('A', 1, true);
       blackPawn2->fWhite = false;
       blackPawn2->position.location = 9;
       blackPawn2->lastMove = 1;
       blackPawn2->nMoves = 0;
       
-      Pawn * blackPawn3 = new Pawn(0, 0, true);
+      Pawn * blackPawn3 = new Pawn('A', 1, true);
       blackPawn3->fWhite = false;
       blackPawn3->position.location = 10;
       blackPawn3->lastMove = 1;
@@ -292,17 +294,13 @@ public:
    Board * buildSimpleBoard()
    {
       Board * board = new Board();
-      array<Piece*, 64> pieceArray = {
-         new Space(0, 0), new Space(0, 1), new Space(0 ,2), new Space(0, 3), new Space(0, 4), new Space(0, 5), new Space(0, 6), new Space(0, 7),
-         new Space(1, 0), new Space(1, 1), new Space(1 ,2), new Space(1, 3), new Space(1, 4), new Space(1, 5), new Space(1, 6), new Space(1, 7),
-         new Space(2, 0), new Space(2, 1), new Space(2 ,2), new Space(2, 3), new Space(2, 4), new Space(2, 5), new Space(2, 6), new Space(2, 7),
-         new Space(3, 0), new Space(3, 1), new Space(3 ,2), new Space(3, 3), new Space(3, 4), new Space(3, 5), new Space(3, 6), new Space(3, 7),
-         new Space(4, 0), new Space(4, 1), new Space(4 ,2), new Space(4, 3), new Space(4, 4), new Space(4, 5), new Space(4, 6), new Space(4, 7),
-         new Space(5, 0), new Space(5, 1), new Space(5 ,2), new Space(5, 3), new Space(5, 4), new Space(5, 5), new Space(5, 6), new Space(5, 7),
-         new Space(6, 0), new Space(6, 1), new Space(6 ,2), new Space(6, 3), new Space(6, 4), new Space(6, 5), new Space(6, 6), new Space(6, 7),
-         new Space(7, 0), new Space(7, 1), new Space(7 ,2), new Space(7, 3), new Space(7, 4), new Space(7, 5), new Space(7, 6), new Space(7, 7)
-      };
-      board->board = (pieceArray);
+      array<Piece*, 64> pieceArray = {};
+      for (int index = 0; index < 64; index++)
+      {
+         pieceArray[index] = new Space('A', 1);
+      }
+      
+      
       return board;
    }
    

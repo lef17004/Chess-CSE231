@@ -84,7 +84,7 @@ public:
 class Rook: public Piece
 {
 public:
-   Rook(int r, int c, bool white): Piece(r, c, white)
+   Rook(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white)
    {
       type = ROOK;
    }
@@ -96,7 +96,7 @@ public:
 class Knight: public Piece
 {
 public:
-   Knight(int r, int c, bool white): Piece(r, c, white)
+   Knight(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white)
    {
       type = KNIGHT;
    }
@@ -108,7 +108,7 @@ public:
 class Bishop: public Piece
 {
 public:
-   Bishop(int r, int c, bool white): Piece(r, c, white)
+   Bishop(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white)
    {
       type = BISHOP;
    }
@@ -134,7 +134,7 @@ public:
 class Queen: public Piece
 {
 public:
-   Queen(int r, int c, bool white): Piece(r, c, white)
+   Queen(char colLetter, char rowNumber, bool white): Piece(colLetter, rowNumber, white)
    {
       type = QUEEN;
    }
@@ -146,7 +146,7 @@ public:
 class Space: public Piece
 {
 public:
-   Space(int r, int c): Piece(r, c, false)
+   Space(char colLetter, char rowNumber): Piece(colLetter, rowNumber, false)
    {
       type = SPACE;
    }
