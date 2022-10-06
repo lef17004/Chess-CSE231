@@ -66,20 +66,16 @@ public:
    void assign(string move) {}
    // operator <<()
    // operator >>()
-   bool operator < (const Move & rhs) const
-   {
-      return dest.getLocation() < rhs.dest.getLocation();
-   }
    // friend ostream & operator << (ostream& out, Move & rhs);
    // friend istream & operator >> (istream& in, Move& rhs);
 
    //const Move & operator = (const Move & rhs);
-   const Move& operator = (const string& s)
+   const Move & operator = (const string& s)
    {
       //read(s);
       return *this;
    }
-   const Move& operator = (const char* s)
+   const Move & operator = (const char* s)
    {
       const string str(s);
       //read(str);
