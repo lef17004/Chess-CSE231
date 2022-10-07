@@ -39,7 +39,7 @@ public:
 
    bool isValid()
    {
-      return 0 <= location  && location < 64;
+      return 0 <= location && location < 64;
    }
    int getLocation() const { return location; }
    int getRow() { return calculateRow(location); }

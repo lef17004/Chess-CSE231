@@ -36,6 +36,11 @@ private:
 public:
    // Getters
    Move() {}
+   Move(Position & position, vector<int> & delta)
+   {
+      dest = position;
+      dest.set((char)(position.getColumn() + delta[0]), position.getRow() + delta[1]);
+   }
    string getText()           const { return "Michael"; }
    const Position & getSrc()  const { return source; }
    const Position & getDes()  const { return dest; }
