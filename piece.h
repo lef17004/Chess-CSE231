@@ -72,7 +72,9 @@ public:
       {
          //Move posMove(position, delta[i])
       }
+      return *new set<Move>();
    }
+   
 };
 
 class Pawn: public Piece

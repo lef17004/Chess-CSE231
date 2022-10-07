@@ -68,7 +68,11 @@ public:
    // operator >>()
    // friend ostream & operator << (ostream& out, Move & rhs);
    // friend istream & operator >> (istream& in, Move& rhs);
-
+   
+   bool operator < (const Move & rhs) const
+   {
+      return dest.getLocation() < rhs.dest.getLocation();
+   }
    //const Move & operator = (const Move & rhs);
    const Move & operator = (const string& s)
    {
