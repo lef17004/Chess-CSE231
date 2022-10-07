@@ -68,9 +68,20 @@ public:
 
    set<Move> getMovesSlide(Board& board, vector<vector<int>> delta)
    {
+      set<Move> moves;
       for (int i = 0; i < delta.size(); i++)
       {
-         //Move posMove(position, delta[i])
+         Position posMove(position, delta[i]);
+         Move move;
+         while (posMove.isValid() && board[posMove] = SPACE)
+         {
+            move.setSrc(getPosition());
+            move.setDes(posMove);
+            move.setWhiteMove(isWhite());
+            moves.insert(move);
+         }
+
+         if (posMove.isValid() && (board[posMove]));
       }
       return *new set<Move>();
    }
