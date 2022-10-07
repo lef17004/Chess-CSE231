@@ -11,7 +11,12 @@
 #pragma once
 
 #include "testPawn.h"
+#include "testBoard.h"
+#include "testPiece.h"
+#include "testSpace.h"
 #include "testKing.h"
+#include "testPosition.h"
+#include "testMove.h"
 #include <iostream>
 using namespace std;
 
@@ -27,11 +32,21 @@ public:
    
    void run()
    {
-      TestPawn pawnTests;
-      pawnTests.run();
+      TestPosition testPosition;
+      TestMove testMove;
+      TestBoard testBoard;
+      TestPiece testPiece;
+      TestPawn testPawn;
+      TestKing testKing;
       
-      TestKing pawnKing;
-      pawnKing.run();
+      
+      testPosition.run();
+      testMove.run();
+      testBoard.run();
+      testPiece.run();
+      //testPawn.run();
+      //testKing.run();
+      
       
       cout << "Test Runner Completed" << endl;
    }

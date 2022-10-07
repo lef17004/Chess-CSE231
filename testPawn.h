@@ -1,68 +1,34 @@
-/******************************************************************************
- * Header File:
- *    TestPawn : contains unit tests for the Pawn class
- * 
- * Lab01
- *
- * Created by Michael LeFevre on 9/28/22.
- *******************************************************************************/
-
+//
+//  testPawn.h
+//  ChessUnitTests
+//
+//  Created by Michael LeFevre on 10/7/22.
+//
 
 #pragma once
 
-#include <iostream>
 #include "piece.h"
-#include "board.h"
-#include "position.h"
-#include "move.h"
-#include <algorithm>
+
+#include <iostream>
 using namespace std;
 
-
- /******************************************************************************
-  * TEST-PAWN
-  * Containts test cases for the Pawn class
-  ******************************************************************************/
 class TestPawn
 {
 public:
-   /*
-    8    0,  1,  2,  3,  4,  5,  6,  7,
-    7    8,  9, 10, 11, 12, 13, 14, 15,
-    6   16, 17, 18, 19, 20, 21, 22, 23,
-    5   24, 25, 26, 27, 28, 29, 30, 31,
-    4   32, 33, 34, 35, 36, 37, 38, 39,
-    3   40, 41, 42, 43, 44, 45, 46, 47,
-    2   48, 49, 50, 51, 52, 53, 54, 55,
-    1   56, 57, 58, 59, 60, 61, 62, 63
-    
-        A   B   C   D   E   F   G   H
-    
-    // 
-    
-    These sets are testing the pawn class with regards to move, but move is not being tested.
-    So that's why moves methods are being used while pawn's attributes are accessed directly.
-    
-    */
-   TestPawn() {}
-   
-   /*
-    
-    
-    
-    */
-
-   /**************************************************************************
-    * Runs the Pawn Test Cases
-    ***************************************************************************/
    void run()
    {
+      test_DefaultConstructor();
       test_pawnBlocked();
       test_pawnSimpleMove();
       test_pawnPromotion();
       test_PawnEnpassant();
       testPawnCapture();
-      cout << "TestPawn Completed" << endl;
+      cout << "TestPawn Completed\n";
+   }
+   
+   void test_DefaultConstructor()
+   {
+      Piece * pawn = new Pawn(1, 1, false);
    }
    
    /**************************************************************************
@@ -71,28 +37,29 @@ public:
    void test_pawnBlocked()
    {
       // Setup
-      Pawn * whitePawn = new Pawn('A', 3, true);
-      Pawn * blackPawn = new Pawn('A', 3, false);
-      whitePawn->position.location = 35;
-      blackPawn->position.location = 27;
+      Piece * whitePawn = new Pawn('A', 3, true);
+      Piece * blackPawn = new Pawn('A', 3, false);
+      whitePawn->position = Position(35);
+      blackPawn->position = Position(27);
       Board * testBoard = new Board();
       testBoard->setBoardToEmpty();
       //Board * testBoard = buildSimpleBoard();
-      
-      
-      testBoard->board[35] = whitePawn;
-      testBoard->board[27] = blackPawn;
-      
+
+
+      testBoard->setPiece(whitePawn);
+      testBoard->setPiece(blackPawn);
+
       // Excercise
-      set<Move> whitePawnMoves = whitePawn->getMoves(*testBoard);
-      
+      set<Move> whitePawnMoves = whitePawn->getPossibleMoves(*testBoard);
+
       // Verify
       assert(whitePawnMoves.size() == 0);
-      
+
       // Teardown
       delete whitePawn;
       delete blackPawn;
-      tearDownBoard(testBoard);
+
+      testBoard->free();
    }
    
    /**************************************************************************
@@ -101,7 +68,7 @@ public:
    void test_pawnSimpleMove()
    {
       // Setup
-      Pawn * whitePawn = new Pawn('A', 1, true);
+      Piece * whitePawn = new Pawn(0, 1, true);
       whitePawn->position.location = 33;
       whitePawn->fWhite = true;
       whitePawn->lastMove = 0;
@@ -113,7 +80,7 @@ public:
       
       
       // Exercise
-      set<Move> whitePawnsMoves = whitePawn->getMoves(*testBoard);
+      set<Move> whitePawnsMoves = whitePawn->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whitePawnsMoves);
@@ -127,7 +94,8 @@ public:
       
       // Teardown
       delete whitePawn;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
       delete moves;
       
    }
@@ -148,7 +116,7 @@ public:
       testBoard->board[9] = whitePawn;
       
       // Exercise
-      set<Move> whitePawnMoves = whitePawn->getMoves(*testBoard);
+      set<Move> whitePawnMoves = whitePawn->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
@@ -161,7 +129,8 @@ public:
       
       // Teardown
       delete whitePawn;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
       delete moves;
       
    }
@@ -205,7 +174,7 @@ public:
       testBoard->board[18] = blackPawn3;
       
       // Exercise
-      set<Move> whitePawnMoves = whitePawn->getMoves(*testBoard);
+      set<Move> whitePawnMoves = whitePawn->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
@@ -223,7 +192,8 @@ public:
       delete blackPawn1;
       delete blackPawn2;
       delete blackPawn3;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
       delete moves;
    }
    
@@ -266,7 +236,7 @@ public:
       testBoard->board[18] = blackPawn3;
       
       // Exercise
-      set<Move> whitePawnMoves = whitePawn->getMoves(*testBoard);
+      set<Move> whitePawnMoves = whitePawn->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
@@ -284,9 +254,12 @@ public:
       delete blackPawn1;
       delete blackPawn2;
       delete blackPawn3;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
       delete moves;
    }
+   
+   
    
    /**************************************************************************
     * Builds the board
@@ -297,7 +270,7 @@ public:
       array<Piece*, 64> pieceArray = {};
       for (int index = 0; index < 64; index++)
       {
-         pieceArray[index] = new Space('A', 1);
+         pieceArray[index] = new Space(0, 1, false);
       }
       
       
@@ -305,20 +278,7 @@ public:
    }
    
    /**************************************************************************
-    * Clears the board memory
-    ***************************************************************************/
-   void tearDownBoard(Board * board)  // Frees all of the memory of the Board
-   {
-      
-      for (int i = 0; i < board->board.size(); i++)
-      {
-         //delete board->board[i];
-      }
-      delete board;
-   }
-   
-   /**************************************************************************
-    * Converts the moves into string set's to more easily verify that the 
+    * Converts the moves into string set's to more easily verify that the
     * moves are correct
     ***************************************************************************/
    set<string> * compileMoves(const set<Move> & moves)

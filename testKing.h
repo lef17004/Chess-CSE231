@@ -1,47 +1,17 @@
-/******************************************************************************
- * Header File:
- *    TestKing : contains unit tests for the King class
- * 
- * Lab01
- *
- * Created by Michael LeFevre on 9/28/22.
- *******************************************************************************/
-
+//
+//  testKing.h
+//  ChessUnitTests
+//
+//  Created by Michael LeFevre on 10/7/22.
+//
 
 #pragma once
-
 #include <iostream>
-#include "piece.h"
-#include "board.h"
 using namespace std;
 
-
-/*
- 8    0,  1,  2,  3,  4,  5,  6,  7,
- 7    8,  9, 10, 11, 12, 13, 14, 15,
- 6   16, 17, 18, 19, 20, 21, 22, 23,
- 5   24, 25, 26, 27, 28, 29, 30, 31,
- 4   32, 33, 34, 35, 36, 37, 38, 39,
- 3   40, 41, 42, 43, 44, 45, 46, 47,
- 2   48, 49, 50, 51, 52, 53, 54, 55,
- 1   56, 57, 58, 59, 60, 61, 62, 63
- 
-     A   B   C   D   E   F   G   H
- */
-
-
- /******************************************************************************
-  * TEST-KING
-  * Containts test cases for the King class
-  ******************************************************************************/
 class TestKing
 {
 public:
-   TestKing() {}
-   
-   /***************************************************************************
-    * Runs the test cases
-    ***************************************************************************/
    void run()
    {
       test_kingFree();
@@ -51,9 +21,7 @@ public:
       test_kingCastleRookMove();
       test_kingCastleBlocked();
       test_kingCastle();
-      
-      
-      cout << "TestKing Completed" << endl;
+      cout << "TestKing Completed\n" << endl;
    }
    
    /***************************************************************************
@@ -62,17 +30,18 @@ public:
    void test_kingFree()
    {
       // Setup
-      King * whiteKing = new King('A', 1, false);
+      Piece * whiteKing = new King(0, 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 28;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Board * testBoard = buildSimpleBoard();
+      Board * testBoard = new Board();
+      testBoard->setBoardToEmpty();
       testBoard->board[28] = whiteKing;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getMoves(*testBoard);
+      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
@@ -85,7 +54,7 @@ public:
       assert(moves->find("e5d4") != moves->end());
       assert(moves->find("e5e4") != moves->end());
       assert(moves->find("e5f4") != moves->end());
-  
+      
       assert(whiteKing->fWhite            == true);
       assert(whiteKing->position.location == 28);
       assert(whiteKing->nMoves            == 0);
@@ -93,7 +62,8 @@ public:
       
       // Teardown
       delete whiteKing;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
       delete moves;
       
    }
@@ -104,42 +74,43 @@ public:
    void test_kingBlocked()
    {
       // Setup
-      King * whiteKing = new King('A', 1, false);
+      Piece * whiteKing = new King(0, 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 28;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * whitePawn1 = new Pawn('A', 1, false);
+      Piece * whitePawn1 = new Pawn(0, 1, false);
       whitePawn1->position.location = 27;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn('A', 1, false);
+      Piece * whitePawn2 = new Pawn(0, 1, false);
       whitePawn2->position.location = 20;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn('A', 1, false);
+      Piece * whitePawn3 = new Pawn(0, 1, false);
       whitePawn3->position.location = 21;
       whitePawn3->fWhite = true;
       
-      Pawn * whitePawn4 = new Pawn('A', 1, false);
+      Piece * whitePawn4 = new Pawn(0, 1, false);
       whitePawn4->position.location = 29;
       whitePawn4->fWhite = true;
       
-      Pawn * whitePawn5 = new Pawn('A', 1, false);
+      Piece * whitePawn5 = new Pawn(0, 1, false);
       whitePawn5->position.location = 35;
       whitePawn5->fWhite = true;
       
-      Pawn * whitePawn6 = new Pawn('A', 1, false);
+      Piece * whitePawn6 = new Pawn(0, 1, false);
       whitePawn6->position.location = 36;
       whitePawn6->fWhite = true;
       
-      Pawn * whitePawn7 = new Pawn('A', 1, false);
+      Piece * whitePawn7 = new Pawn(0, 1, false);
       whitePawn7->position.location = 37;
       whitePawn7->fWhite = true;
-
       
-      Board * testBoard = buildSimpleBoard();
+      
+      Board * testBoard = new Board();
+      testBoard->setBoardToEmpty();
       testBoard->board[28] = whiteKing;
       testBoard->board[27] = whitePawn1;
       testBoard->board[20] = whitePawn2;
@@ -150,7 +121,7 @@ public:
       testBoard->board[37] = whitePawn7;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getMoves(*testBoard);
+      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
       
       // Verify
       assert(whiteKingMoves.size()        == 0);
@@ -170,8 +141,9 @@ public:
       delete whitePawn7;
       
       
-      tearDownBoard(testBoard);
-     
+      testBoard->free();
+      delete testBoard;
+      
    }
    
    /***************************************************************************
@@ -180,42 +152,43 @@ public:
    void test_kingCapture()
    {
       // Setup
-      King * whiteKing = new King('A', 1, false);
+      Piece * whiteKing = new King(0, 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 28;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * blackPawn1 = new Pawn('A', 1, false);
+      Piece * blackPawn1 = new Pawn(0, 1, false);
       blackPawn1->position.location = 27;
       blackPawn1->fWhite = false;
       
-      Pawn * blackPawn2 = new Pawn('A', 1, false);
+      Piece * blackPawn2 = new Pawn(0, 1, false);
       blackPawn2->position.location = 20;
       blackPawn2->fWhite = false;
       
-      Pawn * blackPawn3 = new Pawn('A', 1, false);
+      Piece * blackPawn3 = new Pawn(0, 1, false);
       blackPawn3->position.location = 21;
       blackPawn3->fWhite = false;
       
-      Pawn * blackPawn4 = new Pawn('A', 1, false);
+      Piece * blackPawn4 = new Pawn(0, 1, false);
       blackPawn4->position.location = 29;
       blackPawn4->fWhite = false;
       
-      Pawn * blackPawn5 = new Pawn('A', 1, false);
+      Piece * blackPawn5 = new Pawn(0, 1, false);
       blackPawn5->position.location = 35;
       blackPawn5->fWhite = false;
       
-      Pawn * blackPawn6 = new Pawn('A', 1, false);
+      Piece * blackPawn6 = new Pawn(0, 1, false);
       blackPawn6->position.location = 36;
       blackPawn6->fWhite = false;
       
-      Pawn * blackPawn7 = new Pawn('A', 1, false);
+      Piece * blackPawn7 = new Pawn(0, 1, false);
       blackPawn7->position.location = 37;
       blackPawn7->fWhite = false;
       
       
-      Board * testBoard = buildSimpleBoard();
+      Board * testBoard = new Board();
+      testBoard->setBoardToEmpty();
       testBoard->board[28] = whiteKing;
       testBoard->board[27] = blackPawn1;
       testBoard->board[20] = blackPawn2;
@@ -226,11 +199,11 @@ public:
       testBoard->board[37] = blackPawn7;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getMoves(*testBoard);
+      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
-
+      
       assert(whiteKingMoves.size() == 8);
       assert(moves->find("e5d6p")  != moves->end());
       assert(moves->find("e5e6p")  != moves->end());
@@ -256,7 +229,8 @@ public:
       delete blackPawn6;
       delete blackPawn7;
       delete moves;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
    }
    
    /***************************************************************************
@@ -265,33 +239,34 @@ public:
    void test_kingCastleKingMove()
    {
       // Setup
-      King * whiteKing = new King('A', 1, false);
+      Piece * whiteKing = new King(0, 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 60;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 1;
       
-      Pawn * whitePawn1 = new Pawn('A', 1, false);
+      Piece * whitePawn1 = new Pawn(0, 1, false);
       whitePawn1->position.location = 51;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn('A', 1, false);
+      Piece * whitePawn2 = new Pawn(0, 1, false);
       whitePawn2->position.location = 52;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn('A', 1, false);
+      Piece * whitePawn3 = new Pawn(0, 1, false);
       whitePawn3->position.location = 53;
       whitePawn3->fWhite = true;
       
-      Rook * whiteRook1 = new Rook('A', 1, false);
+      Piece * whiteRook1 = new Rook(0, 1, false);
       whiteRook1->position.location = 56;
       whiteRook1->fWhite = true;
-      
-      Rook * whiteRook2 = new Rook('A', 1, false);
+
+      Piece * whiteRook2 = new Rook(0, 1, false);
       whiteRook2->position.location = 63;
       whiteRook2->fWhite = true;
-
-      Board * testBoard = buildSimpleBoard();
+      
+      Board * testBoard = new Board();
+      testBoard->setBoardToEmpty();
       testBoard->board[60] = whiteKing;
       testBoard->board[51] = whitePawn1;
       testBoard->board[52] = whitePawn2;
@@ -300,11 +275,11 @@ public:
       testBoard->board[63] = whiteRook2;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getMoves(*testBoard);
+      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
-   
+      
       assert(whiteKingMoves.size() == 2);
       assert(moves->find("elf1")  != moves->end());
       assert(moves->find("eldl")  != moves->end());
@@ -322,7 +297,8 @@ public:
       delete whiteRook1;
       delete whiteRook2;
       delete moves;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
    }
    
    /***************************************************************************
@@ -331,35 +307,36 @@ public:
    void test_kingCastleRookMove()
    {
       // Setup
-      King * whiteKing = new King('A', 1, false);
+      Piece * whiteKing = new King(0, 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 60;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * whitePawn1 = new Pawn('A', 1, false);
+      Piece * whitePawn1 = new Pawn(0, 1, false);
       whitePawn1->position.location = 51;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn('A', 1, false);
+      Piece * whitePawn2 = new Pawn(0, 1, false);
       whitePawn2->position.location = 52;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn('A', 1, false);
+      Piece * whitePawn3 = new Pawn(0, 1, false);
       whitePawn3->position.location = 53;
       whitePawn3->fWhite = true;
       
-      Rook * whiteRook1 = new Rook('A', 1, false);
+      Piece * whiteRook1 = new Rook(0, 1, false);
       whiteRook1->position.location = 56;
       whiteRook1->fWhite = true;
       whiteRook1->nMoves = 1;
-      
-      Rook * whiteRook2 = new Rook('A', 1, false);
+
+      Piece * whiteRook2 = new Rook(0, 1, false);
       whiteRook2->position.location = 63;
       whiteRook2->fWhite = true;
       whiteRook2->nMoves = 1;
       
-      Board * testBoard = buildSimpleBoard();
+      Board * testBoard = new Board();
+      testBoard->setBoardToEmpty();
       testBoard->board[60] = whiteKing;
       testBoard->board[51] = whitePawn1;
       testBoard->board[52] = whitePawn2;
@@ -368,7 +345,7 @@ public:
       testBoard->board[63] = whiteRook2;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getMoves(*testBoard);
+      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
@@ -390,7 +367,8 @@ public:
       delete whiteRook1;
       delete whiteRook2;
       delete moves;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
    }
    
    /***************************************************************************
@@ -399,34 +377,35 @@ public:
    void test_kingCastleBlocked()
    {
       // Setup
-      King * whiteKing = new King('A', 1, false);
+      Piece * whiteKing = new King(0, 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 60;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * whitePawn1 = new Pawn('A', 1, false);
+      Piece * whitePawn1 = new Pawn(0, 1, false);
       whitePawn1->position.location = 51;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn('A', 1, false);
+      Piece * whitePawn2 = new Pawn(0, 1, false);
       whitePawn2->position.location = 52;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn('A', 1, false);
+      Piece * whitePawn3 = new Pawn(0, 1, false);
       whitePawn3->position.location = 53;
       whitePawn3->fWhite = true;
       
-      Pawn * whitePawn4 = new Pawn('A', 1, false);
+      Piece * whitePawn4 = new Pawn(0, 1, false);
       whitePawn4->position.location = 57;
       whitePawn4->fWhite = true;
       
-      Pawn * whitePawn5 = new Pawn('A', 1, false);
+      Piece * whitePawn5 = new Pawn(0, 1, false);
       whitePawn5->position.location = 54;
       whitePawn5->fWhite = true;
       
       
-      Board * testBoard = buildSimpleBoard();
+      Board * testBoard = new Board();
+      testBoard->setBoardToEmpty();
       testBoard->board[60] = whiteKing;
       testBoard->board[51] = whitePawn1;
       testBoard->board[52] = whitePawn2;
@@ -435,7 +414,7 @@ public:
       testBoard->board[54] = whitePawn5;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getMoves(*testBoard);
+      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
@@ -457,7 +436,8 @@ public:
       delete whitePawn4;
       delete whitePawn5;
       delete moves;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
    }
    
    /***************************************************************************
@@ -466,35 +446,36 @@ public:
    void test_kingCastle()
    {
       // Setup
-      King * whiteKing = new King('A', 1, false);
+      Piece * whiteKing = new King(0, 1, false);
       whiteKing->fWhite = true;
       whiteKing->position.location = 60;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Pawn * whitePawn1 = new Pawn('A', 1, false);
+      Piece * whitePawn1 = new Pawn(0, 1, false);
       whitePawn1->position.location = 51;
       whitePawn1->fWhite = true;
       
-      Pawn * whitePawn2 = new Pawn('A', 1, false);
+      Piece * whitePawn2 = new Pawn(0, 1, false);
       whitePawn2->position.location = 52;
       whitePawn2->fWhite = true;
       
-      Pawn * whitePawn3 = new Pawn('A', 1, false);
+      Piece * whitePawn3 = new Pawn(0, 1, false);
       whitePawn3->position.location = 53;
       whitePawn3->fWhite = true;
       
-      Rook * whiteRook1 = new Rook('A', 1, false);
+      Piece * whiteRook1 = new Rook(0, 1, false);
       whiteRook1->position.location = 56;
       whiteRook1->fWhite = true;
       whiteRook1->nMoves = 0;
-      
-      Rook * whiteRook2 = new Rook('A', 1, false);
+
+      Piece * whiteRook2 = new Rook(0, 1, false);
       whiteRook2->position.location = 63;
       whiteRook2->fWhite = true;
       whiteRook2->nMoves = 0;
       
-      Board * testBoard = buildSimpleBoard();
+      Board * testBoard = new Board();
+      testBoard->setBoardToEmpty();
       testBoard->board[60] = whiteKing;
       testBoard->board[51] = whitePawn1;
       testBoard->board[52] = whitePawn2;
@@ -503,11 +484,11 @@ public:
       testBoard->board[63] = whiteRook2;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getMoves(*testBoard);
+      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
- 
+      
       assert(whiteKingMoves.size() == 4);
       assert(moves->find("elf1")  != moves->end());
       assert(moves->find("eldl")  != moves->end());
@@ -527,26 +508,13 @@ public:
       delete whiteRook1;
       delete whiteRook2;
       delete moves;
-      tearDownBoard(testBoard);
+      testBoard->free();
+      delete testBoard;
    }
    
-   /***************************************************************************
-    * clears the board memory
-    ***************************************************************************/
-   void tearDownBoard(Board * board)
-   {
-      // Brother Helfrich, if you could comment the correct way to release all the memory in board
-      // or go over it in class that would be helpful!
-      
-      for (int i = 0; i < board->board.size(); i++)
-      {
-         //delete board->board[i];
-      }
-      delete board;
-   }
    
    /***************************************************************************
-    * converts the moves into string set's to more easily verify that the 
+    * converts the moves into string set's to more easily verify that the
     * moves are correct
     ***************************************************************************/
    set<string> * compileMoves(const set<Move> & moves)
@@ -559,20 +527,5 @@ public:
       return movesAsStrings;
    }
    
-   /***************************************************************************
-    * sets up the basic board
-    ***************************************************************************/
-   Board * buildSimpleBoard()
-   {
-      Board * board = new Board();
-      array<Piece*, 64> pieceArray = {};
-      for (int index = 0; index < 64; index++)
-      {
-         pieceArray[index] = new Space('A', 1);
-      }
-      
-      
-      return board;
-   }
-   
+
 };

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33251B7128F0F16600D2B597 /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6528F0F14D00D2B597 /* board.cpp */; };
+		33251B7228F0F16600D2B597 /* king.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6E28F0F14D00D2B597 /* king.cpp */; };
+		33251B7428F0F16600D2B597 /* move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6C28F0F14D00D2B597 /* move.cpp */; };
+		33251B7528F0F16600D2B597 /* pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6828F0F14D00D2B597 /* pawn.cpp */; };
+		33251B7628F0F16600D2B597 /* piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6228F0F14D00D2B597 /* piece.cpp */; };
+		33251B7728F0F16600D2B597 /* position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6328F0F14D00D2B597 /* position.cpp */; };
+		33251B7828F0F16600D2B597 /* rook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B7028F0F14D00D2B597 /* rook.cpp */; };
+		33251B7928F0F16600D2B597 /* space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6D28F0F14D00D2B597 /* space.cpp */; };
 		C12A3BF5255D7A5500C22728 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12A3BF4255D7A5500C22728 /* GLUT.framework */; };
 		C12A3BF7255D7A5C00C22728 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12A3BF6255D7A5C00C22728 /* OpenGL.framework */; };
 		C13286172578104100FCEC47 /* chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C13286112578104000FCEC47 /* chess.cpp */; };
@@ -27,6 +35,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		33251B6228F0F14D00D2B597 /* piece.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = piece.cpp; sourceTree = "<group>"; };
+		33251B6328F0F14D00D2B597 /* position.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = position.cpp; sourceTree = "<group>"; };
+		33251B6428F0F14D00D2B597 /* testBoard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testBoard.h; sourceTree = "<group>"; };
+		33251B6528F0F14D00D2B597 /* board.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = board.cpp; sourceTree = "<group>"; };
+		33251B6628F0F14D00D2B597 /* testPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testPosition.h; sourceTree = "<group>"; };
+		33251B6828F0F14D00D2B597 /* pawn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pawn.cpp; sourceTree = "<group>"; };
+		33251B6928F0F14D00D2B597 /* testPiece.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testPiece.h; sourceTree = "<group>"; };
+		33251B6A28F0F14D00D2B597 /* testSpace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testSpace.h; sourceTree = "<group>"; };
+		33251B6B28F0F14D00D2B597 /* testMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testMove.h; sourceTree = "<group>"; };
+		33251B6C28F0F14D00D2B597 /* move.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = move.cpp; sourceTree = "<group>"; };
+		33251B6D28F0F14D00D2B597 /* space.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = space.cpp; sourceTree = "<group>"; };
+		33251B6E28F0F14D00D2B597 /* king.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = king.cpp; sourceTree = "<group>"; };
+		33251B6F28F0F14D00D2B597 /* delta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = delta.h; sourceTree = "<group>"; };
+		33251B7028F0F14D00D2B597 /* rook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rook.cpp; sourceTree = "<group>"; };
 		33A7CBFE28E4FF09003F4845 /* position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		33A7CBFF28E503CE003F4845 /* board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
 		33A7CC0028E509AD003F4845 /* testRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testRunner.h; sourceTree = "<group>"; };
@@ -63,6 +85,20 @@
 			children = (
 				33A7CC0428E50E05003F4845 /* piece.h */,
 				33A7CC0228E50A66003F4845 /* testPawn.h */,
+				33251B6528F0F14D00D2B597 /* board.cpp */,
+				33251B6F28F0F14D00D2B597 /* delta.h */,
+				33251B6E28F0F14D00D2B597 /* king.cpp */,
+				33251B6C28F0F14D00D2B597 /* move.cpp */,
+				33251B6828F0F14D00D2B597 /* pawn.cpp */,
+				33251B6228F0F14D00D2B597 /* piece.cpp */,
+				33251B6328F0F14D00D2B597 /* position.cpp */,
+				33251B7028F0F14D00D2B597 /* rook.cpp */,
+				33251B6D28F0F14D00D2B597 /* space.cpp */,
+				33251B6428F0F14D00D2B597 /* testBoard.h */,
+				33251B6B28F0F14D00D2B597 /* testMove.h */,
+				33251B6928F0F14D00D2B597 /* testPiece.h */,
+				33251B6628F0F14D00D2B597 /* testPosition.h */,
+				33251B6A28F0F14D00D2B597 /* testSpace.h */,
 				33A7CC0128E50A1C003F4845 /* testKing.h */,
 				33A7CC0028E509AD003F4845 /* testRunner.h */,
 				33A7CC0328E50B41003F4845 /* move.h */,
@@ -152,6 +188,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33251B7128F0F16600D2B597 /* board.cpp in Sources */,
+				33251B7228F0F16600D2B597 /* king.cpp in Sources */,
+				33251B7428F0F16600D2B597 /* move.cpp in Sources */,
+				33251B7528F0F16600D2B597 /* pawn.cpp in Sources */,
+				33251B7628F0F16600D2B597 /* piece.cpp in Sources */,
+				33251B7728F0F16600D2B597 /* position.cpp in Sources */,
+				33251B7828F0F16600D2B597 /* rook.cpp in Sources */,
+				33251B7928F0F16600D2B597 /* space.cpp in Sources */,
 				C13286172578104100FCEC47 /* chess.cpp in Sources */,
 				C13286182578104100FCEC47 /* uiDraw.cpp in Sources */,
 				C13286192578104100FCEC47 /* uiInteract.cpp in Sources */,
