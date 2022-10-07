@@ -74,7 +74,7 @@ public:
       {
          Position posMove(position, delta[i]);
          Move move;
-         while (posMove.isValid() && board[posMove] = SPACE)
+         while ((posMove.isValid()) && (board[posMove] && type == SPACE))
          {
             move.setSrc(getPosition());
             move.setDes(posMove);
