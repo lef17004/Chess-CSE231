@@ -13,6 +13,7 @@
 #include <set>
 #include <vector>
 #include "move.h"
+#include "uiDraw.h"
 using namespace std;
 
 // Forward Declaraion. Keep unless you want lots of errors.
