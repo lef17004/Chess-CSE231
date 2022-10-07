@@ -87,6 +87,10 @@ public:
    bool whiteTurn() { return currentMove % 2; }
    void display(int posHover, int posSel) {}
    Piece * get(const Position & pos) { return board[pos.getLocation()]; }
+   Piece * operator [] (Position & pos)
+   {
+      return board[pos.getLocation()];
+   }
    void free() {}
    void reset() {}
    void move(Move move) {}
