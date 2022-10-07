@@ -65,7 +65,14 @@ public:
    virtual char getLetter() = 0;
    virtual void display(ogstream & gout) = 0;
    virtual set<Move> getMoves(Board & board) = 0;
-   
+
+   set<Move> getMovesSlide(Board& board, vector<vector<int>> delta)
+   {
+      for (int i = 0; i < delta.size(); i++)
+      {
+         //Move posMove(position, delta[i])
+      }
+   }
 };
 
 class Pawn: public Piece
