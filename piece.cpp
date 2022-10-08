@@ -62,16 +62,62 @@ void Piece::displayPiece()
 
 bool Piece::justMoved(int turnNumber)
 {
-   return ((lastMove + 1) == turnNumber) ||
+	return ((lastMove + 1) == turnNumber) ||
           ((lastMove + 2) == turnNumber);
    
 }
 
 set<Move> & Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
 {
+	set<Move> moves;
    for (Delta delta : deltas)
    {
-      
+      Position posMove(position, delta);
+		while (posMove.isValid() && board.getPiece(posMove.getLocation())->getLetter())
+		{
+			Move move;
+			move.setSource(getPosition());
+			move.setDest(posMove);
+			move.setWhiteMove(isWhite());
+			moves.insert(move);
+		}
+		if (posMove.isValid() &&
+			((board.getPiece(position))->isWhite() != fWhite || board.getPiece(posMove.getLocation())->getLetter() != 's'))
+		{
+			Move move;
+			move.setSource(getPosition());
+			move.setDest(posMove);
+			move.setWhiteMove(isWhite());
+			if (board.getPiece(position)->getLetter() != 's')
+			{
+				move.setCapture(board.getPiece(position)->getLetter());
+			}
+			moves.insert(move);
+		}
    }
-   return *new set<Move>();
+   return moves;
+}
+
+set<Move>& Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
+{
+	set<Move> moves;
+	for (Delta delta : deltas)
+	{
+		Position posMove(position, delta);
+		if (posMove.isValid() &&
+			((board.getPiece(position))->isWhite() != fWhite || board.getPiece(posMove.getLocation())->getLetter() != 's'))
+		{
+			Move move;
+			move.setSource(getPosition());
+			move.setDest(posMove);
+			move.setWhiteMove(isWhite());
+			if (board.getPiece(position)->getLetter() != 's')
+			{
+				move.setCapture(board.getPiece(position)->getLetter());
+			}
+			moves.insert(move);
+		}
+	}
+	return moves;
+
 }
