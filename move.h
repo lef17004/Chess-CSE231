@@ -34,7 +34,8 @@ public:
    bool getWhiteMove() {return isWhite;    }
    void setEnPassant() {enpassant = true;  }
    void setCastle(bool isKing);
-   void setWhiteMove() { isWhite = true;   }
+   void setWhiteMove(bool isWhite) { this->isWhite = isWhite;   }
+   void setCapture(char name) { piece = name; }
    void setBlackMove() { isWhite = false;  }
    void setSource(const Position & source) { this->source = source; }
    void setDest(const Position & dest) { this->dest = dest; }

@@ -56,7 +56,7 @@ void Board::free()
 //      delete piece;
 }
 
-int Board::getCurrentMove()
+int Board::getCurrentMove() const
 {
    return currentMove;
 }

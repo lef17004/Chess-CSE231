@@ -60,3 +60,5 @@
 /.vs/Lab 01/v16/Browse.VC.db
 /.vs/Lab 01/v16/.suo
 /.vs/Inheritance Design/v17/.suo
+/x64/Debug/Lab01.tlog/unsuccessfulbuild
+/x64/Debug/Lab01.Build.CppClean.log
