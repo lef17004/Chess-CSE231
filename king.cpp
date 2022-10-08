@@ -62,5 +62,5 @@ set<Move> * King::getPossibleMoves(const Board & board)
 		}
 	}
 
-   return moves;
+   return &moves;
 }
