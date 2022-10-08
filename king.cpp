@@ -12,7 +12,7 @@ King::King() { }
 
 King::King(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
 
-set<Move> & King::getPossibleMoves(const Board & board)
+set<Move> * King::getPossibleMoves(const Board & board)
 {
    
    array<Delta, 8> deltas = {Delta(-1, 1),  Delta(0, 0),  Delta(1, 1),
@@ -26,5 +26,5 @@ set<Move> & King::getPossibleMoves(const Board & board)
    
    
    
-   return *new set<Move>();
+   return new set<Move>();
 }

@@ -132,9 +132,9 @@ public:
       auto moveSet = piece->getPossibleMoves(board);
       
       // Verify
-      assert(moveSet.size() == 1);
+      assert(moveSet->size() == 1);
       
-      set<string> * moves = compileMoves(moveSet);
+      set<string> * moves = compileMoves(*moveSet);
       assert(moves->find("a1a2") != moves->end());
       
       // Teardown

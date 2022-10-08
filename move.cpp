@@ -17,6 +17,7 @@ Move::Move()
    castleK = false;
    castleQ = false;
    isWhite = false;
+   promoting = false;
 }
 
 string Move::getText()
@@ -36,6 +37,7 @@ string Move::getText()
       smithNotation += promotion;
    else if (piece != 'M')
       smithNotation += getCapture();
+
    
    
    

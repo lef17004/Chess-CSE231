@@ -9,7 +9,7 @@
 
 Rook::Rook() {}
 Rook::Rook(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
-set<Move> & Rook::getPossibleMoves(const Board & board)
+set<Move> * Rook::getPossibleMoves(const Board & board)
 {
-   return *new set<Move>();
+   return new set<Move>();
 }

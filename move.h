@@ -20,6 +20,7 @@ private:
    bool castleK;
    bool castleQ;
    bool isWhite;
+   bool promoting;
    
 public:
    Move();
@@ -39,7 +40,7 @@ public:
    void setBlackMove() { isWhite = false;  }
    void setSource(const Position & source) { this->source = source; }
    void setDest(const Position & dest) { this->dest = dest; }
-   
+   void setPromotion() { promoting = true; }
    
    bool operator < (const Move & rhs) const;
    

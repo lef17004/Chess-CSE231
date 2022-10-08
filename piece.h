@@ -38,7 +38,7 @@ public:
    set<Move> & getMovesSlide(const Board & board, array<Delta, 8> deltas);
    
    virtual char getLetter();
-   virtual set<Move> & getPossibleMoves(const Board & board);
+   virtual set<Move> * getPossibleMoves(const Board & board);
    // display
    
    // Test ----------------------------
@@ -61,7 +61,7 @@ public:
    void addPromotion(set<Move> &Moves, Move& move);
    
    virtual char getLetter() { return 'p'; }
-   virtual set<Move> & getPossibleMoves(const Board & board);
+   virtual set<Move> * getPossibleMoves(const Board & board);
    
    friend class TestPawn;
 };
@@ -74,7 +74,7 @@ public:
    Space(int r, int c, bool isWhite);
    
    virtual char getLetter() { return 's'; }
-   virtual set<Move> & getPossibleMoves(const Board & board);
+   virtual set<Move> * getPossibleMoves(const Board & board);
 };
 
 class King: public Piece
@@ -84,7 +84,7 @@ public:
    King(int r, int c, bool isWhite);
    
    virtual char getLetter() { return 'k'; }
-   virtual set<Move> & getPossibleMoves(const Board & board);
+   virtual set<Move> * getPossibleMoves(const Board & board);
 };
 
 class Rook: public Piece
@@ -94,5 +94,5 @@ public:
    Rook(int r, int c, bool isWhite);
    
    virtual char getLetter() { return 'r'; }
-   virtual set<Move> & getPossibleMoves(const Board & board);
+   virtual set<Move> * getPossibleMoves(const Board & board);
 };

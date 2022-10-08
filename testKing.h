@@ -41,7 +41,7 @@ public:
       testBoard->board[28] = whiteKing;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
+      set<Move> whiteKingMoves = *(whiteKing->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
@@ -121,7 +121,7 @@ public:
       testBoard->board[37] = whitePawn7;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
+      set<Move> whiteKingMoves = *(whiteKing->getPossibleMoves(*testBoard));
       
       // Verify
       assert(whiteKingMoves.size()        == 0);
@@ -199,7 +199,7 @@ public:
       testBoard->board[37] = blackPawn7;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
+      set<Move> whiteKingMoves = *(whiteKing->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
@@ -275,7 +275,7 @@ public:
       testBoard->board[63] = whiteRook2;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
+      set<Move> whiteKingMoves = *(whiteKing->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
@@ -345,7 +345,7 @@ public:
       testBoard->board[63] = whiteRook2;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
+      set<Move> whiteKingMoves = *(whiteKing->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
@@ -414,7 +414,7 @@ public:
       testBoard->board[54] = whitePawn5;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
+      set<Move> whiteKingMoves = *(whiteKing->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);
@@ -484,7 +484,7 @@ public:
       testBoard->board[63] = whiteRook2;
       
       // Exercise
-      set<Move> whiteKingMoves = whiteKing->getPossibleMoves(*testBoard);
+      set<Move> whiteKingMoves = *(whiteKing->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whiteKingMoves);

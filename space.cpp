@@ -17,9 +17,9 @@ Space::Space(int r, int c, bool isWhite): Piece(r, c, isWhite)
    
 }
 
-set<Move> & Space::getPossibleMoves(const Board & board)
+set<Move> * Space::getPossibleMoves(const Board & board)
 {
    Piece * p = board.getPiece(position);
-   return *new set<Move>();
+   return new set<Move>();
 }
 

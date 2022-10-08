@@ -43,7 +43,7 @@ char Piece::getLetter()
  * PIECE::GET POSSIBLE MOVES
  *  Returns a set of moves for each move a piece can make
  ******************************************************************************/
-set<Move> & Piece::getPossibleMoves(const Board & board)
+set<Move> * Piece::getPossibleMoves(const Board & board)
 {
    board.isWhiteTurn();
    Move move;
@@ -51,7 +51,7 @@ set<Move> & Piece::getPossibleMoves(const Board & board)
    move.setSource(Position(0, 0));
    move.setDest(Position(1, 0));
    moveSet->insert(move);
-   return *moveSet;
+   return moveSet;
 }
 
 

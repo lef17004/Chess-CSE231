@@ -37,8 +37,8 @@ public:
    void test_pawnBlocked()
    {
       // Setup
-      Piece * whitePawn = new Pawn('A', 3, true);
-      Piece * blackPawn = new Pawn('A', 3, false);
+      Piece * whitePawn = new Pawn(3, 3, true);
+      Piece * blackPawn = new Pawn(4, 3, false);
       whitePawn->position = Position(35);
       blackPawn->position = Position(27);
       Board * testBoard = new Board();
@@ -50,7 +50,7 @@ public:
       testBoard->setPiece(blackPawn);
 
       // Excercise
-      set<Move> whitePawnMoves = whitePawn->getPossibleMoves(*testBoard);
+      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
 
       // Verify
       assert(whitePawnMoves.size() == 0);
@@ -68,7 +68,7 @@ public:
    void test_pawnSimpleMove()
    {
       // Setup
-      Piece * whitePawn = new Pawn(0, 1, true);
+      Piece * whitePawn = new Pawn(3, 1, true);
       whitePawn->position.location = 33;
       whitePawn->fWhite = true;
       whitePawn->lastMove = 0;
@@ -80,12 +80,12 @@ public:
       
       
       // Exercise
-      set<Move> whitePawnsMoves = whitePawn->getPossibleMoves(*testBoard);
+      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
       
       // Verify
-      set<string> * moves = compileMoves(whitePawnsMoves);
+      set<string> * moves = compileMoves(whitePawnMoves);
       
-      assert(moves->find("64b5")          != moves->end());
+      assert(moves->find("b4b5")          != moves->end());
       assert(whitePawn->fWhite            == true);
       assert(whitePawn->position.location == 33);
       assert(whitePawn->nMoves            == 0);
@@ -106,26 +106,26 @@ public:
    void test_pawnPromotion()
    {
       // Setup
-      Pawn * whitePawn = new Pawn('A', 1, true);
+      Pawn * whitePawn = new Pawn(6, 1, true);
       whitePawn->position.location = 9;
       whitePawn->fWhite = true;
-      whitePawn->lastMove = 0;
-      whitePawn->nMoves = 0;
+      whitePawn->lastMove = 4;
+      whitePawn->nMoves = 5;
       
       Board * testBoard = buildSimpleBoard();
       testBoard->board[9] = whitePawn;
       
       // Exercise
-      set<Move> whitePawnMoves = whitePawn->getPossibleMoves(*testBoard);
+      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
       
-      assert(moves->find("67680")          != moves->end());
+      assert(moves->find("b7b8Q")          != moves->end());
       assert(whitePawn->fWhite            == true);
       assert(whitePawn->position.location == 9);
-      assert(whitePawn->nMoves            == 0);
-      assert(whitePawn->lastMove          == 0);
+      assert(whitePawn->nMoves            == 5);
+      assert(whitePawn->lastMove          == 4);
       
       // Teardown
       delete whitePawn;
@@ -141,49 +141,44 @@ public:
    void test_PawnEnpassant()
    {
       // Setup
-      Pawn * whitePawn = new Pawn('A', 1, true);
-      whitePawn->position.location = 25;
+      Pawn * whitePawn = new Pawn(5, 2, true);
+      whitePawn->position.location = 18;
       whitePawn->fWhite = true;
       whitePawn->lastMove = 0;
       whitePawn->nMoves = 0;
       
       
-      Pawn * blackPawn1 = new Pawn('A', 1, true);
+      Pawn * blackPawn1 = new Pawn(5, 1, true);
       blackPawn1->fWhite = false;
-      blackPawn1->position.location = 8;
-      blackPawn1->lastMove = 0;
-      blackPawn1->nMoves = 0;
+      blackPawn1->position.location = 17;
+      blackPawn1->lastMove = 1;
+      blackPawn1->nMoves = 1;
       
-      Pawn * blackPawn2 = new Pawn('A', 1, true);
+      Pawn * blackPawn2 = new Pawn(6, 2, true);
       blackPawn2->fWhite = false;
-      blackPawn2->position.location = 16;
-      blackPawn2->lastMove = 1;
+      blackPawn2->position.location = 10;
+      blackPawn2->lastMove = 0;
       blackPawn2->nMoves = 0;
       
-      Pawn * blackPawn3 = new Pawn('A', 1, true);
-      blackPawn3->fWhite = false;
-      blackPawn3->position.location = 18;
-      blackPawn3->lastMove = 1;
-      blackPawn3->nMoves = 0;
       
       
       Board * testBoard = buildSimpleBoard();
-      testBoard->board[25] = whitePawn;
-      testBoard->board[8]  = blackPawn1;
-      testBoard->board[16] = blackPawn2;
-      testBoard->board[18] = blackPawn3;
+      testBoard->currentMove = 2;
+      testBoard->board[18] = whitePawn;
+      testBoard->board[17]  = blackPawn1;
+      testBoard->board[10] = blackPawn2;
       
       // Exercise
-      set<Move> whitePawnMoves = whitePawn->getPossibleMoves(*testBoard);
+      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
       
-      assert(moves->find("65c6E") != moves->end());
-      assert(moves->find("b5a6E") != moves->end());
+      assert(moves->find("c6b7E") != moves->end());
+
       
       assert(whitePawn->fWhite            == true);
-      assert(whitePawn->position.location == 25);
+      assert(whitePawn->position.location == 18);
       assert(whitePawn->nMoves            == 0);
       assert(whitePawn->lastMove          == 0);
       
@@ -191,7 +186,6 @@ public:
       delete whitePawn;
       delete blackPawn1;
       delete blackPawn2;
-      delete blackPawn3;
       testBoard->free();
       delete testBoard;
       delete moves;
@@ -203,26 +197,26 @@ public:
    void testPawnCapture()
    {
       // Setup
-      Pawn * whitePawn = new Pawn('A', 1, true);
+      Pawn * whitePawn = new Pawn(5, 1, true);
       whitePawn->position.location = 17;
       whitePawn->fWhite = true;
       whitePawn->lastMove = 0;
       whitePawn->nMoves = 0;
       
       
-      Pawn * blackPawn1 = new Pawn('A', 1, true);
+      Pawn * blackPawn1 = new Pawn(6, 0, true);
       blackPawn1->fWhite = false;
       blackPawn1->position.location = 8;
       blackPawn1->lastMove = 0;
       blackPawn1->nMoves = 0;
       
-      Pawn * blackPawn2 = new Pawn('A', 1, true);
+      Pawn * blackPawn2 = new Pawn(6, 1, true);
       blackPawn2->fWhite = false;
       blackPawn2->position.location = 9;
       blackPawn2->lastMove = 1;
       blackPawn2->nMoves = 0;
       
-      Pawn * blackPawn3 = new Pawn('A', 1, true);
+      Pawn * blackPawn3 = new Pawn(6, 2, true);
       blackPawn3->fWhite = false;
       blackPawn3->position.location = 10;
       blackPawn3->lastMove = 1;
@@ -230,13 +224,13 @@ public:
       
       
       Board * testBoard = buildSimpleBoard();
-      testBoard->board[25] = whitePawn;
+      testBoard->board[17] = whitePawn;
       testBoard->board[8]  = blackPawn1;
-      testBoard->board[16] = blackPawn2;
-      testBoard->board[18] = blackPawn3;
+      testBoard->board[9] = blackPawn2;
+      testBoard->board[10] = blackPawn3;
       
       // Exercise
-      set<Move> whitePawnMoves = whitePawn->getPossibleMoves(*testBoard);
+      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
