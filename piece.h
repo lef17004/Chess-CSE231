@@ -13,6 +13,9 @@
 #include "delta.h"
 class Board;
 
+
+// In final design, piece with be abstract. Currently it's not to make testing easier.
+// Maybe in the future make sure the base class isn't abstract. 
 class Piece
 {
 protected:
@@ -30,6 +33,7 @@ public:
    bool isMove() { return nMoves > 0; }
    int getNMoves() { return nMoves; }
    Position & getPosition() { return position; }
+   void setPosition(const Position & pos) { position = pos; }
    bool justMoved(int turnNumber);
    set<Move> & getMovesSlide(const Board & board, array<Delta, 8> deltas);
    

@@ -78,3 +78,9 @@ Position::Position(const Position & position, const Delta & delta)
 {
    set(position.getRow() + delta.y, position.getCol() + delta.x);
 }
+
+Position & Position::operator = (const Position & rhs)
+{
+   location = rhs.location;
+   return *this;
+}

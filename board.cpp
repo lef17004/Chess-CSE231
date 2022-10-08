@@ -10,32 +10,23 @@
 
 Board::Board()
 {
-   makePiece();
-   
    for (int index = 0; index < 64; index++)
    {
       board[index] = new Space();
       board[index]->isWhite();
    }
-   
-   
 }
 
-
-
-Piece & Board::getPiece()
-{
-   return *this->piece;
-}
 
 void Board::setPiece(Piece * piece)
 {
    board[piece->getPosition().getLocation()] = piece;
 }
 
-Piece & Board::makePiece()
+void Board::setPiece(Piece * piece, const Position & pos)
 {
-   return *new Piece();
+   piece->setPosition(pos);
+   board[pos.getLocation()] = piece;
 }
 
 bool Board::isWhiteTurn() const
@@ -45,12 +36,7 @@ bool Board::isWhiteTurn() const
 
 Piece * Board::getPiece(const Position & pos) const
 {
-   Piece * pawn = new Pawn();
-   Piece * piece = new Piece();
-   pawn->getNMoves();
-   piece->isMove();
    return board[pos.getLocation()];
-   return new Piece();
 }
 
 void Board::setBoardToEmpty()
@@ -75,7 +61,18 @@ int Board::getCurrentMove()
    return currentMove;
 }
 
-void Board::move(const Move & move)
+void Board::move(Move & move)
 {
+   Position source = move.getSrc();
+   Position destination = move.getDes();
    
+   swap(source, destination);
+}
+
+void Board::swap(const Position & pos1, const Position & pos2)
+{
+   Piece * temp = getPiece(pos1);
+   setPiece(board[pos2.getLocation()], pos1);
+   setPiece(temp, pos2);
+   delete temp;
 }

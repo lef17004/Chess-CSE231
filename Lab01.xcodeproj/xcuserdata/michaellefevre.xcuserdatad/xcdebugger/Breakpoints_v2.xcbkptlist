@@ -15,9 +15,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "operator =(rhs)"
-            landmarkType = "7">
+            endingLineNumber = "60">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

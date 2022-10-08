@@ -21,7 +21,7 @@ private:
    int currentMove;
    // ogstream gout;
    
-   void swap(Position pos1, Position pos2);
+   void swap(const Position & pos1, const Position & pos2);
    void assertBoard();
    
 public:
@@ -33,12 +33,12 @@ public:
    void setPiece(Piece * piece);
    void free();
    void reset();
-   void move(const Move & move);
+   void move(Move & move);
+   void setPiece(Piece * piece, const Position & pos);
    void setBoardToEmpty();
    
    
-   Piece & getPiece();
-   Piece & makePiece();
+
    
    Piece * piece;
    

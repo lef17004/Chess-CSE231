@@ -46,6 +46,7 @@ public:
    
    bool operator < (const Position & rhs) const;
    bool operator == (const Position & rhs);
+   Position & operator = (const Position & rhs);
    
    friend class TestPosition;
    friend class TestMove;

@@ -38,14 +38,15 @@ public:
       TestPiece testPiece;
       TestPawn testPawn;
       TestKing testKing;
+      TestSpace testSpace;;
       
-      
+      testSpace.run();
       testPosition.run();
       testMove.run();
       testBoard.run();
       testPiece.run();
-      //testPawn.run();
-      //testKing.run();
+      testPawn.run();
+      testKing.run();
       
       
       cout << "Test Runner Completed" << endl;
