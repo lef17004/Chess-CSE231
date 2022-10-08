@@ -39,6 +39,7 @@ public:
    void setSource(const Position & source) { this->source = source; }
    void setDest(const Position & dest) { this->dest = dest; }
    
+   
    bool operator < (const Move & rhs) const;
    
    friend class TestMove;

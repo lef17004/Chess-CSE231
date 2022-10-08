@@ -23,7 +23,7 @@ set<Move> & King::getPossibleMoves(const Board & board)
    
    
    
-   Piece * p = board.getPiece(position);
+   
    
    
    return *new set<Move>();
