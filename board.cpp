@@ -69,6 +69,7 @@ void Board::move(Move & move)
    swap(source, destination);
 }
 
+
 void Board::swap(const Position & pos1, const Position & pos2)
 {
    Piece * temp = getPiece(pos1);

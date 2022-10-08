@@ -8,6 +8,9 @@
 #include "piece.h"
 #include <iostream>
 
+/******************************************************************************
+ * PIECE::PIECE - Default Constructor
+ ******************************************************************************/
 Piece::Piece()
 {
    position = Position();
@@ -16,6 +19,9 @@ Piece::Piece()
    lastMove = -1;
 }
 
+/******************************************************************************
+ * PIECE::PIECE - Nondefault Constructor
+ ******************************************************************************/
 Piece::Piece(int r, int c, bool isWhite)
 {
    position = Position(r, c);
@@ -24,11 +30,19 @@ Piece::Piece(int r, int c, bool isWhite)
    lastMove = -1;
 }
 
+/******************************************************************************
+ * PIECE::GET LETTER
+ * Get's the letter of the piece
+ ******************************************************************************/
 char Piece::getLetter()
 {
    return 'M';
 }
 
+/******************************************************************************
+ * PIECE::GET POSSIBLE MOVES
+ *  Returns a set of moves for each move a piece can make
+ ******************************************************************************/
 set<Move> & Piece::getPossibleMoves(const Board & board)
 {
    board.isWhiteTurn();
@@ -40,10 +54,6 @@ set<Move> & Piece::getPossibleMoves(const Board & board)
    return *moveSet;
 }
 
-void Piece::useBoard(Board & board)
-{
-   board.setPiece(this);
-}
 
 void Piece::displayPiece()
 {

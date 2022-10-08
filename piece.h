@@ -15,7 +15,7 @@ class Board;
 
 
 // In final design, piece with be abstract. Currently it's not to make testing easier.
-// Maybe in the future make sure the base class isn't abstract. 
+// Maybe in the future make sure the base class isn't abstract.
 class Piece
 {
 protected:
@@ -42,7 +42,7 @@ public:
    // display
    
    // Test ----------------------------
-   void useBoard(Board & board);
+
    void displayPiece();
    
    int pos;
