@@ -138,6 +138,7 @@ public:
       move.castleK = false;
       move.castleQ = false;
       move.isWhite = true;
+      move.setPromotion();
       
       // Exercise
       string text = move.getText();

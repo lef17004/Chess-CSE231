@@ -30,7 +30,7 @@ public:
    void test_kingFree()
    {
       // Setup
-      Piece * whiteKing = new King(0, 1, false);
+      Piece * whiteKing = new King(4, 4, true);
       whiteKing->fWhite = true;
       whiteKing->position.location = 28;
       whiteKing->lastMove = 0;
@@ -74,39 +74,43 @@ public:
    void test_kingBlocked()
    {
       // Setup
-      Piece * whiteKing = new King(0, 1, false);
+      Piece * whiteKing = new King(4, 4, true);
       whiteKing->fWhite = true;
       whiteKing->position.location = 28;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Piece * whitePawn1 = new Pawn(0, 1, false);
+      Piece * whitePawn1 = new Pawn(4, 3, true);
       whitePawn1->position.location = 27;
       whitePawn1->fWhite = true;
       
-      Piece * whitePawn2 = new Pawn(0, 1, false);
+      Piece * whitePawn2 = new Pawn(5, 4, true);
       whitePawn2->position.location = 20;
       whitePawn2->fWhite = true;
       
-      Piece * whitePawn3 = new Pawn(0, 1, false);
+      Piece * whitePawn3 = new Pawn(5, 5, true);
       whitePawn3->position.location = 21;
       whitePawn3->fWhite = true;
       
-      Piece * whitePawn4 = new Pawn(0, 1, false);
+      Piece * whitePawn4 = new Pawn(4, 5, true);
       whitePawn4->position.location = 29;
       whitePawn4->fWhite = true;
       
-      Piece * whitePawn5 = new Pawn(0, 1, false);
+      Piece * whitePawn5 = new Pawn(3, 3, true);
       whitePawn5->position.location = 35;
       whitePawn5->fWhite = true;
       
-      Piece * whitePawn6 = new Pawn(0, 1, false);
+      Piece * whitePawn6 = new Pawn(3, 6, true);
       whitePawn6->position.location = 36;
       whitePawn6->fWhite = true;
       
-      Piece * whitePawn7 = new Pawn(0, 1, false);
+      Piece * whitePawn7 = new Pawn(3, 5, true);
       whitePawn7->position.location = 37;
       whitePawn7->fWhite = true;
+      
+      Piece * whitePawn8 = new Pawn(5, 3, true);
+      whitePawn8->position.location = 19;
+      whitePawn8->fWhite = true;
       
       
       Board * testBoard = new Board();
@@ -119,6 +123,7 @@ public:
       testBoard->board[35] = whitePawn5;
       testBoard->board[36] = whitePawn6;
       testBoard->board[37] = whitePawn7;
+      testBoard->board[19] = whitePawn8;
       
       // Exercise
       set<Move> whiteKingMoves = *(whiteKing->getPossibleMoves(*testBoard));
@@ -139,7 +144,7 @@ public:
       delete whitePawn5;
       delete whitePawn6;
       delete whitePawn7;
-      
+      delete whitePawn8;
       
       testBoard->free();
       delete testBoard;
@@ -152,39 +157,43 @@ public:
    void test_kingCapture()
    {
       // Setup
-      Piece * whiteKing = new King(0, 1, false);
+      Piece * whiteKing = new King(4, 4, true);
       whiteKing->fWhite = true;
       whiteKing->position.location = 28;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 0;
       
-      Piece * blackPawn1 = new Pawn(0, 1, false);
+      Piece * blackPawn1 = new Pawn(4, 3, false);
       blackPawn1->position.location = 27;
       blackPawn1->fWhite = false;
       
-      Piece * blackPawn2 = new Pawn(0, 1, false);
+      Piece * blackPawn2 = new Pawn(5, 4, false);
       blackPawn2->position.location = 20;
       blackPawn2->fWhite = false;
       
-      Piece * blackPawn3 = new Pawn(0, 1, false);
+      Piece * blackPawn3 = new Pawn(5, 5, false);
       blackPawn3->position.location = 21;
       blackPawn3->fWhite = false;
       
-      Piece * blackPawn4 = new Pawn(0, 1, false);
+      Piece * blackPawn4 = new Pawn(4, 5, false);
       blackPawn4->position.location = 29;
       blackPawn4->fWhite = false;
       
-      Piece * blackPawn5 = new Pawn(0, 1, false);
+      Piece * blackPawn5 = new Pawn(3, 3, false);
       blackPawn5->position.location = 35;
       blackPawn5->fWhite = false;
       
-      Piece * blackPawn6 = new Pawn(0, 1, false);
+      Piece * blackPawn6 = new Pawn(3, 6, false);
       blackPawn6->position.location = 36;
       blackPawn6->fWhite = false;
       
-      Piece * blackPawn7 = new Pawn(0, 1, false);
+      Piece * blackPawn7 = new Pawn(3, 5, false);
       blackPawn7->position.location = 37;
       blackPawn7->fWhite = false;
+      
+      Piece * blackPawn8 = new Pawn(5, 3, false);
+      blackPawn8->position.location = 19;
+      blackPawn8->fWhite = false;
       
       
       Board * testBoard = new Board();
@@ -197,6 +206,7 @@ public:
       testBoard->board[35] = blackPawn5;
       testBoard->board[36] = blackPawn6;
       testBoard->board[37] = blackPawn7;
+      testBoard->board[19] = blackPawn8;
       
       // Exercise
       set<Move> whiteKingMoves = *(whiteKing->getPossibleMoves(*testBoard));
@@ -239,29 +249,29 @@ public:
    void test_kingCastleKingMove()
    {
       // Setup
-      Piece * whiteKing = new King(0, 1, false);
+      Piece * whiteKing = new King(0, 4, true);
       whiteKing->fWhite = true;
       whiteKing->position.location = 60;
       whiteKing->lastMove = 0;
       whiteKing->nMoves = 1;
       
-      Piece * whitePawn1 = new Pawn(0, 1, false);
+      Piece * whitePawn1 = new Pawn(1, 3, true);
       whitePawn1->position.location = 51;
       whitePawn1->fWhite = true;
       
-      Piece * whitePawn2 = new Pawn(0, 1, false);
+      Piece * whitePawn2 = new Pawn(1, 4, true);
       whitePawn2->position.location = 52;
       whitePawn2->fWhite = true;
       
-      Piece * whitePawn3 = new Pawn(0, 1, false);
+      Piece * whitePawn3 = new Pawn(1, 5, true);
       whitePawn3->position.location = 53;
       whitePawn3->fWhite = true;
       
-      Piece * whiteRook1 = new Rook(0, 1, false);
+      Piece * whiteRook1 = new Rook(0, 0, true);
       whiteRook1->position.location = 56;
       whiteRook1->fWhite = true;
 
-      Piece * whiteRook2 = new Rook(0, 1, false);
+      Piece * whiteRook2 = new Rook(0, 7, true);
       whiteRook2->position.location = 63;
       whiteRook2->fWhite = true;
       
@@ -281,8 +291,8 @@ public:
       set<string> * moves = compileMoves(whiteKingMoves);
       
       assert(whiteKingMoves.size() == 2);
-      assert(moves->find("elf1")  != moves->end());
-      assert(moves->find("eldl")  != moves->end());
+      assert(moves->find("e1f1")  != moves->end());
+      assert(moves->find("e1d1")  != moves->end());
       
       assert(whiteKing->fWhite            == true);
       assert(whiteKing->position.location == 60);
@@ -351,8 +361,8 @@ public:
       set<string> * moves = compileMoves(whiteKingMoves);
       
       assert(whiteKingMoves.size() == 2);
-      assert(moves->find("elf1")  != moves->end());
-      assert(moves->find("eldl")  != moves->end());
+      assert(moves->find("e1f1")  != moves->end());
+      assert(moves->find("e1d1")  != moves->end());
       
       assert(whiteKing->fWhite            == true);
       assert(whiteKing->position.location == 60);
@@ -420,11 +430,11 @@ public:
       set<string> * moves = compileMoves(whiteKingMoves);
       
       assert(whiteKingMoves.size() == 2);
-      assert(moves->find("elf1")  != moves->end());
-      assert(moves->find("eldl")  != moves->end());
+      assert(moves->find("e1f1")  != moves->end());
+      assert(moves->find("e1d1")  != moves->end());
       
       assert(whiteKing->fWhite            == true);
-      assert(whiteKing->position.location == 28);
+      assert(whiteKing->position.location == 60);
       assert(whiteKing->nMoves            == 0);
       assert(whiteKing->lastMove          == 0);
       
@@ -490,10 +500,10 @@ public:
       set<string> * moves = compileMoves(whiteKingMoves);
       
       assert(whiteKingMoves.size() == 4);
-      assert(moves->find("elf1")  != moves->end());
-      assert(moves->find("eldl")  != moves->end());
-      assert(moves->find("E1glc")  != moves->end());
-      assert(moves->find("elc1C")  != moves->end());
+      assert(moves->find("e1f1")  != moves->end());
+      assert(moves->find("e1d1")  != moves->end());
+      assert(moves->find("e1g1c")  != moves->end());
+      assert(moves->find("e1c1C")  != moves->end());
       
       assert(whiteKing->fWhite            == true);
       assert(whiteKing->position.location == 60);

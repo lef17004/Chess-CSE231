@@ -35,8 +35,8 @@ public:
    Position & getPosition() { return position; }
    void setPosition(const Position & pos) { position = pos; }
    bool justMoved(int turnNumber);
-   set<Move> & getMovesSlide(const Board & board, array<Delta, 8> deltas);
-   set<Move> & getMovesNoSlide(const Board& board, array<Delta, 8> deltas);
+   set<Move> * getMovesSlide(const Board & board, array<Delta, 8> deltas);
+   set<Move> * getMovesNoSlide(const Board& board, array<Delta, 8> deltas);
 
    virtual char getLetter();
    virtual set<Move> * getPossibleMoves(const Board & board);

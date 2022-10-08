@@ -33,7 +33,7 @@ string Move::getText()
       smithNotation += "C";
    else if (enpassant)
       smithNotation += "E";
-   else if (promotion != 'M')
+   else if (promoting)
       smithNotation += promotion;
    else if (piece != 'M')
       smithNotation += getCapture();
@@ -52,9 +52,7 @@ bool Move::operator < (const Move & rhs) const
 
 char Move::getPromotion()
 {
-   if (dest.getRow() == 0 || dest.getRow() == 7)
-      return 'Q';
-   return 'M';
+   return 'Q';
 }
 
 

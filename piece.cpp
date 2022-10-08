@@ -67,9 +67,9 @@ bool Piece::justMoved(int turnNumber)
    
 }
 
-set<Move> & Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
+set<Move> * Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
 {
-	set<Move> moves;
+	set<Move> * moves = new set<Move>();
    for (Delta delta : deltas)
    {
       Position posMove(position, delta);
@@ -79,7 +79,7 @@ set<Move> & Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
 			move.setSource(getPosition());
 			move.setDest(posMove);
 			move.setWhiteMove(isWhite());
-			moves.insert(move);
+			moves->insert(move);
 		}
 		if (posMove.isValid() &&
 			((board.getPiece(position))->isWhite() != fWhite || board.getPiece(posMove.getLocation())->getLetter() != 's'))
@@ -92,31 +92,45 @@ set<Move> & Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
 			{
 				move.setCapture(board.getPiece(position)->getLetter());
 			}
-			moves.insert(move);
+			moves->insert(move);
 		}
    }
    return moves;
 }
 
-set<Move>& Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
+set<Move> * Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
 {
-	set<Move> moves;
+	set<Move> * moves = new set<Move>;
 	for (Delta delta : deltas)
 	{
 		Position posMove(position, delta);
-		if (posMove.isValid() &&
-			((board.getPiece(position))->isWhite() != fWhite || board.getPiece(posMove.getLocation())->getLetter() != 's'))
-		{
-			Move move;
-			move.setSource(getPosition());
-			move.setDest(posMove);
-			move.setWhiteMove(isWhite());
-			if (board.getPiece(position)->getLetter() != 's')
-			{
-				move.setCapture(board.getPiece(position)->getLetter());
-			}
-			moves.insert(move);
-		}
+      
+      bool isValid = posMove.isValid();
+     
+      
+//		if (posMove.isValid() &&
+//			((board.getPiece(posMove))->isWhite() != fWhite
+//          || board.getPiece(posMove.getLocation())->getLetter() == 's'))
+      
+      if (isValid)
+      {
+         bool isWhite2 = board.getPiece(posMove)->isWhite() != fWhite;
+         bool isSpace = board.getPiece(posMove.getLocation())->getLetter() == 's';
+         if ((isWhite2 || isSpace))
+         {
+            Move move;
+            move.setSource(getPosition());
+            move.setDest(posMove);
+            move.setWhiteMove(isWhite());
+            if (board.getPiece(posMove)->getLetter() != 's')
+            {
+               move.setCapture(board.getPiece(posMove)->getLetter());
+            }
+            moves->insert(move);
+         }
+      }
+      
+      
 	}
 	return moves;
 
