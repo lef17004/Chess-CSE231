@@ -1,9 +1,3 @@
-//
-//  piece.cpp
-//  ChessUnitTests
-//
-//  Created by Michael LeFevre on 10/6/22.
-//
 
 #include "piece.h"
 #include <iostream>
@@ -55,11 +49,18 @@ set<Move> * Piece::getPossibleMoves(const Board & board)
 }
 
 
+/******************************************************************************
+ * Tempory Method to ensure code would compile.
+ ******************************************************************************/
 void Piece::displayPiece()
 {
    std::cout << "Piece\n" << std::endl;
 }
 
+/******************************************************************************
+ * PIECE: JUST MOVED
+ *  Check to see if a piece has moved on the previous turn.
+ ******************************************************************************/
 bool Piece::justMoved(int turnNumber)
 {
 	return ((lastMove + 1) == turnNumber) ||
@@ -67,6 +68,10 @@ bool Piece::justMoved(int turnNumber)
    
 }
 
+/******************************************************************************
+ * PIECE:: GET MOVES SLIDE
+ *  Uses delta to get all the moves in a sliding pattern.
+ ******************************************************************************/
 set<Move> * Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
 {
 	set<Move> * moves = new set<Move>();
@@ -98,6 +103,10 @@ set<Move> * Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
    return moves;
 }
 
+/******************************************************************************
+ * PIECE:: GET MOVES NO SLIDE
+ * Returns set of moves using a delta.
+ ******************************************************************************/
 set<Move> * Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
 {
 	set<Move> * moves = new set<Move>;
@@ -107,11 +116,6 @@ set<Move> * Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
       
       bool isValid = posMove.isValid();
      
-      
-//		if (posMove.isValid() &&
-//			((board.getPiece(posMove))->isWhite() != fWhite
-//          || board.getPiece(posMove.getLocation())->getLetter() == 's'))
-      
       if (isValid)
       {
          bool isWhite2 = board.getPiece(posMove)->isWhite() != fWhite;

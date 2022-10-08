@@ -526,6 +526,7 @@ public:
    /***************************************************************************
     * converts the moves into string set's to more easily verify that the
     * moves are correct
+    * TODO: Move to test runner. Create base class an inherit. Or move function into different file.
     ***************************************************************************/
    set<string> * compileMoves(const set<Move> & moves)
    {

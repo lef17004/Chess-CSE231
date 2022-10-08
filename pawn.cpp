@@ -1,17 +1,17 @@
-//
-//  pawn.cpp
-//  ChessUnitTests
-//
-//  Created by Michael LeFevre on 10/7/22.
-//
 
 #include "piece.h"
 #include "delta.h"
 
+// TODO: Move to Header File
 Pawn::Pawn() { }
 
+// TODO: Move to Header file
 Pawn::Pawn(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
 
+/******************************************************************************
+ * PAWN:: GET POSSIBLE MOVES
+ * Gets the possible moves for the pawn.
+ ******************************************************************************/
 set<Move> * Pawn::getPossibleMoves(const Board & board)
 {
    set<Move> * moves = new set<Move>;
@@ -33,23 +33,24 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
       }
    }
    
-//   if (!isMove())
-//   {
-//      Position posMove(isWhite() ? 3 : 4, getPosition().getCol());
-//      Position posCheck(isWhite() ? 2 : 5, getPosition().getCol());
-//      if (board.getPiece(posMove)->getLetter() == 's' && board.getPiece(posCheck)->getLetter() == 's')
-//      {
-//         move.setSource(getPosition());
-//         move.setDest(posMove);
-//         move.setWhiteMove(isWhite());
-//         moves->insert(move);
-//      }
-//   }
-//   return moves;
+   if (!isMove())
+   {
+      Position posMove(isWhite() ? 3 : 4, getPosition().getCol());
+      Position posCheck(isWhite() ? 2 : 5, getPosition().getCol());
+      if (board.getPiece(posMove)->getLetter() == 's' && board.getPiece(posCheck)->getLetter() == 's')
+      {
+         move.setSource(getPosition());
+         move.setDest(posMove);
+         move.setWhiteMove(isWhite());
+         moves->insert(move);
+      }
+   }
+  
+   
+   
+   int values[2] = {-1, 1};
    
    // Attack
-   int values[2] = {-1, 1};
-   //for (int i = -1; i <= 1; i++)
    for (auto i : values)
    {
       Position posMove(position.getRow() + (isWhite() ? 1 : -1), position.getCol() + i);
@@ -70,6 +71,7 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
       }
    }
 
+   // En Passant
    for (auto i : values)
    {
       Position posMove(position.getRow() + (isWhite() ? 1 : -1), position.getCol() + i);
@@ -89,6 +91,10 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
    return moves;
 }
 
+/******************************************************************************
+ * PAWN:: ADD PRMOTION
+ * The logic to promote a pawn. 
+ ******************************************************************************/
 void Pawn::addPromotion(set<Move> & Moves, Move& move)
 {
    move.setPromotion();

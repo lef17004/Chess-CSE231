@@ -74,6 +74,7 @@ public:
       assert(text == "b6a7p");
    }
    
+   // Tests that get text for king side castle is correct.
    void test_getTextCastleKing()
    {
       Move move;
@@ -92,6 +93,7 @@ public:
       assert(text == "e1g1c");
    }
    
+   // Tests that get text for queen side castle is correct.
    void test_getTextCastleQueen()
    {
       Move move;
@@ -110,6 +112,7 @@ public:
       assert(text == "e1c1C");
    }
    
+   // Tests that get text for enpassant is correct.
    void test_getTextEnpassant()
    {
       Move move;
@@ -128,6 +131,7 @@ public:
       assert(text == "b5c6E");
    }
    
+   // Tests that get text for promotion is correct.
    void test_getTextPromotion()
    {
       Move move;
@@ -147,6 +151,7 @@ public:
       assert(text == "b7b8Q");
    }
    
+   // Tests that less than operator is correct. Lower num on left hand side.
    void test_lessThan1()
    {
       // Setup
@@ -169,6 +174,7 @@ public:
       assert(isLessThan);
    }
    
+   // Tests that less than operator is correct. Lower num on right hand side.
    void test_lessThan2()
    {
       // Setup
@@ -191,6 +197,7 @@ public:
       assert(!isLessThan);
    }
    
+   // Tests that set source works correctly.
    void test_SetSource()
    {
       // Setup
@@ -206,6 +213,7 @@ public:
       
    }
    
+   // Test that set destination works correctly. 
    void test_SetDestination()
    {
       // Setup

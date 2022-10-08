@@ -4,7 +4,8 @@
 //
 //  Created by Michael LeFevre on 10/7/22.
 //
-
+#include <iostream>
+using namespace std;
 #pragma once
 class TestBoard
 {
@@ -18,17 +19,11 @@ public:
       test_SetPiece();
       test_SetPieceWrongPiece();
       test_Move();
-   }
-   
-   void test_defaultContructor()
-   {
-      // Setup
-      Board board;
       
-      // Verify
-      //assert(board.board[0]->getLetter() == )
+      cout << "TestBoard Completed\n";
    }
    
+   // Tests getting a peice from the board. 
    void test_Get()
    {
       // Setup
@@ -47,6 +42,7 @@ public:
       delete pawn;
    }
    
+   // Tests getting the current move.
    void test_GetCurrentMove()
    {
       // Setup
@@ -63,6 +59,7 @@ public:
       board.free();
    }
    
+   // Test is white turn when it's white's turn.
    void test_IsWhiteTurn()
    {
       // Setup
@@ -79,6 +76,7 @@ public:
       board.free();
    }
    
+   // Test get turn when it is black's turn.
    void test_IsWhiteTurnFalse()
    {
       // Setup
@@ -95,6 +93,7 @@ public:
       board.free();
    }
    
+   // Test set piece.
    void test_SetPiece()
    {
       // Setup
@@ -113,6 +112,8 @@ public:
       board.free();
    }
    
+   // Tests that assert works when piece is in the wrong place.
+   // TODO: Remove soon.
    void test_SetPieceWrongPiece()
    {
       // Setup
@@ -133,6 +134,9 @@ public:
       board.free();
    }
    
+   // Test that the move method works.
+   // TODO: Change this test to basic move.
+   // TODO: Create more move tests for next week's assignment.
    void test_Move()
    {
       // Setup

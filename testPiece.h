@@ -27,6 +27,7 @@ public:
       cout << "TestPiece Complete" << endl;
    }
    
+   // Test Deault Constructor
    void test_DefaultConstructor()
    {
       // Setup
@@ -42,6 +43,7 @@ public:
       delete piece;
    }
    
+   // Test that Non default constructor works correctly.
    void test_NonDefaultConstructor()
    {
       // Setup
@@ -101,6 +103,7 @@ public:
       
    }
    
+   // Tests if player just moved. False condition. 
    void test_JustMovedFalse()
    {
       // Setup

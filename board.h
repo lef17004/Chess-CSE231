@@ -1,9 +1,3 @@
-//
-//  board.hpp
-//  ChessUnitTests
-//
-//  Created by Michael LeFevre on 10/6/22.
-//
 
 #pragma once
 #include "piece.h"
@@ -12,7 +6,9 @@
 #include "move.h"
 using namespace std;
 
+// Forward Declaration - If removed you will suffer
 class Piece;
+
 
 class Board
 {

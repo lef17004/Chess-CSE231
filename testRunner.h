@@ -13,7 +13,6 @@
 #include "testPawn.h"
 #include "testBoard.h"
 #include "testPiece.h"
-#include "testSpace.h"
 #include "testKing.h"
 #include "testPosition.h"
 #include "testMove.h"
@@ -38,9 +37,8 @@ public:
       TestPiece testPiece;
       TestPawn testPawn;
       TestKing testKing;
-      TestSpace testSpace;;
       
-      testSpace.run();
+      
       testPosition.run();
       testMove.run();
       testBoard.run();

@@ -11,6 +11,7 @@ using namespace std;
 class TestPosition
 {
 public:
+   // TODO: Tests need better names.
    void run()
    {
       test_defaultConstructor();
@@ -45,6 +46,7 @@ public:
       // Teardown
    }
    
+   // Test the non default constructor.
    void test_nonDefaultConstructor()
    {
       // Set Up
@@ -54,6 +56,7 @@ public:
       assert(position.location == 25);
    }
    
+   // Tests the non default constructor in 0, 0 position.
    void test_NonDefaultConstructor2()
    {
       // Set Up
@@ -120,6 +123,7 @@ public:
       assert(row == 0);
    }
    
+   // Test get col works.
    void test_getCol1()
    {
       // Setup
@@ -133,6 +137,7 @@ public:
       assert(col == 4);
    }
    
+   // Test get col works on edge case.
    void test_getCol2()
    {
       // Setup
@@ -146,6 +151,7 @@ public:
       assert(col == 0);
    }
    
+   // Test get col works on edge case.
    void test_getCol3()
    {
       // Setup
@@ -159,6 +165,7 @@ public:
       assert(col == 7);
    }
    
+   // Tests that get x works.
    void test_getX()
    {
       // Setup
@@ -172,6 +179,7 @@ public:
       assert(x == 96);
    }
    
+   // Tests that get y works.
    void test_getY()
    {
       // Setup
@@ -185,6 +193,7 @@ public:
       assert(y == 160);
    }
    
+   // Tests is valid works when position is valid.
    void test_isValidTrue()
    {
       // Setup
@@ -198,6 +207,7 @@ public:
       assert(isPosValid);
    }
    
+   // Tests is valid works when position is not valid.
    void test_isValidFalse()
    {
       // Setup
@@ -211,7 +221,7 @@ public:
       assert(!isPosValid);
    }
    
-   
+   // Tests set works. Edge case.
    void test_set1()
    {
       // Verify
@@ -228,6 +238,7 @@ public:
       
    }
    
+   // Tests set works. In middle.
    void test_set2()
    {
       // Verify
@@ -244,6 +255,7 @@ public:
       
    }
    
+   // Tests set works. Other cornor.
    void test_set3()
    {
       // Setup
@@ -260,6 +272,7 @@ public:
       
    }
    
+   // Less than left hand side smaller.
    void test_lessThan1()
    {
       // Setup
@@ -276,6 +289,7 @@ public:
       assert(isLessThan);
    }
    
+   // Less than right hand side smaller. 
    void test_lessThan2()
    {
       // Setup

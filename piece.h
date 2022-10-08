@@ -1,9 +1,3 @@
-//
-//  piece.hpp
-//  ChessUnitTests
-//
-//  Created by Michael LeFevre on 10/6/22.
-//
 
 #pragma once
 #include "board.h"
@@ -39,6 +33,7 @@ public:
    set<Move> * getMovesNoSlide(const Board& board, array<Delta, 8> deltas);
 
    virtual char getLetter();
+   // TODO: Use smart pointers to remove memory leaks. 
    virtual set<Move> * getPossibleMoves(const Board & board);
    // display
    

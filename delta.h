@@ -1,9 +1,3 @@
-//
-//  delta.h
-//  ChessUnitTests
-//
-//  Created by Michael LeFevre on 10/7/22.
-//
 
 #pragma once
 struct Delta

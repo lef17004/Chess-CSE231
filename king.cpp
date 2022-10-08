@@ -1,15 +1,12 @@
-//
-//  king.cpp
-//  ChessUnitTests
-//
-//  Created by Michael LeFevre on 10/7/22.
-//
 
 #include "piece.h"
 #include "delta.h"
 
 King::King() { }
 
+/******************************************************************************
+ * NON-DEFAULT CONSTRUCTOR
+ ******************************************************************************/
 King::King(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
 
 set<Move> * King::getPossibleMoves(const Board & board)

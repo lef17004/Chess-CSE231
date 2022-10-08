@@ -1,9 +1,4 @@
-//
-//  position.hpp
-//  ChessUnitTests
-//
-//  Created by Michael LeFevre on 10/6/22.
-//
+
 
 #pragma once
 #include <string>

@@ -17,7 +17,6 @@ class TestPawn
 public:
    void run()
    {
-      test_DefaultConstructor();
       test_pawnBlocked();
       test_pawnSimpleMove();
       test_pawnPromotion();
@@ -26,10 +25,6 @@ public:
       cout << "TestPawn Completed\n";
    }
    
-   void test_DefaultConstructor()
-   {
-      Piece * pawn = new Pawn(1, 1, false);
-   }
    
    /**************************************************************************
     * Tests to see if the pawn can move or not
