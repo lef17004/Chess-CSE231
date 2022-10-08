@@ -58,6 +58,7 @@ class Pawn: public Piece
 public:
    Pawn();
    Pawn(int r, int c, bool isWhite);
+   void addPromotion(set<Move> &Moves, Move& move);
    
    virtual char getLetter() { return 'p'; }
    virtual set<Move> & getPossibleMoves(const Board & board);

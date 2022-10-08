@@ -26,7 +26,7 @@ private:
    
 public:
    Board();
-   int getCurrentMove();
+   int getCurrentMove() const;
    bool isWhiteTurn() const; 
    //void display( posHover,  PosSel)
    Piece * getPiece(const Position & pos) const;
