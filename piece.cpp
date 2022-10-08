@@ -1,3 +1,9 @@
+//
+//  piece.cpp
+//  ChessUnitTests
+//
+//  Created by Michael LeFevre on 10/6/22.
+//
 
 #include "piece.h"
 #include <iostream>
@@ -72,9 +78,9 @@ bool Piece::justMoved(int turnNumber)
  * PIECE:: GET MOVES SLIDE
  *  Uses delta to get all the moves in a sliding pattern.
  ******************************************************************************/
-set<Move> * Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
+shared_ptr<set<Move>> Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
 {
-	set<Move> * moves = new set<Move>();
+   shared_ptr<set<Move>> moves;
    for (Delta delta : deltas)
    {
       Position posMove(position, delta);

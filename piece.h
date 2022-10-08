@@ -5,6 +5,8 @@
 #include "move.h"
 #include <set>
 #include "delta.h"
+#include <memory>
+using namespace std;
 class Board;
 
 
@@ -29,11 +31,12 @@ public:
    Position & getPosition() { return position; }
    void setPosition(const Position & pos) { position = pos; }
    bool justMoved(int turnNumber);
-   set<Move> * getMovesSlide(const Board & board, array<Delta, 8> deltas);
+   shared_ptr<set<Move>> getMovesSlide(const Board & board, array<Delta, 8> deltas);
+   //set<Move> * getMovesSlide(const Board & board, array<Delta, 8> deltas);
    set<Move> * getMovesNoSlide(const Board& board, array<Delta, 8> deltas);
 
    virtual char getLetter();
-   // TODO: Use smart pointers to remove memory leaks. 
+   // TODO: Use smart pointers to remove memory leaks. See getMovesSlide for reference. 
    virtual set<Move> * getPossibleMoves(const Board & board);
    // display
    
