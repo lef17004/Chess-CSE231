@@ -14,7 +14,7 @@ set<Move> * Rook::getPossibleMoves(const Board & board)
    return new set<Move>();
 }
 
-void Piece::display(ogstream& gout)
+void Rook::display(ogstream& gout)
 {
    gout.drawRook(position.getLocation(), !isWhite());
 }

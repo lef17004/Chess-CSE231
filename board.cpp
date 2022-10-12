@@ -43,6 +43,24 @@ Board::Board()
       Position position(positionIndex);
       board[position.getLocation()] = new Space(position.getRow(), position.getCol(), false);
    }
+   
+   board[48] = new Pawn(1, 0, true);
+   board[49] = new Pawn(1, 1, true);
+   board[50] = new Pawn(1, 2, true);
+   board[51] = new Pawn(1, 3, true);
+   board[52] = new Pawn(1, 4, true);
+   board[53] = new Pawn(1, 5, true);
+   board[54] = new Pawn(1, 6, true);
+   board[55] = new Pawn(1, 7, true);
+   
+   board[56] = new Rook(0, 0, false);
+   board[57] = new Knight(0, 1, false);
+   board[58] = new Bishop(0, 2, false);
+   board[59] = new Queen(0, 3, false);
+   board[60] = new King(0, 4, false);
+   board[61] = new Bishop(0, 5, false);
+   board[62] = new Knight(0, 6, false);
+   board[63] = new Rook(0, 7, false);
       
    
 }
