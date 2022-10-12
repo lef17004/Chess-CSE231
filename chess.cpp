@@ -293,14 +293,19 @@ void draw(const char* board, const Interface & ui, const set <int> & possible)
    // draw any selections
    gout.drawHover(ui.getHoverPosition());
    gout.drawSelected(ui.getSelectPosition());
-   return;
-   auto piece2 = board2.getPiece(Position(ui.getHoverPosition()));
-   auto moves = piece2->getPossibleMoves(board2);
-   for (auto move : *moves)
-   {
-      move.display(gout);
-   }
+   int selected = ui.getSelectPosition();
    
+   if (0 <= selected && selected < 64)
+   {
+      auto piece2 = board2.getPiece(Position(selected));
+      auto moves = piece2->getPossibleMoves(board2);
+      for (auto move : *moves)
+      {
+         move.display(gout);
+      }
+   }
+   board2.displayPieces(gout);
+   return;
    // draw the possible moves
    set <int> :: iterator it;
    for (it = possible.begin(); it != possible.end(); ++it)

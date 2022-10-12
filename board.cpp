@@ -172,6 +172,10 @@ void Board::swap(const Position & pos1, const Position & pos2)
 void Board::display(ogstream & gout)
 {
    gout.drawBoard();
+}
+
+void Board::displayPieces(ogstream & gout)
+{
    for (auto piece : board)
       piece->display(gout);
 }

@@ -27,6 +27,7 @@ public:
    int getCurrentMove() const;
    bool isWhiteTurn() const; 
    void display(ogstream & gout);
+   void displayPieces(ogstream & gout);
    
    Piece * getPiece(const Position & pos) const;
    void setPiece(Piece * piece);
