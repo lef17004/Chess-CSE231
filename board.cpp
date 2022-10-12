@@ -20,11 +20,31 @@
  ******************************************************************************/
 Board::Board()
 {
-   for (int index = 0; index < 64; index++)
+   board[0] = new Rook(7, 0, false);
+   board[1] = new Knight(7, 1, false);
+   board[2] = new Bishop(7, 2, false);
+   board[3] = new Queen(7, 3, false);
+   board[4] = new King(7, 4, false);
+   board[5] = new Bishop(7, 5, false);
+   board[6] = new Knight(7, 6, false);
+   board[7] = new Rook(7, 7, false);
+   
+   board[8] = new Pawn(6, 0, false);
+   board[9] = new Pawn(6, 1, false);
+   board[10] = new Pawn(6, 2, false);
+   board[11] = new Pawn(6, 3, false);
+   board[12] = new Pawn(6, 4, false);
+   board[13] = new Pawn(6, 5, false);
+   board[14] = new Pawn(6, 6, false);
+   board[15] = new Pawn(6, 7, false);
+   
+   for (int positionIndex = 16; positionIndex < 48; positionIndex++)
    {
-      board[index] = new Space();
-      board[index]->isWhite();
+      Position position(positionIndex);
+      board[position.getLocation()] = new Space(position.getRow(), position.getCol(), false);
    }
+      
+   
 }
 
 /******************************************************************************

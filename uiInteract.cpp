@@ -88,7 +88,7 @@ void sleep(unsigned long msSleep)
 
 /************************************************************************
  * DRAW CALLBACK
- * This is the main callback from OpenGL. It gets called constantly by
+ * This is the main callback from  OpenGL. It gets called constantly by
  * the graphics engine to refresh and draw the window.  Here we will
  * clear the background buffer, draw on it, and send it to the forefront
  * when the appropriate time period has passsed.

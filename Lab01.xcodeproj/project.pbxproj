@@ -15,6 +15,9 @@
 		33251B7728F0F16600D2B597 /* position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6328F0F14D00D2B597 /* position.cpp */; };
 		33251B7828F0F16600D2B597 /* rook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B7028F0F14D00D2B597 /* rook.cpp */; };
 		33251B7928F0F16600D2B597 /* space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6D28F0F14D00D2B597 /* space.cpp */; };
+		338CA7B428F77A0C00B7E9B4 /* bishop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 338CA7B128F74B7700B7E9B4 /* bishop.cpp */; };
+		338CA7B528F77A0C00B7E9B4 /* knight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 338CA7B228F74B8100B7E9B4 /* knight.cpp */; };
+		338CA7B628F77A0C00B7E9B4 /* queen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 338CA7B328F74B8C00B7E9B4 /* queen.cpp */; };
 		C12A3BF5255D7A5500C22728 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12A3BF4255D7A5500C22728 /* GLUT.framework */; };
 		C12A3BF7255D7A5C00C22728 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12A3BF6255D7A5C00C22728 /* OpenGL.framework */; };
 		C13286172578104100FCEC47 /* chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C13286112578104000FCEC47 /* chess.cpp */; };
@@ -192,6 +195,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				338CA7B428F77A0C00B7E9B4 /* bishop.cpp in Sources */,
+				338CA7B528F77A0C00B7E9B4 /* knight.cpp in Sources */,
+				338CA7B628F77A0C00B7E9B4 /* queen.cpp in Sources */,
 				33251B7128F0F16600D2B597 /* board.cpp in Sources */,
 				33251B7228F0F16600D2B597 /* king.cpp in Sources */,
 				33251B7428F0F16600D2B597 /* move.cpp in Sources */,

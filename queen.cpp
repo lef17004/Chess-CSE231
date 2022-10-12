@@ -6,3 +6,8 @@
 //
 
 #include "piece.h"
+// TODO: Move to header file.
+set<Move> * Queen::getPossibleMoves(const Board & board)
+{
+   return new set<Move>();
+}

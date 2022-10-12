@@ -261,7 +261,7 @@ public:
       {
          pieceArray[index] = new Space(0, 1, false);
       }
-      
+      board->board = pieceArray;
       
       return board;
    }
