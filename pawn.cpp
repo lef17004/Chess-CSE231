@@ -102,7 +102,7 @@ void Pawn::addPromotion(set<Move> & Moves, Move& move)
    Moves.insert(move);
 }
 
-void Piece::display(ogstream& gout)
+void Pawn::display(ogstream& gout)
 {
    gout.drawPawn(position.getLocation(), !isWhite());
 }

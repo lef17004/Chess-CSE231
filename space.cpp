@@ -25,3 +25,8 @@ set<Move> * Space::getPossibleMoves(const Board & board)
    return new set<Move>();
 }
 
+
+void Space::display(ogstream & gout)
+{
+   
+}

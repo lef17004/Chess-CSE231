@@ -63,7 +63,7 @@ public:
    
    virtual char getLetter() { return 'p'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
-   
+   virtual void display(ogstream & gout);
    friend class TestPawn;
 };
 
@@ -76,6 +76,7 @@ public:
    
    virtual char getLetter() { return 's'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
+   virtual void display(ogstream & gout);
 };
 
 class King: public Piece
@@ -86,6 +87,7 @@ public:
    
    virtual char getLetter() { return 'k'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
+   virtual void display(ogstream & gout);
 };
 
 class Rook: public Piece
@@ -96,6 +98,7 @@ public:
    
    virtual char getLetter() { return 'r'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
+   virtual void display(ogstream & gout);
 };
 
 class Knight: public Piece
@@ -106,6 +109,7 @@ public:
    
    virtual char getLetter() { return 'k'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
+   virtual void display(ogstream & gout);
 };
 
 class Bishop: public Piece
@@ -116,6 +120,7 @@ public:
    
    virtual char getLetter() { return 'b'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
+   virtual void display(ogstream & gout);
 };
 
 class Queen: public Piece
@@ -126,4 +131,5 @@ public:
    
    virtual char getLetter() { return 'b'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
+   virtual void display(ogstream & gout);
 };
