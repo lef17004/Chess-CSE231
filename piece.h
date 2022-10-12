@@ -6,6 +6,7 @@
 #include <set>
 #include "delta.h"
 #include <memory>
+#include "uiDraw.h"
 using namespace std;
 class Board;
 
@@ -38,11 +39,12 @@ public:
    virtual char getLetter();
    // TODO: Use smart pointers to remove memory leaks. See getMovesSlide for reference. 
    virtual set<Move> * getPossibleMoves(const Board & board);
+   virtual void display(ogstream & gout);
    // display
    
    // Test ----------------------------
 
-   void displayPiece();
+   
    
    int pos;
    // Test ----------------------------
@@ -93,5 +95,35 @@ public:
    Rook(int r, int c, bool isWhite);
    
    virtual char getLetter() { return 'r'; }
+   virtual set<Move> * getPossibleMoves(const Board & board);
+};
+
+class Knight: public Piece
+{
+public:
+   Knight() {}
+   Knight(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
+   
+   virtual char getLetter() { return 'k'; }
+   virtual set<Move> * getPossibleMoves(const Board & board);
+};
+
+class Bishop: public Piece
+{
+public:
+   Bishop() {}
+   Bishop(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
+   
+   virtual char getLetter() { return 'b'; }
+   virtual set<Move> * getPossibleMoves(const Board & board);
+};
+
+class Queen: public Piece
+{
+public:
+   Queen() {}
+   Queen(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
+   
+   virtual char getLetter() { return 'b'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
 };

@@ -54,6 +54,7 @@ int xFromPosition(int position)
 }
 int yFromPosition(int position)
 {
+   //return (int)((double) (7 -(position / 8)) * 32.0);
    return (int)((double)(position / 8) * 32.0);
 }
 

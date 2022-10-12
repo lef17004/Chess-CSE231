@@ -338,6 +338,9 @@ void draw(const char* board, const Interface & ui, const set <int> & possible)
          gout.drawKnight(i, false);
          break;
       }
+   
+   Piece * piece = new Piece(2, 2, true);
+   piece->display(gout);
 }
 
 /*********************************************
@@ -378,7 +381,7 @@ bool move(char* board, int positionFrom, int positionTo)
 void callBack(Interface *pUI, void * p)
 {
    set <int> possible;
-
+   
    // the first step is to cast the void pointer into a game object. This
    // is the first step of every single callback function in OpenGL. 
    char * board = (char *)p;  
@@ -395,6 +398,8 @@ void callBack(Interface *pUI, void * p)
 
    // draw the board
    draw(board, *pUI, possible);
+   
+
 
 }
 

@@ -116,6 +116,7 @@ void Board::move(Move & move)
    Position destination = move.getDes();
    
    swap(source, destination);
+   currentMove++;
 }
 
 /******************************************************************************

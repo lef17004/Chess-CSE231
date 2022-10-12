@@ -58,9 +58,10 @@ set<Move> * Piece::getPossibleMoves(const Board & board)
 /******************************************************************************
  * Tempory Method to ensure code would compile.
  ******************************************************************************/
-void Piece::displayPiece()
+void Piece::display(ogstream & gout)
 {
    std::cout << "Piece\n" << std::endl;
+   gout.drawPawn(position.getLocation(), !isWhite());
 }
 
 /******************************************************************************

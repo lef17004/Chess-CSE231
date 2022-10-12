@@ -48,6 +48,9 @@
 		33251B6E28F0F14D00D2B597 /* king.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = king.cpp; sourceTree = "<group>"; };
 		33251B6F28F0F14D00D2B597 /* delta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = delta.h; sourceTree = "<group>"; };
 		33251B7028F0F14D00D2B597 /* rook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rook.cpp; sourceTree = "<group>"; };
+		338CA7B128F74B7700B7E9B4 /* bishop.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bishop.cpp; sourceTree = "<group>"; };
+		338CA7B228F74B8100B7E9B4 /* knight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = knight.cpp; sourceTree = "<group>"; };
+		338CA7B328F74B8C00B7E9B4 /* queen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = queen.cpp; sourceTree = "<group>"; };
 		33A7CBFE28E4FF09003F4845 /* position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		33A7CBFF28E503CE003F4845 /* board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
 		33A7CC0028E509AD003F4845 /* testRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testRunner.h; sourceTree = "<group>"; };
@@ -88,6 +91,9 @@
 				33251B6E28F0F14D00D2B597 /* king.cpp */,
 				33251B7028F0F14D00D2B597 /* rook.cpp */,
 				33251B6828F0F14D00D2B597 /* pawn.cpp */,
+				338CA7B128F74B7700B7E9B4 /* bishop.cpp */,
+				338CA7B228F74B8100B7E9B4 /* knight.cpp */,
+				338CA7B328F74B8C00B7E9B4 /* queen.cpp */,
 				33251B6D28F0F14D00D2B597 /* space.cpp */,
 				33A7CBFF28E503CE003F4845 /* board.h */,
 				33251B6528F0F14D00D2B597 /* board.cpp */,
