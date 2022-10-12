@@ -4,6 +4,8 @@
 #include <array>
 #include "position.h"
 #include "move.h"
+#include "uiDraw.h"
+
 using namespace std;
 
 // Forward Declaration - If removed you will suffer
@@ -24,7 +26,10 @@ public:
    Board();
    int getCurrentMove() const;
    bool isWhiteTurn() const; 
-   //void display( posHover,  PosSel)
+   void display(ogstream & gout)
+   {
+      gout.drawBoard();
+   }
    Piece * getPiece(const Position & pos) const;
    void setPiece(Piece * piece);
    void free();

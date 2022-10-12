@@ -286,7 +286,9 @@ void draw(const char* board, const Interface & ui, const set <int> & possible)
    ogstream gout;
    
    // draw the checkerboard
-   gout.drawBoard();
+   //gout.drawBoard();
+   Board board2;
+   board2.display(gout);
 
    // draw any selections
    gout.drawHover(ui.getHoverPosition());
@@ -399,7 +401,8 @@ void callBack(Interface *pUI, void * p)
    // draw the board
    draw(board, *pUI, possible);
    
-
+   
+   
 
 }
 
