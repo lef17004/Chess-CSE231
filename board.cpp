@@ -53,14 +53,14 @@ Board::Board()
    board[54] = new Pawn(1, 6, true);
    board[55] = new Pawn(1, 7, true);
    
-   board[56] = new Rook(0, 0, false);
-   board[57] = new Knight(0, 1, false);
-   board[58] = new Bishop(0, 2, false);
-   board[59] = new Queen(0, 3, false);
-   board[60] = new King(0, 4, false);
-   board[61] = new Bishop(0, 5, false);
-   board[62] = new Knight(0, 6, false);
-   board[63] = new Rook(0, 7, false);
+   board[56] = new Rook(0, 0, true);
+   board[57] = new Knight(0, 1, true);
+   board[58] = new Bishop(0, 2, true);
+   board[59] = new Queen(0, 3, true);
+   board[60] = new King(0, 4, true);
+   board[61] = new Bishop(0, 5, true);
+   board[62] = new Knight(0, 6, true);
+   board[63] = new Rook(0, 7, true);
       
    
 }
@@ -167,4 +167,11 @@ void Board::swap(const Position & pos1, const Position & pos2)
    setPiece(board[pos2.getLocation()], pos1);
    setPiece(temp, pos2);
    delete temp;
+}
+
+void Board::display(ogstream & gout)
+{
+   gout.drawBoard();
+   for (auto piece : board)
+      piece->display(gout);
 }

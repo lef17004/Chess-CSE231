@@ -8,6 +8,7 @@
 #pragma once
 #include "position.h"
 #include <string>
+#include "uiDraw.h"
 using namespace std;
 
 class Move
@@ -43,6 +44,8 @@ public:
    void setPromotion() { promoting = true; }
    
    bool operator < (const Move & rhs) const;
+   
+   void display(ogstream & gout);
    
    friend class TestMove;
 };

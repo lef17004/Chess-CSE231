@@ -26,10 +26,8 @@ public:
    Board();
    int getCurrentMove() const;
    bool isWhiteTurn() const; 
-   void display(ogstream & gout)
-   {
-      gout.drawBoard();
-   }
+   void display(ogstream & gout);
+   
    Piece * getPiece(const Position & pos) const;
    void setPiece(Piece * piece);
    void free();
