@@ -9,6 +9,11 @@ King::King() { }
  ******************************************************************************/
 King::King(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
 
+void Piece::display(ogstream& gout)
+{
+	gout.drawKing(position.getLocation(), !isWhite());
+}
+
 set<Move> * King::getPossibleMoves(const Board & board)
 {
    

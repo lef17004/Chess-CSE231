@@ -11,3 +11,8 @@ set<Move> * Queen::getPossibleMoves(const Board & board)
 {
    return new set<Move>();
 }
+
+void Piece::display(ogstream& gout)
+{
+   gout.drawQueen(position.getLocation(), !isWhite());
+}
