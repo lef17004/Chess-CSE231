@@ -12,6 +12,9 @@ set<Move> * Knight::getPossibleMoves(const Board & board)
    return new set<Move>();
 }
 
+/******************************************************************************
+ * KNIGHT DISPLAY
+ ******************************************************************************/
 void Knight::display(ogstream& gout)
 {
    gout.drawKnight(position.getLocation(), !isWhite());

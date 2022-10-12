@@ -9,6 +9,9 @@ King::King() { }
  ******************************************************************************/
 King::King(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
 
+/******************************************************************************
+ * KING DISPLAY
+ ******************************************************************************/
 void King::display(ogstream& gout)
 {
 	gout.drawKing(position.getLocation(), !isWhite());
