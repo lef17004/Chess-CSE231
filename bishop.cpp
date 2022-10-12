@@ -12,6 +12,9 @@ set<Move> * Bishop::getPossibleMoves(const Board & board)
    return new set<Move>();
 }
 
+/******************************************************************************
+ * BISHOP DISPLAY
+ ******************************************************************************/
 void Bishop::display(ogstream & gout)
 {
    gout.drawBishop(position.getLocation(), !isWhite());
