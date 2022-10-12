@@ -8,6 +8,7 @@ Pawn::Pawn() { }
 // TODO: Move to Header file
 Pawn::Pawn(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
 
+
 /******************************************************************************
  * PAWN:: GET POSSIBLE MOVES
  * Gets the possible moves for the pawn.
@@ -99,4 +100,9 @@ void Pawn::addPromotion(set<Move> & Moves, Move& move)
 {
    move.setPromotion();
    Moves.insert(move);
+}
+
+void Piece::display(ogstream& gout)
+{
+   gout.drawPawn(position.getLocation(), !isWhite());
 }
