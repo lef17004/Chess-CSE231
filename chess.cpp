@@ -431,18 +431,23 @@ void callBack(Interface *pUI, void * p)
    gout.drawHover(ui.getHoverPosition());
    gout.drawSelected(ui.getSelectPosition());
    int selected = ui.getSelectPosition();
+
+
    
-   if (0 <= selected && selected < 64)
+   if (pUI->getSelectPosition() != -1)
    {
       auto piece2 = board->getPiece(Position(selected));
       auto moves = piece2->getPossibleMoves(*board);
       for (auto move : *moves)
       {
          move.display(gout);
+         
       }
+      
+      
+      //board->move()
    }
    board->displayPieces(gout);
-   
 //   if (move(board, pUI->getPreviousPosition(), pUI->getSelectPosition()))
 //      pUI->clearSelectPosition();
 //   else
@@ -454,10 +459,18 @@ void callBack(Interface *pUI, void * p)
 //
 //   // draw the board
 //   draw(board, *pUI, possible);
-   
-   
-   
+}
 
+Move getSelectedMove(set<Move> moves, int location)
+{
+   for (auto move: moves)
+   {
+      if (move.getDes().getLocation() == location)
+         return move;
+   }
+   Move move;
+   return move;
+   
 }
 
 /********************************************************
