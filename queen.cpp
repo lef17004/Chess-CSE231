@@ -9,6 +9,12 @@
 // TODO: Move to header file.
 set<Move> * Queen::getPossibleMoves(const Board & board)
 {
+   array<Delta, 8> deltas = 
+   {  Delta(-1, 1),  Delta(0, 1),  Delta(1, 1),
+      Delta(-1, 0),                Delta(1, 0),
+      Delta(-1, -1), Delta(0, -1), Delta(1, -1) 
+   };
+
    return new set<Move>();
 }
 

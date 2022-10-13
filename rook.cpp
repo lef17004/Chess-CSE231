@@ -11,6 +11,13 @@ Rook::Rook(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
  ******************************************************************************/
 set<Move> * Rook::getPossibleMoves(const Board & board)
 {
+   array<Delta, 8> deltas =
+   { 
+                  Delta(0,  1),
+      Delta(-1, 0),           Delta(1, 0),
+                  Delta(0, -1)
+   };
+
    return new set<Move>();
 }
 

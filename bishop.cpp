@@ -9,6 +9,13 @@
 // TODO: Move to header file.
 set<Move> * Bishop::getPossibleMoves(const Board & board)
 {
+   array<Delta, 8> deltas = 
+   { 
+      Delta(-1, 1),           Delta(1, 1),
+
+      Delta(-1,-1),           Delta(1,-1)
+   };
+
    return new set<Move>();
 }
 

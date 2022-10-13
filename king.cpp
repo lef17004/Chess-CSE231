@@ -20,9 +20,13 @@ void King::display(ogstream& gout)
 set<Move> * King::getPossibleMoves(const Board & board)
 {
    
-   array<Delta, 8> deltas = {Delta(-1, 1),  Delta(0, 1),  Delta(1, 1),
-                             Delta(-1, 0),                Delta(1, 0),
-                             Delta(-1, -1), Delta(0, -1), Delta(1, -1) };
+   array<Delta, 8> deltas = 
+   {
+      Delta(-1, 1),  Delta(0, 1),  Delta(1, 1),
+      Delta(-1, 0),                Delta(1, 0),
+      Delta(-1, -1), Delta(0, -1), Delta(1, -1)
+   };
+
 	set<Move> * moves = getMovesNoSlide(board, deltas);
    
 	if (!isMove())
