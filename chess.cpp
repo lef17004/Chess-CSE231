@@ -20,6 +20,29 @@
 #include "testRunner.h"
 using namespace std;
 
+Board chessBoard;
+
+
+class BoardSingleton
+{
+public:
+   static Board * getInstance()
+   {
+      if (board == nullptr)
+         board = new Board();
+      
+      return board;
+   }
+   
+private:
+   static Board * board;
+   
+   BoardSingleton() { board = nullptr; }
+};
+
+Board * BoardSingleton::board = nullptr;
+
+
 /***********************************************
  * Row Column
  * Simple row/column pair
@@ -395,23 +418,42 @@ bool move(char* board, int positionFrom, int positionTo)
 void callBack(Interface *pUI, void * p)
 {
    set <int> possible;
-   
+   ogstream gout;
    // the first step is to cast the void pointer into a game object. This
    // is the first step of every single callback function in OpenGL. 
-   char * board = (char *)p;  
-
-   // move 
-   if (move(board, pUI->getPreviousPosition(), pUI->getSelectPosition()))
-      pUI->clearSelectPosition();
-   else
-      possible = getPossibleMoves(board, pUI->getSelectPosition());
-
-   // if we clicked on a blank spot, then it is not selected
-   if (pUI->getSelectPosition() != -1 && board[pUI->getSelectPosition()] == ' ')
-      pUI->clearSelectPosition();
-
-   // draw the board
-   draw(board, *pUI, possible);
+   //Board * board = (Board *)p;
+   Board * board = BoardSingleton::getInstance();
+   // move
+   
+   // draw any selections
+   auto ui = *pUI;
+   board->display(gout);
+   gout.drawHover(ui.getHoverPosition());
+   gout.drawSelected(ui.getSelectPosition());
+   int selected = ui.getSelectPosition();
+   
+   if (0 <= selected && selected < 64)
+   {
+      auto piece2 = board->getPiece(Position(selected));
+      auto moves = piece2->getPossibleMoves(*board);
+      for (auto move : *moves)
+      {
+         move.display(gout);
+      }
+   }
+   board->displayPieces(gout);
+   
+//   if (move(board, pUI->getPreviousPosition(), pUI->getSelectPosition()))
+//      pUI->clearSelectPosition();
+//   else
+//      possible = getPossibleMoves(board, pUI->getSelectPosition());
+//
+//   // if we clicked on a blank spot, then it is not selected
+//   if (pUI->getSelectPosition() != -1 && board[pUI->getSelectPosition()] == ' ')
+//      pUI->clearSelectPosition();
+//
+//   // draw the board
+//   draw(board, *pUI, possible);
    
    
    
@@ -529,7 +571,7 @@ int main(int argc, char** argv)
 #endif // !_WIN32
 {
    Interface ui("Chess");    
-
+   Board chessBoard;
    // Initialize the game class
    // note this is upside down: 0 row is at the bottom
    char board[64] = {

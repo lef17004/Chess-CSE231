@@ -153,7 +153,9 @@ void Board::move(Move & move)
    Position source = move.getSrc();
    Position destination = move.getDes();
    
-   swap(source, destination);
+   if (move.getCapture() == 's')
+      swap(source, destination);
+   
    currentMove++;
 }
 
