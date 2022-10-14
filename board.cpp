@@ -62,7 +62,7 @@ Board::Board()
    board[62] = new Knight(0, 6, true);
    board[63] = new Rook(0, 7, true);
       
-   
+   currentMove = 0;
 }
 
 /******************************************************************************
