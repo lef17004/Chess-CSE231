@@ -59,7 +59,10 @@ bool Move::operator < (const Move & rhs) const
  ******************************************************************************/
 char Move::getPromotion()
 {
-   return 'Q';
+   if (promoting)
+      return 'Q';
+   else
+      return 'M';
 }
 
 /******************************************************************************

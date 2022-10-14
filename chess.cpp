@@ -448,7 +448,7 @@ void callBack(Interface *pUI, void * p)
    {
       pUI->clearSelectPosition();
    }
-   else if (selectedPosition.isValid())
+   else if (selectedPosition.isValid() && board->getPiece(selectedPosition)->isWhite() == board->isWhiteTurn())
    {
       auto piece3 = board->getPiece(selectedPosition);
       auto moves = piece3->getPossibleMoves(*board);

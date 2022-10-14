@@ -35,7 +35,7 @@ public:
    set<Move> * getMovesSlide(const Board & board, array<Delta, 8> deltas);
    //set<Move> * getMovesSlide(const Board & board, array<Delta, 8> deltas);
    set<Move> * getMovesNoSlide(const Board& board, array<Delta, 8> deltas);
-   void move(Position & position, int move);
+   void move(const Position & position, int move);
 
    virtual char getLetter();
    // TODO: Use smart pointers to remove memory leaks. See getMovesSlide for reference. 

@@ -176,6 +176,11 @@ bool Board::move(Position & positionFrom, Position & positionTo)
    if (!positionFrom.isValid() || !positionTo.isValid())
       return false;
    
+   if (getPiece(positionFrom)->isWhite() != isWhiteTurn())
+   {
+      return false;
+   }
+   
    Piece * piece = getPiece(positionFrom);
    set<Move> * moves = piece->getPossibleMoves(*this);
    bool found = false;
@@ -200,6 +205,22 @@ bool Board::move(Position & positionFrom, Position & positionTo)
       delete board[positionTo.getLocation()];
       board[positionTo.getLocation()] = getPiece(positionFrom);
       board[positionFrom.getLocation()] = new Space(positionFrom.getRow(), positionFrom.getCol(), false);
+      board[positionTo.getLocation()]->move(positionTo, currentMove);
+   }
+   
+   if (selectedMove.getPromotion() != 'M')
+   {
+      Piece * pawn = board[positionTo.getLocation()];
+      Piece * queen = new Queen(pawn->getPosition().getRow(), pawn->getPosition().getCol(), pawn->isWhite());
+      // TODO: Need copy constructor
+      delete pawn;
+      board[positionTo.getLocation()] = queen;
+      
+   }
+   
+   if (selectedMove.getCastleK())
+   {
+      swap(Position(positionTo.getRow() - 1, positionTo.getCol()), Position(positionTo.getRow() + 1, positionTo.getCol()));
    }
    
    currentMove++;
@@ -216,6 +237,8 @@ void Board::swap(const Position & pos1, const Position & pos2)
    Piece * temp = getPiece(pos1);
    setPiece(board[pos2.getLocation()], pos1);
    setPiece(temp, pos2);
+   temp->move(pos2, currentMove);
+   board[pos1.getLocation()]->move(pos1, currentMove);
    //delete temp;
 }
 

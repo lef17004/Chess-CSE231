@@ -153,7 +153,7 @@ set<Move> * Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
 }
 
 
-void Piece::move(Position & position, int turn)
+void Piece::move(const Position & position, int turn)
 {
    this->position = position;
    nMoves += 1;
