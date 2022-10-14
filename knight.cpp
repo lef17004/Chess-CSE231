@@ -17,7 +17,7 @@ set<Move> * Knight::getPossibleMoves(const Board & board)
                        Delta(-1, -2), Delta(1, -2)
    };
 
-   return new set<Move>();
+   return getMovesNoSlide(board, deltas);
 }
 
 /******************************************************************************

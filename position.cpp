@@ -1,6 +1,7 @@
 
 #include "position.h"
-
+#include <iostream>
+using namespace std;
 /******************************************************************************
  * POSITION:: Default Constructor
  * 56 is (0, 0)
@@ -88,7 +89,10 @@ bool Position::isValid()
  ******************************************************************************/
 void Position::set(int r, int c)
 {
-   location = c + ((7 - r) * 8);
+   if ((0 <= r && r <= 7) && (0 <= c && c <= 7))
+      location = c + ((7 - r) * 8);
+   else
+      location = -1;
 }
 
 /******************************************************************************
@@ -98,6 +102,7 @@ void Position::set(int r, int c)
  ******************************************************************************/
 bool Position::operator < (const Position & rhs) const
 {
+   cout << rhs.location << endl;
    return this->location < rhs.location;
 }
 

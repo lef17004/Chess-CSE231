@@ -75,5 +75,5 @@ void Move::setCastle(bool isKing)
 
 void Move::display(ogstream & gout)
 {
-   gout.drawPossible(dest.getLocation());
+   gout.drawPossible(dest);
 }

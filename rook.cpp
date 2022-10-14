@@ -18,7 +18,11 @@ set<Move> * Rook::getPossibleMoves(const Board & board)
                   Delta(0, -1)
    };
 
-   return new set<Move>();
+   set<Move>* moves = getMovesSlide(board, deltas);
+   
+   
+   
+   return  moves;
 }
 
 /******************************************************************************

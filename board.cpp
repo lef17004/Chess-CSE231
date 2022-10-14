@@ -148,8 +148,14 @@ int Board::getCurrentMove() const
  * Executes a move.
  * TODO: Needs finished. Only the most basic of movement is implemented.
  ******************************************************************************/
-void Board::move(Move & move)
+bool Board::move(Move & move)
 {
+   
+   
+   if (move.getSrc().getLocation() == -1 || move.getDes().getLocation() == -1)
+      return false;
+   
+   return false;
    Position source = move.getSrc();
    Position destination = move.getDes();
    
@@ -157,6 +163,48 @@ void Board::move(Move & move)
       swap(source, destination);
    
    currentMove++;
+   
+}
+
+
+
+/******************************************************************************
+ *
+ ******************************************************************************/
+bool Board::move(Position & positionFrom, Position & positionTo)
+{
+   if (!positionFrom.isValid() || !positionTo.isValid())
+      return false;
+   
+   Piece * piece = getPiece(positionFrom);
+   set<Move> * moves = piece->getPossibleMoves(*this);
+   bool found = false;
+   Move selectedMove;
+   for (auto move: *moves)
+   {
+      if (move.getDes() == positionTo)
+      {
+         selectedMove = move;
+         found = true;
+      }
+   }
+   
+   if (!found)
+      return false;
+      
+   if (selectedMove.getCapture() == 'M')
+      swap(positionFrom, positionTo);
+   else
+   {
+      getPiece(positionFrom)->move(positionTo, currentMove);
+      delete board[positionTo.getLocation()];
+      board[positionTo.getLocation()] = getPiece(positionFrom);
+      board[positionFrom.getLocation()] = new Space(positionFrom.getRow(), positionFrom.getCol(), false);
+   }
+   
+   currentMove++;
+   return true;
+   
 }
 
 /******************************************************************************
@@ -168,7 +216,7 @@ void Board::swap(const Position & pos1, const Position & pos2)
    Piece * temp = getPiece(pos1);
    setPiece(board[pos2.getLocation()], pos1);
    setPiece(temp, pos2);
-   delete temp;
+   //delete temp;
 }
 
 void Board::display(ogstream & gout)
@@ -180,4 +228,10 @@ void Board::displayPieces(ogstream & gout)
 {
    for (auto piece : board)
       piece->display(gout);
+}
+
+
+Piece & Board::operator[] (Position & pos)
+{
+   return *board[pos.getLocation()];
 }

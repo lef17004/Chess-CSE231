@@ -12,6 +12,7 @@
 #pragma once
 
 #include <sstream>    // for OSTRINGSTRING
+#include "position.h"
 using std::string;
 
  /*************************************************************************
@@ -44,6 +45,7 @@ public:
     virtual void drawSelected(int position);
     virtual void drawHover(   int position);
     virtual void drawPossible(int osition);
+   virtual void drawPossible(Position & position);
 
 protected:
     int x; // location of text on the screen

@@ -407,7 +407,17 @@ bool move(char* board, int positionFrom, int positionTo)
    return false;
 
 }
-
+Move getSelectedMove(set<Move> & moves, int location)
+{
+   for (auto move: moves)
+   {
+      if (move.getDes().getLocation() == location)
+         return move;
+   }
+   Move move;
+   return move;
+   
+}
 /*************************************
  * All the interesting work happens here, when
  * I get called back from OpenGL to draw a frame.
@@ -424,54 +434,38 @@ void callBack(Interface *pUI, void * p)
    //Board * board = (Board *)p;
    Board * board = BoardSingleton::getInstance();
    // move
-   
-   // draw any selections
    auto ui = *pUI;
+   Position selectedPosition(ui.getSelectPosition(), true);
+   Position hoverPosition(ui.getHoverPosition(), true);
+   Position previousPosition(ui.getPreviousPosition(), true);
+   
    board->display(gout);
    gout.drawHover(ui.getHoverPosition());
    gout.drawSelected(ui.getSelectPosition());
-   int selected = ui.getSelectPosition();
-
-
+   board->displayPieces(gout);
    
-   if (pUI->getSelectPosition() != -1)
+   if (board->move(previousPosition, selectedPosition))
    {
-      auto piece2 = board->getPiece(Position(selected));
-      auto moves = piece2->getPossibleMoves(*board);
+      pUI->clearSelectPosition();
+   }
+   else if (selectedPosition.isValid())
+   {
+      auto piece3 = board->getPiece(selectedPosition);
+      auto moves = piece3->getPossibleMoves(*board);
       for (auto move : *moves)
       {
          move.display(gout);
-         
       }
-      
-      
-      //board->move()
    }
-   board->displayPieces(gout);
-//   if (move(board, pUI->getPreviousPosition(), pUI->getSelectPosition()))
-//      pUI->clearSelectPosition();
-//   else
-//      possible = getPossibleMoves(board, pUI->getSelectPosition());
-//
-//   // if we clicked on a blank spot, then it is not selected
-//   if (pUI->getSelectPosition() != -1 && board[pUI->getSelectPosition()] == ' ')
-//      pUI->clearSelectPosition();
-//
-//   // draw the board
-//   draw(board, *pUI, possible);
+   
+   // draw any selections
+   
+   if (pUI->getSelectPosition() != -1 && board->getPiece(selectedPosition)->getLetter() == 's')
+      pUI->clearSelectPosition();
+
 }
 
-Move getSelectedMove(set<Move> moves, int location)
-{
-   for (auto move: moves)
-   {
-      if (move.getDes().getLocation() == location)
-         return move;
-   }
-   Move move;
-   return move;
-   
-}
+
 
 /********************************************************
  * PARSE

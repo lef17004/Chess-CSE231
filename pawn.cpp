@@ -71,7 +71,7 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
          }
       }
    }
-
+   return moves;
    // En Passant
    for (auto i : values)
    {

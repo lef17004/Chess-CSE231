@@ -79,22 +79,27 @@ bool Piece::justMoved(int turnNumber)
  * PIECE:: GET MOVES SLIDE
  *  Uses delta to get all the moves in a sliding pattern.
  ******************************************************************************/
-shared_ptr<set<Move>> Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
+set<Move> * Piece::getMovesSlide(const Board & board, array<Delta, 8> deltas)
 {
-   shared_ptr<set<Move>> moves;
+   set<Move> * moves = new set<Move>();
    for (Delta delta : deltas)
    {
       Position posMove(position, delta);
-		while (posMove.isValid() && board.getPiece(posMove.getLocation())->getLetter())
+		while (posMove.isValid() && board.getPiece(posMove.getLocation())->getLetter() == 's')
 		{
 			Move move;
 			move.setSource(getPosition());
 			move.setDest(posMove);
 			move.setWhiteMove(isWhite());
 			moves->insert(move);
+         posMove = Position(posMove.getRow() + delta.y, posMove.getCol() + delta.x);
 		}
-		if (posMove.isValid() &&
-			((board.getPiece(position))->isWhite() != fWhite || board.getPiece(posMove.getLocation())->getLetter() != 's'))
+     
+      
+      
+//		if (posMove.isValid() &&
+//			((board.getPiece(position))->isWhite() != fWhite || board.getPiece(posMove.getLocation())->getLetter() != 's'))
+      if (posMove.isValid() && board.getPiece(posMove)->isWhite() != fWhite)
 		{
 			Move move;
 			move.setSource(getPosition());
@@ -145,4 +150,12 @@ set<Move> * Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
 	}
 	return moves;
 
+}
+
+
+void Piece::move(Position & position, int turn)
+{
+   this->position = position;
+   nMoves += 1;
+   lastMove = turn;
 }

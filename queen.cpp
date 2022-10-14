@@ -15,7 +15,7 @@ set<Move> * Queen::getPossibleMoves(const Board & board)
       Delta(-1, -1), Delta(0, -1), Delta(1, -1) 
    };
 
-   return new set<Move>();
+   return getMovesSlide(board, deltas);
 }
 
 /******************************************************************************

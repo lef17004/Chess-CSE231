@@ -30,10 +30,13 @@ public:
    void displayPieces(ogstream & gout);
    
    Piece * getPiece(const Position & pos) const;
+   Piece & operator[] (Position & pos);
+   
    void setPiece(Piece * piece);
    void free();
    void reset();
-   void move(Move & move);
+   bool move(Move & move);
+   bool move(Position & positionFrom, Position & positionTo);
    void setPiece(Piece * piece, const Position & pos);
    void setBoardToEmpty();
    

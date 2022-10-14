@@ -40,6 +40,7 @@
 
 #include "uiDraw.h"
 #include "uiInteract.h"
+#include "position.h"
 
 using namespace std;
 
@@ -420,6 +421,43 @@ void ogstream::drawPossible(int pos)
    glVertex2i((GLint)((col + 0) * 32 + 7),
               (GLint)((row + 1) * 32 - 7));
 
+   // finish the drawing
+   glEnd();
+}
+
+
+/************************************************************************
+ * DRAW POSSIBLE
+ * Highlight a chess square:
+ *   INPUT  location  The location of the selected square
+ ************************************************************************/
+void ogstream::drawPossible(Position & position)
+{
+   int pos = position.getLocation();
+   // do nothing if there is nothing to do
+   if (pos < 0 || pos >= 64)
+      return;
+   
+   // find the row and column
+   int row = pos / 8;
+   row = position.getRow();
+   int col = pos % 8;
+   col = position.getCol();
+   
+   // set the color and drawing style
+   glBegin(GL_QUADS);
+   glColor(RGB_SELECTED);
+   
+   // draw the square
+   glVertex2i((GLint)((col + 0) * 32 + 7),
+              (GLint)((row + 0) * 32 + 7));
+   glVertex2i((GLint)((col + 1) * 32 - 7),
+              (GLint)((row + 0) * 32 + 7));
+   glVertex2i((GLint)((col + 1) * 32 - 7),
+              (GLint)((row + 1) * 32 - 7));
+   glVertex2i((GLint)((col + 0) * 32 + 7),
+              (GLint)((row + 1) * 32 - 7));
+   
    // finish the drawing
    glEnd();
 }
