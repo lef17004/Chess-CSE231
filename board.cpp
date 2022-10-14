@@ -176,6 +176,11 @@ bool Board::move(Position & positionFrom, Position & positionTo)
    if (!positionFrom.isValid() || !positionTo.isValid())
       return false;
    
+   if (getPiece(positionFrom)->isWhite() != isWhiteTurn())
+   {
+      return false;
+   }
+
    Piece * piece = getPiece(positionFrom);
    set<Move> * moves = piece->getPossibleMoves(*this);
    bool found = false;
