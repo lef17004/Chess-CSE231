@@ -70,6 +70,7 @@ void Piece::display(ogstream & gout)
  ******************************************************************************/
 bool Piece::justMoved(int turnNumber)
 {
+   
 	return ((lastMove + 1) == turnNumber) ||
           ((lastMove + 2) == turnNumber);
    

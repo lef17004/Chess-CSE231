@@ -1,6 +1,7 @@
 
 #include "piece.h"
 #include "delta.h"
+#include <iostream>
 
 // TODO: Move to Header File
 Pawn::Pawn() { }
@@ -71,13 +72,17 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
          }
       }
    }
-
+   
    // En Passant
    for (auto i : values)
    {
       Position posMove(position.getRow() + (isWhite() ? 1 : -1), position.getCol() + i);
       Position posKill(position.getRow(), position.getCol() + i);
-      if (posMove.isValid() && position.getRow() == (isWhite() ? 4 : 3) && board.getPiece(posMove)->getLetter() == 's' &&
+      
+      //bool justMove = board.getPiece(posKill)->justMoved(board.getCurrentMove());
+      //std::cout << "Just Move " << justMove << std::endl;
+      
+      if (posMove.isValid() && (position.getRow() == (isWhite() ? 4 : 3)) && board.getPiece(posMove)->getLetter() == 's' &&
          board.getPiece(posKill)->getLetter() == 'p' && board.getPiece(posKill)->isWhite() != isWhite() &&
          board.getPiece(posKill)->getNMoves() == 1 && board.getPiece(posKill)->justMoved(board.getCurrentMove()))
       {

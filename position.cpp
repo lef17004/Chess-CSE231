@@ -102,7 +102,6 @@ void Position::set(int r, int c)
  ******************************************************************************/
 bool Position::operator < (const Position & rhs) const
 {
-   cout << rhs.location << endl;
    return this->location < rhs.location;
 }
 

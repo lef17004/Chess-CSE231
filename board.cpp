@@ -82,7 +82,8 @@ void Board::setPiece(Piece * piece)
  ******************************************************************************/
 void Board::setPiece(Piece * piece, const Position & pos)
 {
-   piece->setPosition(pos);
+   //piece->setPosition(pos);
+   piece->move(pos, currentMove);
    board[pos.getLocation()] = piece;
 }
 
@@ -176,10 +177,10 @@ bool Board::move(Position & positionFrom, Position & positionTo)
    if (!positionFrom.isValid() || !positionTo.isValid())
       return false;
    
-   if (getPiece(positionFrom)->isWhite() != isWhiteTurn())
-   {
-      return false;
-   }
+//   if (getPiece(positionFrom)->isWhite() != isWhiteTurn())
+//   {
+//      return false;
+//   }
    
    Piece * piece = getPiece(positionFrom);
    set<Move> * moves = piece->getPossibleMoves(*this);
@@ -197,30 +198,71 @@ bool Board::move(Position & positionFrom, Position & positionTo)
    if (!found)
       return false;
       
+   // Move to blank spot
    if (selectedMove.getCapture() == 'M')
       swap(positionFrom, positionTo);
+   // Capture
    else
    {
-      getPiece(positionFrom)->move(positionTo, currentMove);
-      delete board[positionTo.getLocation()];
-      board[positionTo.getLocation()] = getPiece(positionFrom);
-      board[positionFrom.getLocation()] = new Space(positionFrom.getRow(), positionFrom.getCol(), false);
-      board[positionTo.getLocation()]->move(positionTo, currentMove);
+      
+      Piece * piece1 = getPiece(positionFrom);
+      Piece * piece2 = getPiece(positionTo);
+      
+      delete piece2;
+      setPiece(piece1, positionTo);
+      setPiece(new Space(positionFrom.getRow(), positionFrom.getCol(), false), positionFrom);
+//      
+//      getPiece(positionFrom)->move(positionTo, currentMove);
+//      delete board[positionTo.getLocation()];
+//      board[positionTo.getLocation()] = getPiece(positionFrom);
+//      board[positionFrom.getLocation()] = new Space(positionFrom.getRow(), positionFrom.getCol(), false);
+//      board[positionTo.getLocation()]->move(positionTo, currentMove);
    }
    
+   // Promotion
    if (selectedMove.getPromotion() != 'M')
    {
       Piece * pawn = board[positionTo.getLocation()];
       Piece * queen = new Queen(pawn->getPosition().getRow(), pawn->getPosition().getCol(), pawn->isWhite());
       // TODO: Need copy constructor
       delete pawn;
-      board[positionTo.getLocation()] = queen;
+      setPiece(queen, positionTo);
+      //board[positionTo.getLocation()] = queen;
       
    }
    
-   if (selectedMove.getCastleK())
+   std::array<std::array<Position, 2>, 4> castlingPositions = {
+      // Space          Rook
+      {Position(61), Position(63),  // White King Castle
+       Position(5),  Position(7),   // Black King Castle
+       Position(56), Position(59),  // White Queen Castle
+      Position(0), Position(3)      // Black Queen Castle
+      }
+   };
+   
+   // Castling
+   if (selectedMove.getCastleK() || selectedMove.getCastleQ())
    {
-      swap(Position(positionTo.getRow() - 1, positionTo.getCol()), Position(positionTo.getRow() + 1, positionTo.getCol()));
+      int castleType = 0;
+      if (selectedMove.getWhiteMove() && selectedMove.getCastleK())
+         castleType = 0;
+      else if (selectedMove.getWhiteMove() && selectedMove.getCastleQ())
+         castleType = 1;
+      else if (!selectedMove.getWhiteMove() && selectedMove.getCastleQ())
+         castleType = 2;
+      else if (!selectedMove.getWhiteMove() && selectedMove.getCastleQ())
+         castleType = 3;
+      
+      swap(castlingPositions[castleType][0], castlingPositions[castleType][1]);
+      
+   }
+   
+   if (selectedMove.getEnPassant())
+   {
+      int positionChange = isWhiteTurn() ? -1 : 1;
+      Position posKill(positionTo.getRow() + positionChange, positionTo.getCol());
+      delete getPiece(posKill);
+      setPiece(new Space(posKill.getRow(), posKill.getCol(), false), posKill);
    }
    
    currentMove++;
@@ -234,11 +276,15 @@ bool Board::move(Position & positionFrom, Position & positionTo)
  ******************************************************************************/
 void Board::swap(const Position & pos1, const Position & pos2)
 {
-   Piece * temp = getPiece(pos1);
-   setPiece(board[pos2.getLocation()], pos1);
-   setPiece(temp, pos2);
-   temp->move(pos2, currentMove);
-   board[pos1.getLocation()]->move(pos1, currentMove);
+   Piece * piece1 = getPiece(pos1);
+   Piece * piece2 = getPiece(pos2);
+   //Piece * temp = piece1;
+   
+   //piece1->move(pos2, currentMove);
+   //piece2->move(pos1, currentMove);
+   
+   setPiece(piece2, pos1);
+   setPiece(piece1, pos2);
    //delete temp;
 }
 
