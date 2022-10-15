@@ -247,9 +247,9 @@ bool Board::move(Position & positionFrom, Position & positionTo)
       if (selectedMove.getWhiteMove() && selectedMove.getCastleK())
          castleType = 0;
       else if (selectedMove.getWhiteMove() && selectedMove.getCastleQ())
-         castleType = 1;
-      else if (!selectedMove.getWhiteMove() && selectedMove.getCastleQ())
          castleType = 2;
+      else if (!selectedMove.getWhiteMove() && selectedMove.getCastleQ())
+         castleType = 1;
       else if (!selectedMove.getWhiteMove() && selectedMove.getCastleQ())
          castleType = 3;
       
