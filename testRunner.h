@@ -43,7 +43,7 @@ public:
       testMove.run();
       testBoard.run();
       testPiece.run();
-      //testPawn.run();
+      testPawn.run();
       testKing.run();
       
       
