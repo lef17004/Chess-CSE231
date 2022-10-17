@@ -606,6 +606,8 @@ int main(int argc, char** argv)
    TestRunner tests;
    tests.run();
    // set everything into action
+   // (void *) (&board);
+   // (Board * p)
    ui.run(callBack, board);             
 
    return 0;
