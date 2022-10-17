@@ -232,11 +232,11 @@ bool Board::move(Position & positionFrom, Position & positionTo)
    }
    
    std::array<std::array<Position, 2>, 4> castlingPositions = {
-      // Space          Rook
-      {Position(61), Position(63),  // White King Castle
-       Position(5),  Position(7),   // Black King Castle
-       Position(56), Position(59),  // White Queen Castle
-      Position(0), Position(3)      // Black Queen Castle
+      // Space(rook move to)   Rook
+      {Position(61),           Position(63),  // White King side Castle  - castleType = 0
+       Position(5),            Position(7),   // Black King side Castle  - castleType = 1
+       Position(56),           Position(59),  // White Queen side Castle - castleType = 2
+       Position(3),            Position(0)    // Black Queen side Castle - castleType = 3
       }
    };
    
@@ -244,12 +244,19 @@ bool Board::move(Position & positionFrom, Position & positionTo)
    if (selectedMove.getCastleK() || selectedMove.getCastleQ())
    {
       int castleType = 0;
+      //if white, and selected move is Kings side castle
       if (selectedMove.getWhiteMove() && selectedMove.getCastleK())
          castleType = 0;
+
+      //if white, and selected move is Queens side castle
       else if (selectedMove.getWhiteMove() && selectedMove.getCastleQ())
          castleType = 2;
-      else if (!selectedMove.getWhiteMove() && selectedMove.getCastleQ())
+
+      //if NOT white(AKA black), and selected move is Kings side castle
+      else if (!selectedMove.getWhiteMove() && selectedMove.getCastleK())
          castleType = 1;
+
+      //if NOT white(AKA black), and selected move is Queens side castle
       else if (!selectedMove.getWhiteMove() && selectedMove.getCastleQ())
          castleType = 3;
       
