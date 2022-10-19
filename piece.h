@@ -71,12 +71,12 @@ public:
 class Space: public Piece
 {
 public:
-   Space();
-   Space(int r, int c, bool isWhite);
+   Space() {}
+   Space(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
    
    virtual char getLetter() { return 's'; }
-   virtual set<Move> * getPossibleMoves(const Board & board);
-   virtual void display(ogstream & gout);
+   virtual set<Move> * getPossibleMoves(const Board & board) { return new set<Move>(); };
+   virtual void display(ogstream & gout) {}
 };
 
 

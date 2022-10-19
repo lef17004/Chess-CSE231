@@ -14,7 +14,6 @@
 		33251B7628F0F16600D2B597 /* piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6228F0F14D00D2B597 /* piece.cpp */; };
 		33251B7728F0F16600D2B597 /* position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6328F0F14D00D2B597 /* position.cpp */; };
 		33251B7828F0F16600D2B597 /* rook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B7028F0F14D00D2B597 /* rook.cpp */; };
-		33251B7928F0F16600D2B597 /* space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33251B6D28F0F14D00D2B597 /* space.cpp */; };
 		338CA7B428F77A0C00B7E9B4 /* bishop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 338CA7B128F74B7700B7E9B4 /* bishop.cpp */; };
 		338CA7B528F77A0C00B7E9B4 /* knight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 338CA7B228F74B8100B7E9B4 /* knight.cpp */; };
 		338CA7B628F77A0C00B7E9B4 /* queen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 338CA7B328F74B8C00B7E9B4 /* queen.cpp */; };
@@ -47,7 +46,6 @@
 		33251B6928F0F14D00D2B597 /* testPiece.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testPiece.h; sourceTree = "<group>"; };
 		33251B6B28F0F14D00D2B597 /* testMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testMove.h; sourceTree = "<group>"; };
 		33251B6C28F0F14D00D2B597 /* move.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = move.cpp; sourceTree = "<group>"; };
-		33251B6D28F0F14D00D2B597 /* space.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = space.cpp; sourceTree = "<group>"; };
 		33251B6E28F0F14D00D2B597 /* king.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = king.cpp; sourceTree = "<group>"; };
 		33251B6F28F0F14D00D2B597 /* delta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = delta.h; sourceTree = "<group>"; };
 		33251B7028F0F14D00D2B597 /* rook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rook.cpp; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				338CA7B128F74B7700B7E9B4 /* bishop.cpp */,
 				338CA7B228F74B8100B7E9B4 /* knight.cpp */,
 				338CA7B328F74B8C00B7E9B4 /* queen.cpp */,
-				33251B6D28F0F14D00D2B597 /* space.cpp */,
 				33A7CBFF28E503CE003F4845 /* board.h */,
 				33251B6528F0F14D00D2B597 /* board.cpp */,
 				33A7CC0328E50B41003F4845 /* move.h */,
@@ -205,7 +202,6 @@
 				33251B7628F0F16600D2B597 /* piece.cpp in Sources */,
 				33251B7728F0F16600D2B597 /* position.cpp in Sources */,
 				33251B7828F0F16600D2B597 /* rook.cpp in Sources */,
-				33251B7928F0F16600D2B597 /* space.cpp in Sources */,
 				C13286172578104100FCEC47 /* chess.cpp in Sources */,
 				C13286182578104100FCEC47 /* uiDraw.cpp in Sources */,
 				C13286192578104100FCEC47 /* uiInteract.cpp in Sources */,
