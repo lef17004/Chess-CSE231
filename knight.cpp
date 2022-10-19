@@ -6,7 +6,11 @@
 //
 
 #include "piece.h"
-// TODO: Move to header file.
+
+/******************************************************************************
+ * KNIGHT:: GET POSSIBLE MOVES
+ *  Returns a set of Knight's moves.
+ ******************************************************************************/
 set<Move> * Knight::getPossibleMoves(const Board & board)
 {
    array<Delta, 8> deltas = 
@@ -20,10 +24,3 @@ set<Move> * Knight::getPossibleMoves(const Board & board)
    return getMovesNoSlide(board, deltas);
 }
 
-/******************************************************************************
- * KNIGHT DISPLAY
- ******************************************************************************/
-void Knight::display(ogstream& gout)
-{
-   gout.drawKnight(position.getLocation(), !isWhite());
-}

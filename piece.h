@@ -8,11 +8,12 @@
 #include <memory>
 #include "uiDraw.h"
 using namespace std;
+
+
+// Forward Declaration
 class Board;
 
 
-// In final design, piece with be abstract. Currently it's not to make testing easier.
-// Maybe in the future make sure the base class isn't abstract.
 class Piece
 {
 protected:
@@ -32,28 +33,24 @@ public:
    Position & getPosition() { return position; }
    void setPosition(const Position & pos) { position = pos; }
    bool justMoved(int turnNumber);
-   set<Move> * getMovesSlide(const Board & board, array<Delta, 8> deltas);
-   //set<Move> * getMovesSlide(const Board & board, array<Delta, 8> deltas);
-   set<Move> * getMovesNoSlide(const Board& board, array<Delta, 8> deltas);
    void move(const Position & position, int move);
+   
+   // Get Moves
+   set<Move> * getMovesSlide(const Board & board, array<Delta, 8> deltas);
+   set<Move> * getMovesNoSlide(const Board& board, array<Delta, 8> deltas);
 
+   // Virtual Methods
    virtual char getLetter();
-   // TODO: Use smart pointers to remove memory leaks. See getMovesSlide for reference. 
    virtual set<Move> * getPossibleMoves(const Board & board);
    virtual void display(ogstream & gout);
-   // display
-   
-   // Test ----------------------------
 
    
-   
-   int pos;
-   // Test ----------------------------
-   
+   // Friend Classes
    friend class TestPiece;
    friend class TestPawn;
    friend class TestKing;
 };
+
 
 class Pawn: public Piece
 {
@@ -65,6 +62,8 @@ public:
    virtual char getLetter() { return 'p'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
    virtual void display(ogstream & gout);
+   
+   
    friend class TestPawn;
 };
 
@@ -80,27 +79,30 @@ public:
    virtual void display(ogstream & gout);
 };
 
+
 class King: public Piece
 {
 public:
-   King();
-   King(int r, int c, bool isWhite);
+   King() {}
+   King(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
    
    virtual char getLetter() { return 'k'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
-   virtual void display(ogstream & gout);
+   virtual void display(ogstream & gout) { gout.drawKing(position.getLocation(), !isWhite()); }
 };
+
 
 class Rook: public Piece
 {
 public:
    Rook();
-   Rook(int r, int c, bool isWhite);
+   Rook(int r, int c, bool isWhite): Piece(r, c, isWhite) {};
    
    virtual char getLetter() { return 'r'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
-   virtual void display(ogstream & gout);
+   virtual void display(ogstream & gout) { gout.drawRook(position.getLocation(), !isWhite()); }
 };
+
 
 class Knight: public Piece
 {
@@ -110,8 +112,9 @@ public:
    
    virtual char getLetter() { return 'k'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
-   virtual void display(ogstream & gout);
+   virtual void display(ogstream & gout) { gout.drawKnight(position.getLocation(), !isWhite()); }
 };
+
 
 class Bishop: public Piece
 {
@@ -121,8 +124,9 @@ public:
    
    virtual char getLetter() { return 'b'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
-   virtual void display(ogstream & gout);
+   virtual void display(ogstream & gout) { gout.drawBishop(position.getLocation(), !isWhite()); }
 };
+
 
 class Queen: public Piece
 {
@@ -132,5 +136,5 @@ public:
    
    virtual char getLetter() { return 'b'; }
    virtual set<Move> * getPossibleMoves(const Board & board);
-   virtual void display(ogstream & gout);
+   virtual void display(ogstream & gout) { gout.drawQueen(position.getLocation(), !isWhite()); }
 };

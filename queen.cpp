@@ -6,7 +6,10 @@
 //
 
 #include "piece.h"
-// TODO: Move to header file.
+/******************************************************************************
+ * QUEEN:: GET POSSIBLE MOVES
+ * Returns a set of the Queen's possible moves.
+ ******************************************************************************/
 set<Move> * Queen::getPossibleMoves(const Board & board)
 {
    array<Delta, 8> deltas = 
@@ -16,12 +19,4 @@ set<Move> * Queen::getPossibleMoves(const Board & board)
    };
 
    return getMovesSlide(board, deltas);
-}
-
-/******************************************************************************
- * QUEEN DISPLAY
- ******************************************************************************/
-void Queen::display(ogstream& gout)
-{
-   gout.drawQueen(position.getLocation(), !isWhite());
 }

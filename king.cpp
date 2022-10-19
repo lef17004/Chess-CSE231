@@ -2,24 +2,14 @@
 #include "piece.h"
 #include "delta.h"
 
-King::King() { }
-
 /******************************************************************************
- * NON-DEFAULT CONSTRUCTOR
+ * KING::GET POSSIBLE MOVES
+ *  Returns the possible moves for the King.
  ******************************************************************************/
-King::King(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
-
-/******************************************************************************
- * KING DISPLAY
- ******************************************************************************/
-void King::display(ogstream& gout)
-{
-	gout.drawKing(position.getLocation(), !isWhite());
-}
-
 set<Move> * King::getPossibleMoves(const Board & board)
 {
    
+   // Moves the King can make
    array<Delta, 8> deltas = 
    {
       Delta(-1, 1),  Delta(0, 1),  Delta(1, 1),
@@ -29,6 +19,7 @@ set<Move> * King::getPossibleMoves(const Board & board)
 
 	set<Move> * moves = getMovesNoSlide(board, deltas);
    
+   // King side caslte
 	if (!isMove())
 	{
 		Position posSpace(position.getRow(), 5);
@@ -49,6 +40,7 @@ set<Move> * King::getPossibleMoves(const Board & board)
 		}
 	}
 
+   // Queen side castle 
 	if (!isMove())
 	{
 		Position posSpace1(position.getRow(), 3);

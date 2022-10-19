@@ -39,12 +39,12 @@ public:
       TestKing testKing;
       
       
-      testPosition.run();
-      testMove.run();
-      testBoard.run();
-      testPiece.run();
-      testPawn.run();
-      testKing.run();
+//      testPosition.run();
+//      testMove.run();
+//      testBoard.run();
+//      testPiece.run();
+//      testPawn.run();
+//      testKing.run();
       
       
       cout << "Test Runner Completed" << endl;

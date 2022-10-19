@@ -144,7 +144,7 @@ bool Position::operator==(const Position & rhs)
 }
 
 /******************************************************************************
- * POSITION:: DELTA CONSTRUCTO
+ * POSITION:: DELTA CONSTRUCTOR
  * Constructor that tkaes a position and a delta.
  * TODO: One line, move to header file.
  ******************************************************************************/

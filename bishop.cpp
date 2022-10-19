@@ -6,7 +6,11 @@
 //
 
 #include "piece.h"
-// TODO: Move to header file.
+
+/******************************************************************************
+ * BISHOP::GET POSSIBLE MOVES
+ * Returns a set of moves for Bishop.
+ ******************************************************************************/
 set<Move> * Bishop::getPossibleMoves(const Board & board)
 {
    array<Delta, 8> deltas = 
@@ -19,10 +23,4 @@ set<Move> * Bishop::getPossibleMoves(const Board & board)
    return getMovesSlide(board, deltas);
 }
 
-/******************************************************************************
- * BISHOP DISPLAY
- ******************************************************************************/
-void Bishop::display(ogstream & gout)
-{
-   gout.drawBishop(position.getLocation(), !isWhite());
-}
+

@@ -24,6 +24,7 @@ private:
    
 public:
    Board();
+   ~Board();
    int getCurrentMove() const;
    bool isWhiteTurn() const; 
    void display(ogstream & gout);
@@ -39,9 +40,6 @@ public:
    bool move(Position & positionFrom, Position & positionTo);
    void setPiece(Piece * piece, const Position & pos);
    void setBoardToEmpty();
-   
-   
-
    
    Piece * piece;
    
