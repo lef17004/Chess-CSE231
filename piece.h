@@ -9,7 +9,6 @@
 #include "uiDraw.h"
 using namespace std;
 
-
 // Forward Declaration
 class Board;
 
@@ -26,6 +25,7 @@ public:
    
    Piece();
    Piece(int r, int c, bool isWhite);
+   ~Piece() {}
    
    bool isWhite() { return  fWhite; }
    bool isMove() { return nMoves > 0; }
@@ -55,8 +55,8 @@ public:
 class Pawn: public Piece
 {
 public:
-   Pawn();
-   Pawn(int r, int c, bool isWhite);
+   Pawn() {};
+   Pawn(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
    void addPromotion(set<Move> &Moves, Move& move);
    
    virtual char getLetter() { return 'p'; }
