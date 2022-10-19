@@ -1,145 +1,142 @@
 /**********************************************************************
- * GL Demo
- * Just a simple program to demonstrate how to create an Open GL window, 
+ * gl demo
+ * just a simple program to demonstrate how to create an open gl window,
  * draw something on the window, and accept simple user input
  **********************************************************************/
 
-#include "uiInteract.h"   // for Interface
-#include "uiDraw.h"       // for draw*
-#include <set>            // for STD::SET
-#include <cassert>        // for ASSERT
-#include <fstream>        // for IFSTREAM
-#include <string>         // for STRING
+#include "uiinteract.h"   // for interface
+#include "uidraw.h"       // for draw*
+#include <set>            // for std::set
+#include <cassert>        // for assert
+#include <fstream>        // for ifstream
+#include <string>         // for string
 #include "position.h"
 #include "board.h"
-#include "testRunner.h"
-#include "testKing.h"
-#include "testPawn.h"
+#include "testrunner.h"
+#include "testking.h"
+#include "testpawn.h"
 #include "move.h"
 #include "piece.h"
-#include "testRunner.h"
+#include "testrunner.h"
 using namespace std;
 
+
 /***************************************************
- * DRAW
- * Draw the current state of the game
+ * draw
+ * draw the current state of the game
  ***************************************************/
-void draw(const char* board, const Interface & ui, const set <int> & possible)
+void draw(const char* board, const interface& ui, const set <int>& possible)
 {
    ogstream gout;
-   
+
    // draw the checkerboard
-   //gout.drawBoard();
-   Board board2;
+   //gout.drawboard();
+   board board2;
    board2.display(gout);
-   
+
    // draw any selections
-   gout.drawHover(ui.getHoverPosition());
-   gout.drawSelected(ui.getSelectPosition());
-   int selected = ui.getSelectPosition();
-   
+   gout.drawhover(ui.gethoverposition());
+   gout.drawselected(ui.getselectposition());
+   int selected = ui.getselectposition();
+
    if (0 <= selected && selected < 64)
    {
-      auto piece2 = board2.getPiece(Position(selected));
-      auto moves = piece2->getPossibleMoves(board2);
+      auto piece2 = board2.getpiece(position(selected));
+      auto moves = piece2->getpossiblemoves(board2);
       for (auto move : *moves)
       {
          move.display(gout);
       }
    }
-   board2.displayPieces(gout);
-   
+   board2.displaypieces(gout);
 }
 
 /*********************************************
- * MOVE 
- * Execute one movement. Return TRUE if successful
+ * move
+ * execute one movement. return true if successful
  *********************************************/
-
-Move getSelectedMove(set<Move> & moves, int location)
+move getselectedmove(set<move>& moves, int location)
 {
-   for (auto move: moves)
+   for (auto move : moves)
    {
-      if (move.getDes().getLocation() == location)
+      if (move.getdes().getlocation() == location)
          return move;
    }
-   Move move;
+   move move;
    return move;
-   
 }
+
 /*************************************
- * All the interesting work happens here, when
- * I get called back from OpenGL to draw a frame.
- * When I am finished drawing, then the graphics
+ * all the interesting work happens here, when
+ * i get called back from opengl to draw a frame.
+ * when i am finished drawing, then the graphics
  * engine will wait until the proper amount of
  * time has passed and put the drawing on the screen.
  **************************************/
-void callBack(Interface *pUI, void * p)
+void callback(interface* pui, void* p)
 {
    set <int> possible;
    ogstream gout;
-   // the first step is to cast the void pointer into a game object. This
-   // is the first step of every single callback function in OpenGL. 
-   //Board * board = (Board *)p;
-   Board * board = (Board *) p;
+   // the first step is to cast the void pointer into a game object. this
+   // is the first step of every single callback function in opengl. 
+   //board * board = (board *)p;
+   board* board = (board*)p;
    // move
-   auto ui = *pUI;
-   Position selectedPosition(ui.getSelectPosition(), true);
-   Position hoverPosition(ui.getHoverPosition(), true);
-   Position previousPosition(ui.getPreviousPosition(), true);
-   
+   auto ui = *pui;
+   position selectedposition(ui.getselectposition(), true);
+   position hoverposition(ui.gethoverposition(), true);
+   position previousposition(ui.getpreviousposition(), true);
+
    board->display(gout);
-   gout.drawHover(ui.getHoverPosition());
-   gout.drawSelected(ui.getSelectPosition());
-   board->displayPieces(gout);
-   
-   if (board->move(previousPosition, selectedPosition))
+   gout.drawhover(ui.gethoverposition());
+   gout.drawselected(ui.getselectposition());
+   board->displaypieces(gout);
+
+   if (board->move(previousposition, selectedposition))
    {
-      pUI->clearSelectPosition();
+      pui->clearselectposition();
    }
-   else if (selectedPosition.isValid() && board->getPiece(selectedPosition)->isWhite() == board->isWhiteTurn())
+   else if (selectedposition.isvalid() && board->getpiece(selectedposition)->iswhite() == board->iswhiteturn())
    {
-      auto piece3 = board->getPiece(selectedPosition);
-      auto moves = piece3->getPossibleMoves(*board);
+      auto piece3 = board->getpiece(selectedposition);
+      auto moves = piece3->getpossiblemoves(*board);
       for (auto move : *moves)
       {
          move.display(gout);
       }
    }
-   
-   // draw any selections
-   
-   if (pUI->getSelectPosition() != -1 && board->getPiece(selectedPosition)->getLetter() == 's')
-      pUI->clearSelectPosition();
 
+   // draw any selections
+   if (pui->getselectposition() != -1 && board->getpiece(selectedposition)->getletter() == 's')
+      pui->clearselectposition();
 }
 
 
 /*********************************
- * Main is pretty sparse.  Just initialize
- * my Demo type and call the display engine.
- * That is all!
+ * main is pretty sparse.  just initialize
+ * my demo type and call the display engine.
+ * that is all!
  *********************************/
-#ifdef _WIN32
+#ifdef _win32
 #include <windows.h>
-int WINAPI WinMain(
-   _In_ HINSTANCE hInstance,
-   _In_opt_ HINSTANCE hPrevInstance,
-   _In_ PSTR pCmdLine,
-   _In_ int nCmdShow)
-#else // !_WIN32
+int winapi winmain(
+   _in_ hinstance hinstance,
+   _in_opt_ hinstance hprevinstance,
+   _in_ pstr pcmdline,
+   _in_ int ncmdshow)
+#else // !_win32
 int main(int argc, char** argv)
-#endif // !_WIN32
+#endif // !_win32
 {
-   Interface ui("Chess");    
-   Board chessBoard;
+   interface ui("chess");
+   board chessboard;
 
-   TestRunner tests;
+   testrunner tests;
    tests.run();
    // set everything into action
    // (void *) (&board);
-   // (Board * p)
-   ui.run(callBack, (void *) &chessBoard);
+   // (board * p)
+   ui.run(callback, (void*)&chessboard);
 
    return 0;
 }

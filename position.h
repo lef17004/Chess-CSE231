@@ -1,8 +1,8 @@
-
-
 #pragma once
+
 #include <string>
 #include "delta.h"
+
 using namespace std;
 
 /*
@@ -23,7 +23,7 @@ private:
    int location; // Switch to char after testing is done. 
    static double squareWidth;
    static double squareHeight;
-   
+
 public:
    Position();
    Position(int r, int c);
@@ -43,10 +43,10 @@ public:
          };
          this->location = table[location];
       }
-         
-      
+
+
    }
-   Position(const Position & position, const Delta & delta);
+   Position(const Position& position, const Delta& delta);
    int getLocation() const;
    int getRow() const;
    int getCol() const;
@@ -56,11 +56,11 @@ public:
    bool isValid();
 
    void set(int r, int c);
-   
-   bool operator < (const Position & rhs) const;
-   bool operator == (const Position & rhs);
-   Position & operator = (const Position & rhs);
-   
+
+   bool operator < (const Position& rhs) const;
+   bool operator == (const Position& rhs);
+   Position& operator = (const Position& rhs);
+
    friend class TestPosition;
    friend class TestMove;
    friend class TestPawn;

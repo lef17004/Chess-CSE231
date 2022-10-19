@@ -1,7 +1,8 @@
-
 #include "position.h"
 #include <iostream>
 using namespace std;
+
+
 /******************************************************************************
  * POSITION:: Default Constructor
  * 56 is (0, 0)
@@ -100,36 +101,36 @@ void Position::set(int r, int c)
  * Determines which position is less. .
  * TODO: One line, move to header file.
  ******************************************************************************/
-bool Position::operator < (const Position & rhs) const
+bool Position::operator < (const Position& rhs) const
 {
    return this->location < rhs.location;
 }
 
 /******************************************************************************
  * POSITION:: GET LETTER COORDS
- * Returns the position in letter coordiantes. 
+ * Returns the position in letter coordiantes.
  ******************************************************************************/
-/*
-  8    0,  1,  2,  3,  4,  5,  6,  7,
-  7    8,  9, 10, 11, 12, 13, 14, 15,
-  6   16, 17, 18, 19, 20, 21, 22, 23,
-  5   24, 25, 26, 27, 28, 29, 30, 31,
-  4   32, 33, 34, 35, 36, 37, 38, 39,
-  3   40, 41, 42, 43, 44, 45, 46, 47,
-  2   48, 49, 50, 51, 52, 53, 54, 55,
-  1   56, 57, 58, 59, 60, 61, 62, 63
-  
-       A   B   C   D   E   F   G   H
-*/
+ /*
+   8    0,  1,  2,  3,  4,  5,  6,  7,
+   7    8,  9, 10, 11, 12, 13, 14, 15,
+   6   16, 17, 18, 19, 20, 21, 22, 23,
+   5   24, 25, 26, 27, 28, 29, 30, 31,
+   4   32, 33, 34, 35, 36, 37, 38, 39,
+   3   40, 41, 42, 43, 44, 45, 46, 47,
+   2   48, 49, 50, 51, 52, 53, 54, 55,
+   1   56, 57, 58, 59, 60, 61, 62, 63
+
+        A   B   C   D   E   F   G   H
+ */
 string Position::getLetterCoords()
 {
    string letterCord = "";
-   const int numberToLetters[] = {'a', 'b', 'c', 'd',
-                                  'e', 'f', 'g', 'h'};
-   
+   const int numberToLetters[] = { 'a', 'b', 'c', 'd',
+                                  'e', 'f', 'g', 'h' };
+
    letterCord += numberToLetters[getCol()];
    letterCord += std::to_string(getRow() + 1);
-   
+
    return letterCord;
 }
 
@@ -138,7 +139,7 @@ string Position::getLetterCoords()
  * Determines if positions are equal or not. .
  * TODO: One line, move to header file.
  ******************************************************************************/
-bool Position::operator==(const Position & rhs)
+bool Position::operator==(const Position& rhs)
 {
    return this->location == rhs.location;
 }
@@ -148,16 +149,16 @@ bool Position::operator==(const Position & rhs)
  * Constructor that tkaes a position and a delta.
  * TODO: One line, move to header file.
  ******************************************************************************/
-Position::Position(const Position & position, const Delta & delta)
+Position::Position(const Position& position, const Delta& delta)
 {
    set(position.getRow() + delta.y, position.getCol() + delta.x);
 }
 
 /******************************************************************************
  * POSITION:: ASSIGNMENT
- * Copies a postion. 
+ * Copies a postion.
  ******************************************************************************/
-Position & Position::operator = (const Position & rhs)
+Position& Position::operator = (const Position& rhs)
 {
    location = rhs.location;
    return *this;

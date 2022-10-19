@@ -1,14 +1,13 @@
-
 #include "piece.h"
 #include "delta.h"
 #include <iostream>
+
 
 // TODO: Move to Header File
 Pawn::Pawn() { }
 
 // TODO: Move to Header file
 Pawn::Pawn(int r, int c, bool isWhite): Piece(r, c, isWhite) {}
-
 
 /******************************************************************************
  * PAWN:: GET POSSIBLE MOVES

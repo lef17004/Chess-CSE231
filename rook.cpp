@@ -1,11 +1,11 @@
-
 #include "piece.h"
+
 
 /******************************************************************************
  * ROOK:: GET POSSIBLE MOVES
  * Gets the possible moves for the rook.
  ******************************************************************************/
-set<Move> * Rook::getPossibleMoves(const Board & board)
+set<Move>* Rook::getPossibleMoves(const Board& board)
 {
    array<Delta, 8> deltas =
    { 

@@ -1,6 +1,5 @@
-
-
 #include "move.h"
+
 
 /******************************************************************************
  * MOVE Default Constructor
@@ -26,7 +25,7 @@ string Move::getText()
    string smithNotation = "";
    smithNotation += source.getLetterCoords();
    smithNotation += dest.getLetterCoords();
-   
+
    char promotion = getPromotion();
    if (castleK)
       smithNotation += "c";
@@ -38,7 +37,7 @@ string Move::getText()
       smithNotation += promotion;
    else if (piece != 'M')
       smithNotation += getCapture();
-   
+
    return smithNotation;
 }
 
@@ -47,7 +46,7 @@ string Move::getText()
  * This is need to work with a set.
  * TODO: One line, move to header file.
  ******************************************************************************/
-bool Move::operator < (const Move & rhs) const
+bool Move::operator < (const Move& rhs) const
 {
    return this->dest < rhs.dest;
 }
@@ -67,7 +66,7 @@ char Move::getPromotion()
 
 /******************************************************************************
  * MOVE:: SET CASTLE
- * Sets move to castle. True is king side caslte. False is queen side castle. 
+ * Sets move to castle. True is king side caslte. False is queen side castle.
  ******************************************************************************/
 void Move::setCastle(bool isKing)
 {
@@ -76,7 +75,7 @@ void Move::setCastle(bool isKing)
 }
 
 
-void Move::display(ogstream & gout)
+void Move::display(ogstream& gout)
 {
    gout.drawPossible(dest);
 }

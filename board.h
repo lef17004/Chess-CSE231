@@ -1,5 +1,5 @@
-
 #pragma once
+
 #include "piece.h"
 #include <array>
 #include "position.h"
@@ -8,9 +8,9 @@
 
 using namespace std;
 
+
 // Forward Declaration - If removed you will suffer
 class Piece;
-
 
 class Board
 {
@@ -41,8 +41,7 @@ public:
    void setPiece(Piece * piece, const Position & pos);
    void setBoardToEmpty();
    
-   Piece * piece;
-   
+   Piece * piece;    
    
    friend class TestBoard;
    friend class TestPawn;
