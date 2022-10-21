@@ -18,7 +18,7 @@ Move::Move()
 
 /******************************************************************************
  * MOVE:: GET TEXT
- * Outputs the content of a move into smith notation.
+ * Outputs the content of a move into Smith Notation.
  ******************************************************************************/
 string Move::getText()
 {
@@ -66,7 +66,7 @@ char Move::getPromotion()
 
 /******************************************************************************
  * MOVE:: SET CASTLE
- * Sets move to castle. True is king side caslte. False is queen side castle.
+ * Sets move to castle. True is king side castle. False is queen side castle.
  ******************************************************************************/
 void Move::setCastle(bool isKing)
 {
@@ -74,7 +74,10 @@ void Move::setCastle(bool isKing)
    castleQ = !isKing;
 }
 
-
+/******************************************************************************
+ * MOVE::DISPLAY
+ * Displayes the moves on the UI.
+ ******************************************************************************/
 void Move::display(ogstream& gout)
 {
    gout.drawPossible(dest);

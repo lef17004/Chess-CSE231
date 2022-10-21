@@ -14,7 +14,7 @@ Position::Position()
 }
 
 /******************************************************************************
- * POSITION:: NON DEFAULT CONSTRUCTOR
+ * POSITION:: NON-DEFAULT CONSTRUCTOR
  * Sets the position to given row and column.
  * TODO: One line, move to header file.
  ******************************************************************************/
@@ -44,8 +44,8 @@ int Position::getRow() const
 }
 
 /******************************************************************************
- * POSITION:: GET COL
- * Returns col of chess board.
+ * POSITION:: GET COLUMN
+ * Returns column of chess board.
  * TODO: One line, move to header file.
  ******************************************************************************/
 int Position::getCol() const

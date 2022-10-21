@@ -3,7 +3,7 @@
 
 /******************************************************************************
  * ROOK:: GET POSSIBLE MOVES
- * Gets the possible moves for the rook.
+ * Returns the possible moves for the rook.
  ******************************************************************************/
 set<Move>* Rook::getPossibleMoves(const Board& board)
 {

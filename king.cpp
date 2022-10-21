@@ -4,7 +4,7 @@
 
 /******************************************************************************
  * KING::GET POSSIBLE MOVES
- *  Returns the possible moves for the King.
+ * Returns the possible moves for the King.
  ******************************************************************************/
 set<Move>* King::getPossibleMoves(const Board& board)
 {
@@ -19,7 +19,7 @@ set<Move>* King::getPossibleMoves(const Board& board)
 
    set<Move>* moves = getMovesNoSlide(board, deltas);
 
-   // King side caslte
+   // King side castle
    if (!isMove())
    {
       Position posSpace(position.getRow(), 5);

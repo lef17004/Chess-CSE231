@@ -20,10 +20,9 @@
 #include "testrunner.h"
 using namespace std;
 
-
 /***************************************************
- * draw
- * draw the current state of the game
+ * DRAW
+ * Draws the current state of the game
  ***************************************************/
 void draw(const char* board, const interface& ui, const set <int>& possible)
 {
@@ -52,8 +51,8 @@ void draw(const char* board, const interface& ui, const set <int>& possible)
 }
 
 /*********************************************
- * move
- * execute one movement. return true if successful
+ * MOVE
+ * Executes one movement. Returns true if successful.
  *********************************************/
 move getselectedmove(set<move>& moves, int location)
 {
@@ -67,9 +66,9 @@ move getselectedmove(set<move>& moves, int location)
 }
 
 /*************************************
- * all the interesting work happens here, when
- * i get called back from opengl to draw a frame.
- * when i am finished drawing, then the graphics
+ * All the interesting work happens here, when
+ * I get called back from opengl to draw a frame.
+ * When I am finished drawing, then the graphics
  * engine will wait until the proper amount of
  * time has passed and put the drawing on the screen.
  **************************************/
@@ -77,9 +76,9 @@ void callback(interface* pui, void* p)
 {
    set <int> possible;
    ogstream gout;
-   // the first step is to cast the void pointer into a game object. this
+   // The first step is to cast the void pointer into a game object. This
    // is the first step of every single callback function in opengl. 
-   //board * board = (board *)p;
+   // board * board = (board *)p;
    board* board = (board*)p;
    // move
    auto ui = *pui;
@@ -106,16 +105,16 @@ void callback(interface* pui, void* p)
       }
    }
 
-   // draw any selections
+   // Draw any selections
    if (pui->getselectposition() != -1 && board->getpiece(selectedposition)->getletter() == 's')
       pui->clearselectposition();
 }
 
 
 /*********************************
- * main is pretty sparse.  just initialize
- * my demo type and call the display engine.
- * that is all!
+ * Main is pretty sparse. Just initializes
+ * my demo type and calls the display engine.
+ * That is all!
  *********************************/
 #ifdef _win32
 #include <windows.h>

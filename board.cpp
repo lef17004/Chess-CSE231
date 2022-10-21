@@ -7,7 +7,6 @@
 
 #include "board.h"
 
-
 /*
  Move to header on function at a time. If program does not compile after moving one, undo
  and talk to Brother Helfrich about it.
@@ -17,7 +16,6 @@
   * BOARD:: DEFAULT Constructo
   * Sets the board to normal game configuration.
   * TODO: Set up board with pieces in correct spots rather than spaces.
-  *
   ******************************************************************************/
 Board::Board()
 {
@@ -67,7 +65,7 @@ Board::Board()
 }
 
 /******************************************************************************
- * Board::Destructor
+ * Board::DESTRUCTOR
  ******************************************************************************/
 Board::~Board()
 {
@@ -76,7 +74,6 @@ Board::~Board()
       delete piece;
    }
 }
-
 
 /******************************************************************************
  * BOARD:: SET PIECE
@@ -178,7 +175,8 @@ bool Board::move(Move& move)
 }
 
 /******************************************************************************
- *
+ * BOARD::MOVE
+ * Returns valid moves for the pieces from the positions on the board
  ******************************************************************************/
 bool Board::move(Position& positionFrom, Position& positionTo)
 {
@@ -294,7 +292,8 @@ void Board::swap(const Position& pos1, const Position& pos2)
 }
 
 /******************************************************************************
- *
+ * BOARD::DISPLAY
+ * Displays the board in the UI
  ******************************************************************************/
 void Board::display(ogstream& gout)
 {
@@ -302,7 +301,8 @@ void Board::display(ogstream& gout)
 }
 
 /******************************************************************************
- *
+ * BOARD::DISPLAYPIECES
+ * Displays the pieces on the board in the UI
  ******************************************************************************/
 void Board::displayPieces(ogstream& gout)
 {
@@ -311,7 +311,8 @@ void Board::displayPieces(ogstream& gout)
 }
 
 /******************************************************************************
- *
+ * BOARD::OPERATOR
+ * The general operator of the board
  ******************************************************************************/
 Piece& Board::operator[] (Position& pos)
 {

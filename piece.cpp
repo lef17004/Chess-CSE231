@@ -21,7 +21,7 @@ Piece::Piece()
 }
 
 /******************************************************************************
- * PIECE::PIECE - Nondefault Constructor
+ * PIECE::PIECE - Non-Default Constructor
  ******************************************************************************/
 Piece::Piece(int r, int c, bool isWhite)
 {
@@ -33,7 +33,7 @@ Piece::Piece(int r, int c, bool isWhite)
 
 /******************************************************************************
  * PIECE::GET LETTER
- * Get's the letter of the piece
+ * Gets the letter of the piece
  ******************************************************************************/
 char Piece::getLetter()
 {
@@ -42,7 +42,7 @@ char Piece::getLetter()
 
 /******************************************************************************
  * PIECE::GET POSSIBLE MOVES
- *  Returns a set of moves for each move a piece can make
+ * Returns a set of moves for each move a piece can make
  ******************************************************************************/
 set<Move>* Piece::getPossibleMoves(const Board& board)
 {
@@ -66,7 +66,7 @@ void Piece::display(ogstream& gout)
 
 /******************************************************************************
  * PIECE: JUST MOVED
- *  Check to see if a piece has moved on the previous turn.
+ * Checks to see if a piece has moved on the previous turn.
  ******************************************************************************/
 bool Piece::justMoved(int turnNumber)
 {
@@ -76,7 +76,7 @@ bool Piece::justMoved(int turnNumber)
 
 /******************************************************************************
  * PIECE:: GET MOVES SLIDE
- *  Uses delta to get all the moves in a sliding pattern.
+ * Uses delta to get all the moves in a sliding pattern.
  ******************************************************************************/
 set<Move>* Piece::getMovesSlide(const Board& board, array<Delta, 8> deltas)
 {
@@ -148,7 +148,8 @@ set<Move>* Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
 
 
 /******************************************************************************
- *
+ * PIECE::MOVE
+ * Returns if a move is valid based on the operations
  ******************************************************************************/
 void Piece::move(const Position& position, int turn)
 {

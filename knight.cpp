@@ -10,7 +10,7 @@
 
 /******************************************************************************
  * KNIGHT:: GET POSSIBLE MOVES
- *  Returns a set of Knight's moves.
+ * Returns a set of Knight's moves.
  ******************************************************************************/
 set<Move>* Knight::getPossibleMoves(const Board& board)
 {

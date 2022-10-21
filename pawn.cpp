@@ -47,7 +47,7 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
    
    int values[2] = {-1, 1};
    
-   // Captrue Moves
+   // Capture Moves
    for (auto i : values)
    {
       Position posMove(position.getRow() + (isWhite() ? 1 : -1), position.getCol() + i);
@@ -102,6 +102,7 @@ void Pawn::addPromotion(set<Move> & Moves, Move& move)
 
 /******************************************************************************
  * PAWN DISPLAY
+ * Displays Pawns on the UI
  ******************************************************************************/
 void Pawn::display(ogstream& gout)
 {

@@ -7,7 +7,6 @@
 
 #include "piece.h"
 
-
 /******************************************************************************
  * BISHOP::GET POSSIBLE MOVES
  * Returns a set of moves for Bishop.
@@ -23,5 +22,3 @@ set<Move>* Bishop::getPossibleMoves(const Board& board)
 
    return getMovesSlide(board, deltas);
 }
-
-
