@@ -51,7 +51,7 @@ set<Move>  Pawn::getPossibleMoves(const Board & board)
    for (auto i : values)
    {
       Position posMove(position.getRow() + (isWhite() ? 1 : -1), position.getCol() + i);
-      if (posMove.isValid() && board.getPiece(posMove)->getLetter() != 's' && board.getPiece(posMove)->isWhite() != isWhite())
+      if (posMove.isValid() && board.getPiece(posMove)->getLetter() != SPACE && board.getPiece(posMove)->isWhite() != isWhite())
       {
          move.setSource(getPosition());
          move.setDest(posMove);
@@ -75,8 +75,8 @@ set<Move>  Pawn::getPossibleMoves(const Board & board)
       Position posKill(position.getRow(), position.getCol() + i);
       
       
-      if (posMove.isValid() && (position.getRow() == (isWhite() ? 4 : 3)) && board.getPiece(posMove)->getLetter() == 's' &&
-         board.getPiece(posKill)->getLetter() == 'p' && board.getPiece(posKill)->isWhite() != isWhite() &&
+      if (posMove.isValid() && (position.getRow() == (isWhite() ? 4 : 3)) && board.getPiece(posMove)->getLetter() == SPACE &&
+         board.getPiece(posKill)->getLetter() == PAWN && board.getPiece(posKill)->isWhite() != isWhite() &&
          board.getPiece(posKill)->getNMoves() == 1 && board.getPiece(posKill)->justMoved(board.getCurrentMove()))
       {
          move.setSource(getPosition());

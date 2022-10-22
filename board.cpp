@@ -7,15 +7,9 @@
 
 #include "board.h"
 
-/*
- Move to header on function at a time. If program does not compile after moving one, undo
- and talk to Brother Helfrich about it.
- */
-
  /******************************************************************************
   * BOARD:: DEFAULT Constructo
   * Sets the board to normal game configuration.
-  * TODO: Set up board with pieces in correct spots rather than spaces.
   ******************************************************************************/
 Board::Board()
 {
@@ -69,16 +63,12 @@ Board::Board()
  ******************************************************************************/
 Board::~Board()
 {
-   for (auto piece : board)
-   {
-      delete piece;
-   }
+   free();
 }
 
 /******************************************************************************
  * BOARD:: SET PIECE
  * Places a piece in the board. Uses the piece's position.
- * TODO: One line, can be moved to header.
  ******************************************************************************/
 void Board::setPiece(Piece* piece)
 {
@@ -92,35 +82,15 @@ void Board::setPiece(Piece* piece)
  ******************************************************************************/
 void Board::setPiece(Piece* piece, const Position& pos)
 {
-   //piece->setPosition(pos);
    piece->move(pos, currentMove);
    board[pos.getLocation()] = piece;
 }
 
-/******************************************************************************
- * BOARD:: IS WHITE TURN
- * Returns true if white's turn, false if black's turn.
- * TODO: One line, move to header.
- ******************************************************************************/
-bool Board::isWhiteTurn() const
-{
-   return !(currentMove % 2);
-}
 
-/******************************************************************************
- * BOARD:: GET PIECE
- * Returns pointer to piece at given location.
- * TODO: One line, move to header.
- ******************************************************************************/
-Piece* Board::getPiece(const Position& pos) const
-{
-   return board[pos.getLocation()];
-}
 
 /******************************************************************************
  * BOARD:: SET BOARD TO EMPTY
- * Method used to make a completely empty baord. Used in unit tests..
- * TODO: Make private.
+ * Method used to make a completely empty baord. Used in unit tests.
  ******************************************************************************/
 void Board::setBoardToEmpty()
 {
@@ -136,43 +106,14 @@ void Board::setBoardToEmpty()
 /******************************************************************************
  *BOARD:: FREE
  *Frees all the memory being used by board.
- *TODO: Figure out why program crashes if uncommented.
  ******************************************************************************/
 void Board::free()
 {
-   //   for (auto piece : board)
-   //      delete piece;
+      for (auto piece : board)
+         delete piece;
 }
 
-/******************************************************************************
- * BOARD:: GET CURRENT MOVE
- * Returns the current move of the game.
- * TODO: One line, move to header.
- ******************************************************************************/
-int Board::getCurrentMove() const
-{
-   return currentMove;
-}
 
-/******************************************************************************
- * BOARD:: MOVE
- * Executes a move.
- * TODO: Needs finished. Only the most basic of movement is implemented.
- ******************************************************************************/
-bool Board::move(Move& move)
-{
-   if (move.getSrc().getLocation() == -1 || move.getDes().getLocation() == -1)
-      return false;
-
-   return false;
-   Position source = move.getSrc();
-   Position destination = move.getDes();
-
-   if (move.getCapture() == 's')
-      swap(source, destination);
-
-   currentMove++;
-}
 
 /******************************************************************************
  * BOARD::MOVE
@@ -180,18 +121,23 @@ bool Board::move(Move& move)
  ******************************************************************************/
 bool Board::move(Position& positionFrom, Position& positionTo)
 {
+   // Make sure move is valid
    if (!positionFrom.isValid() || !positionTo.isValid())
       return false;
 
+   // Make sure it's the correct turn
    if (getPiece(positionFrom)->isWhite() != isWhiteTurn())
    {
       return false;
    }
 
+   
    Piece* piece = getPiece(positionFrom);
    set<Move> moves = piece->getPossibleMoves(*this);
    bool found = false;
    Move selectedMove;
+   
+   // Find the selected move.
    for (auto move : moves)
    {
       if (move.getDes() == positionTo)
@@ -213,20 +159,20 @@ bool Board::move(Position& positionFrom, Position& positionTo)
       Piece* piece1 = getPiece(positionFrom);
       Piece* piece2 = getPiece(positionTo);
 
+      // Free captured piece
       delete piece2;
       setPiece(piece1, positionTo);
       setPiece(new Space(positionFrom.getRow(), positionFrom.getCol(), false), positionFrom);
    }
 
    // Promotion
-   if (selectedMove.getPromotion() != 'M')
+   if (selectedMove.getPromotion() != UNDEFINED_PIECE)
    {
       Piece* pawn = board[positionTo.getLocation()];
-      Piece* queen = new Queen(pawn->getPosition().getRow(), pawn->getPosition().getCol(), pawn->isWhite());
-      // TODO: Need copy constructor
+      Piece* queen = ((Pawn*)pawn)->promote(positionTo, pawn->isWhite());
+      
       delete pawn;
-      setPiece(queen, positionTo);
-      //board[positionTo.getLocation()] = queen;      
+      setPiece(queen, positionTo);    
    }
 
    std::array<std::array<Position, 2>, 4> castlingPositions = {
@@ -281,23 +227,10 @@ void Board::swap(const Position& pos1, const Position& pos2)
 {
    Piece* piece1 = getPiece(pos1);
    Piece* piece2 = getPiece(pos2);
-   //Piece * temp = piece1;
 
-   //piece1->move(pos2, currentMove);
-   //piece2->move(pos1, currentMove);
 
    setPiece(piece2, pos1);
    setPiece(piece1, pos2);
-   //delete temp;
-}
-
-/******************************************************************************
- * BOARD::DISPLAY
- * Displays the board in the UI
- ******************************************************************************/
-void Board::display(ogstream& gout)
-{
-   gout.drawBoard();
 }
 
 /******************************************************************************
@@ -310,11 +243,3 @@ void Board::displayPieces(ogstream& gout)
       piece->display(gout);
 }
 
-/******************************************************************************
- * BOARD::OPERATOR
- * The general operator of the board
- ******************************************************************************/
-Piece& Board::operator[] (Position& pos)
-{
-   return *board[pos.getLocation()];
-}

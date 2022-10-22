@@ -1,5 +1,5 @@
 #include "move.h"
-
+#include "piece.h"
 
 /******************************************************************************
  * MOVE Default Constructor
@@ -8,7 +8,7 @@ Move::Move()
 {
    source = Position();
    dest = Position();
-   piece = 'M';
+   piece = UNDEFINED_PIECE;
    enpassant = false;
    castleK = false;
    castleQ = false;
@@ -35,20 +35,10 @@ string Move::getText()
       smithNotation += "E";
    else if (promoting)
       smithNotation += promotion;
-   else if (piece != 'M')
+   else if (piece != UNDEFINED_PIECE)
       smithNotation += getCapture();
 
    return smithNotation;
-}
-
-/******************************************************************************
- * MOVE:: LESS THAN OPERATOR
- * This is need to work with a set.
- * TODO: One line, move to header file.
- ******************************************************************************/
-bool Move::operator < (const Move& rhs) const
-{
-   return this->dest < rhs.dest;
 }
 
 /******************************************************************************
@@ -59,9 +49,9 @@ bool Move::operator < (const Move& rhs) const
 char Move::getPromotion()
 {
    if (promoting)
-      return 'Q';
+      return QUEEN;
    else
-      return 'M';
+      return UNDEFINED_PIECE;
 }
 
 /******************************************************************************
@@ -72,13 +62,4 @@ void Move::setCastle(bool isKing)
 {
    castleK = isKing;
    castleQ = !isKing;
-}
-
-/******************************************************************************
- * MOVE::DISPLAY
- * Displayes the moves on the UI.
- ******************************************************************************/
-void Move::display(ogstream& gout)
-{
-   gout.drawPossible(dest);
 }

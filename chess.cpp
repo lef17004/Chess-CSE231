@@ -75,8 +75,8 @@ void callback(Interface* pui, void* p)
    }
    else if (selectedPosition.isValid() && board->getPiece(selectedPosition)->isWhite() == board->isWhiteTurn())
    {
-      auto piece3 = board->getPiece(selectedPosition);
-      auto moves = piece3->getPossibleMoves(*board);
+      auto selectedPiece = board->getPiece(selectedPosition);
+      auto moves = selectedPiece->getPossibleMoves(*board);
       for (auto move : moves)
       {
          move.display(gout);
@@ -110,7 +110,7 @@ int main(int argc, char** argv)
    Board chessboard;
 
    TestRunner tests;
-   tests.run();
+   //tests.run();
    
    
    ui.run(callback, (void*)&chessboard);

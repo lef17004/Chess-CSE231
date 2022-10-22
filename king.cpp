@@ -26,9 +26,9 @@ set<Move> King::getPossibleMoves(const Board& board)
       Position posMove(position.getRow(), 6);
       Position posRook(position.getRow(), 7);
 
-      if (board.getPiece(posMove)->getLetter() == 's' &&
-         board.getPiece(posSpace)->getLetter() == 's' &&
-         board.getPiece(posRook)->getLetter() == 'r' &&
+      if (board.getPiece(posMove)->getLetter() == SPACE &&
+         board.getPiece(posSpace)->getLetter() == SPACE &&
+         board.getPiece(posRook)->getLetter() == ROOK &&
          board.getPiece(posRook)->isMove() == false)
       {
          Move move;
@@ -48,10 +48,10 @@ set<Move> King::getPossibleMoves(const Board& board)
       Position posSpace2(position.getRow(), 1);
       Position posRook(position.getRow(), 0);
 
-      if (board.getPiece(posMove)->getLetter() == 's' &&
-         board.getPiece(posSpace1)->getLetter() == 's' &&
-         board.getPiece(posSpace2)->getLetter() == 's' &&
-         board.getPiece(posRook)->getLetter() == 'r' &&
+      if (board.getPiece(posMove)->getLetter() == SPACE &&
+         board.getPiece(posSpace1)->getLetter() == SPACE &&
+         board.getPiece(posSpace2)->getLetter() == SPACE &&
+         board.getPiece(posRook)->getLetter() == ROOK &&
          board.getPiece(posRook)->isMove() == false)
       {
          Move move;

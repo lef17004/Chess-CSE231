@@ -4,89 +4,8 @@ using namespace std;
 
 
 /******************************************************************************
- * POSITION:: Default Constructor
- * 56 is (0, 0)
- * TODO: Move to header file.
- ******************************************************************************/
-Position::Position()
-{
-   location = 56;
-}
-
-/******************************************************************************
- * POSITION:: NON-DEFAULT CONSTRUCTOR
- * Sets the position to given row and column.
- * TODO: One line, move to header file.
- ******************************************************************************/
-Position::Position(int r, int c)
-{
-   set(r, c);
-}
-
-/******************************************************************************
- * POSITION:: GET LOCATION
- * Returns the location in position.
- * TODO: One line, move to header file.
- ******************************************************************************/
-int Position::getLocation() const
-{
-   return location;
-}
-
-/******************************************************************************
- * POSITION:: GET ROW
- * Returns row of chess board.
- * TODO: One line, move to header file.
- ******************************************************************************/
-int Position::getRow() const
-{
-   return 7 - (location / 8);
-}
-
-/******************************************************************************
- * POSITION:: GET COLUMN
- * Returns column of chess board.
- * TODO: One line, move to header file.
- ******************************************************************************/
-int Position::getCol() const
-{
-   return location % 8;
-}
-
-/******************************************************************************
- * POSITION:: GET X
- * Returns the x position in pixels.
- * TODO: One line, move to header file.
- ******************************************************************************/
-int Position::getX()
-{
-   return (int)((double)(location % 8) * 32.0);
-}
-
-/******************************************************************************
- * POSITION:: GET Y
- * Returns the y position in pixels.
- * TODO: One line, move to header file.
- ******************************************************************************/
-int Position::getY()
-{
-   return (int)((double)(location / 8) * 32.0);
-}
-
-/******************************************************************************
- * POSITION:: IS VALID
- * Returns a bool indicating if the position exists on a chess board or not.
- * TODO: One line, move to header file.
- ******************************************************************************/
-bool Position::isValid()
-{
-   return 0 <= location && location < 64;
-}
-
-/******************************************************************************
  * POSITION:: SET
  * Sets the location uses the row and col.
- * TODO: One line, move to header file.
  ******************************************************************************/
 void Position::set(int r, int c)
 {
@@ -94,16 +13,6 @@ void Position::set(int r, int c)
       location = c + ((7 - r) * 8);
    else
       location = -1;
-}
-
-/******************************************************************************
- * POSITION:: LESS THAN
- * Determines which position is less. .
- * TODO: One line, move to header file.
- ******************************************************************************/
-bool Position::operator < (const Position& rhs) const
-{
-   return this->location < rhs.location;
 }
 
 /******************************************************************************
@@ -135,23 +44,26 @@ string Position::getLetterCoords()
 }
 
 /******************************************************************************
- * POSITION:: COMPARISON
- * Determines if positions are equal or not. .
- * TODO: One line, move to header file.
+ * POSITION:: Conversion CONSTRUCTOR
+ * The positions for our board don't match the once the user clicks. This constructor
+ *  converts a UI location to our Position class.
  ******************************************************************************/
-bool Position::operator==(const Position& rhs)
+Position::Position(int location, bool convert)
 {
-   return this->location == rhs.location;
-}
-
-/******************************************************************************
- * POSITION:: DELTA CONSTRUCTOR
- * Constructor that tkaes a position and a delta.
- * TODO: One line, move to header file.
- ******************************************************************************/
-Position::Position(const Position& position, const Delta& delta)
-{
-   set(position.getRow() + delta.y, position.getCol() + delta.x);
+   this->location = location;
+   if (convert && 0 <= location && location < 64)
+   {
+      int table[] = {56, 57, 58, 59, 60, 61, 62, 63,
+         48, 49, 50, 51, 52, 53, 54, 55,
+         40, 41, 42, 43, 44, 45, 46, 47,
+         32, 33, 34, 35, 36, 37, 38, 39,
+         24, 25, 26, 27, 28, 29, 30, 31,
+         16, 17, 18, 19, 20, 21, 22, 23,
+         8,  9, 10, 11, 12, 13, 14, 15,
+         0,  1,  2,  3,  4,  5,  6,  7
+      };
+      this->location = table[location];
+   }
 }
 
 /******************************************************************************

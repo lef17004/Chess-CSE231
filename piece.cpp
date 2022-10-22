@@ -31,14 +31,6 @@ Piece::Piece(int r, int c, bool isWhite)
    lastMove = -1;
 }
 
-/******************************************************************************
- * PIECE::GET LETTER
- * Gets the letter of the piece
- ******************************************************************************/
-char Piece::getLetter()
-{
-   return 'M';
-}
 
 /******************************************************************************
  * PIECE::GET POSSIBLE MOVES
@@ -46,12 +38,7 @@ char Piece::getLetter()
  ******************************************************************************/
 set<Move> Piece::getPossibleMoves(const Board& board)
 {
-   board.isWhiteTurn();
-   Move move;
    set<Move> moveSet;
-   move.setSource(Position(0, 0));
-   move.setDest(Position(1, 0));
-   moveSet.insert(move);
    return moveSet;
 }
 
@@ -60,8 +47,7 @@ set<Move> Piece::getPossibleMoves(const Board& board)
  ******************************************************************************/
 void Piece::display(ogstream& gout)
 {
-   std::cout << "Piece\n" << std::endl;
-   gout.drawPawn(position.getLocation(), !isWhite());
+
 }
 
 /******************************************************************************
@@ -84,7 +70,7 @@ set<Move> Piece::getMovesSlide(const Board& board, array<Delta, 8> deltas)
    for (Delta delta : deltas)
    {
       Position posMove(position, delta);
-      while (posMove.isValid() && board.getPiece(posMove.getLocation())->getLetter() == 's')
+      while (posMove.isValid() && board.getPiece(posMove.getLocation())->getLetter() == SPACE)
       {
          Move move;
          move.setSource(getPosition());
@@ -94,15 +80,14 @@ set<Move> Piece::getMovesSlide(const Board& board, array<Delta, 8> deltas)
          posMove = Position(posMove.getRow() + delta.y, posMove.getCol() + delta.x);
       }
 
-      //		if (posMove.isValid() &&
-      //			((board.getPiece(position))->isWhite() != fWhite || board.getPiece(posMove.getLocation())->getLetter() != 's'))
+      // Handle capture
       if (posMove.isValid() && board.getPiece(posMove)->isWhite() != fWhite)
       {
          Move move;
          move.setSource(getPosition());
          move.setDest(posMove);
          move.setWhiteMove(isWhite());
-         if (board.getPiece(position)->getLetter() != 's')
+         if (board.getPiece(position)->getLetter() != SPACE)
          {
             move.setCapture(board.getPiece(position)->getLetter());
          }
@@ -128,14 +113,14 @@ set<Move>  Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
       if (isValid)
       {
          bool isWhite2 = board.getPiece(posMove)->isWhite() != fWhite;
-         bool isSpace = board.getPiece(posMove.getLocation())->getLetter() == 's';
+         bool isSpace = board.getPiece(posMove.getLocation())->getLetter() == SPACE;
          if ((isWhite2 || isSpace))
          {
             Move move;
             move.setSource(getPosition());
             move.setDest(posMove);
             move.setWhiteMove(isWhite());
-            if (board.getPiece(posMove)->getLetter() != 's')
+            if (board.getPiece(posMove)->getLetter() != SPACE)
             {
                move.setCapture(board.getPiece(posMove)->getLetter());
             }
@@ -149,7 +134,7 @@ set<Move>  Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
 
 /******************************************************************************
  * PIECE::MOVE
- * Returns if a move is valid based on the operations
+ * Sets a piece to its new postion, updates the turn number and number of moves. 
  ******************************************************************************/
 void Piece::move(const Position& position, int turn)
 {

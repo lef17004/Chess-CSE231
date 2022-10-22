@@ -46,9 +46,9 @@ public:
    void setDest(const Position& dest) { this->dest = dest; }
    void setPromotion() { promoting = true; }
 
-   bool operator < (const Move& rhs) const;
+   bool operator < (const Move& rhs) const { return this->dest < rhs.dest; } 
 
-   void display(ogstream& gout);
+   void display(ogstream& gout) { gout.drawPossible(dest); }
 
    friend class TestMove;
 };

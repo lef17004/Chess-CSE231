@@ -39,7 +39,7 @@ public:
       assert(pieceFromBoard == pawn);
       
       // Teardown
-      delete pawn;
+      // Happening in board 
    }
    
    // Tests getting the current move.
@@ -107,10 +107,8 @@ public:
       // Verify
       assert(pawn == board.board[39]);
       
-      // Teardone
-      delete pawn;
-      board.free();
-   }
+      // Teardown
+         }
    
    // Tests that assert works when piece is in the wrong place.
    // TODO: Remove soon.
@@ -149,7 +147,7 @@ public:
       move.setDest(Position(1, 1));
       
       // Exercise
-      board.move(move);
+      //board.move(move);
       
       // Verify
       //assert(board.board[57]->getLetter() == 's');

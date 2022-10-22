@@ -17,7 +17,6 @@ class Board
 private:
    array<Piece*, 64> board;
    int currentMove;
-   // ogstream gout;
    
    void swap(const Position & pos1, const Position & pos2);
    void assertBoard();
@@ -25,18 +24,17 @@ private:
 public:
    Board();
    ~Board();
-   int getCurrentMove() const;
-   bool isWhiteTurn() const; 
-   void display(ogstream & gout);
+   int getCurrentMove() const { return currentMove; }
+   bool isWhiteTurn() const { return !(currentMove % 2); }
+   void display(ogstream & gout) { gout.drawBoard(); }
    void displayPieces(ogstream & gout);
    
-   Piece * getPiece(const Position & pos) const;
-   Piece & operator[] (Position & pos);
+   Piece * getPiece(const Position & pos) const { return board[pos.getLocation()]; }
+   Piece & operator[] (Position & pos) { return *board[pos.getLocation()]; }
    
    void setPiece(Piece * piece);
    void free();
    void reset();
-   bool move(Move & move);
    bool move(Position & positionFrom, Position & positionTo);
    void setPiece(Piece * piece, const Position & pos);
    void setBoardToEmpty();
