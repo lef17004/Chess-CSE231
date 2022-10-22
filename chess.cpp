@@ -88,22 +88,21 @@ void callback(Interface* pui, void* p)
       pui->clearSelectPosition();
 }
 
-
 /*********************************
  * Main is pretty sparse. Just initializes
  * my demo type and calls the display engine.
  * That is all!
  *********************************/
-#ifdef _win32
+#ifdef _WIN32
 #include <windows.h>
-int winapi winmain(
-   _in_ hinstance hinstance,
-   _in_opt_ hinstance hprevinstance,
-   _in_ pstr pcmdline,
-   _in_ int ncmdshow)
-#else // !_win32
+int WINAPI WinMain(
+   _In_ HINSTANCE hInstance,
+   _In_opt_ HINSTANCE hPrevInstance,
+   _In_ PSTR pCmdLine,
+   _In_ int nCmdShow)
+#else // !_WIN32
 int main(int argc, char** argv)
-#endif // !_win32
+#endif // !_WIN32
 {
    Interface ui("chess");
    
