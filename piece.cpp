@@ -44,14 +44,14 @@ char Piece::getLetter()
  * PIECE::GET POSSIBLE MOVES
  * Returns a set of moves for each move a piece can make
  ******************************************************************************/
-set<Move>* Piece::getPossibleMoves(const Board& board)
+set<Move> Piece::getPossibleMoves(const Board& board)
 {
    board.isWhiteTurn();
    Move move;
-   set<Move>* moveSet = new set<Move>();
+   set<Move> moveSet;
    move.setSource(Position(0, 0));
    move.setDest(Position(1, 0));
-   moveSet->insert(move);
+   moveSet.insert(move);
    return moveSet;
 }
 
@@ -78,9 +78,9 @@ bool Piece::justMoved(int turnNumber)
  * PIECE:: GET MOVES SLIDE
  * Uses delta to get all the moves in a sliding pattern.
  ******************************************************************************/
-set<Move>* Piece::getMovesSlide(const Board& board, array<Delta, 8> deltas)
+set<Move> Piece::getMovesSlide(const Board& board, array<Delta, 8> deltas)
 {
-   set<Move>* moves = new set<Move>();
+   set<Move> moves;
    for (Delta delta : deltas)
    {
       Position posMove(position, delta);
@@ -90,7 +90,7 @@ set<Move>* Piece::getMovesSlide(const Board& board, array<Delta, 8> deltas)
          move.setSource(getPosition());
          move.setDest(posMove);
          move.setWhiteMove(isWhite());
-         moves->insert(move);
+         moves.insert(move);
          posMove = Position(posMove.getRow() + delta.y, posMove.getCol() + delta.x);
       }
 
@@ -106,7 +106,7 @@ set<Move>* Piece::getMovesSlide(const Board& board, array<Delta, 8> deltas)
          {
             move.setCapture(board.getPiece(position)->getLetter());
          }
-         moves->insert(move);
+         moves.insert(move);
       }
    }
    return moves;
@@ -116,9 +116,9 @@ set<Move>* Piece::getMovesSlide(const Board& board, array<Delta, 8> deltas)
  * PIECE:: GET MOVES NO SLIDE
  * Returns set of moves using a delta.
  ******************************************************************************/
-set<Move>* Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
+set<Move>  Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
 {
-   set<Move>* moves = new set<Move>;
+   set<Move> moves;
    for (Delta delta : deltas)
    {
       Position posMove(position, delta);
@@ -139,7 +139,7 @@ set<Move>* Piece::getMovesNoSlide(const Board& board, array<Delta, 8> deltas)
             {
                move.setCapture(board.getPiece(posMove)->getLetter());
             }
-            moves->insert(move);
+            moves.insert(move);
          }
       }
    }

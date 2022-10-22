@@ -6,9 +6,9 @@
  * PAWN:: GET POSSIBLE MOVES
  * Gets the possible moves for the pawn.
  ******************************************************************************/
-set<Move> * Pawn::getPossibleMoves(const Board & board)
+set<Move>  Pawn::getPossibleMoves(const Board & board)
 {
-   set<Move> * moves = new set<Move>;
+   set<Move> moves;
    Position posMove(getPosition(), isWhite() ? Delta(0, 1) : Delta(0, -1));
    Move move;
    
@@ -21,11 +21,11 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
 
       if (posMove.getRow() == 7 || posMove.getRow() == 0)
       {
-         addPromotion(*moves, move);
+         addPromotion(moves, move);
       }
       else
       {
-         moves->insert(move);
+         moves.insert(move);
       }
    }
    
@@ -39,7 +39,7 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
          move.setSource(getPosition());
          move.setDest(posMove);
          move.setWhiteMove(isWhite());
-         moves->insert(move);
+         moves.insert(move);
       }
    }
   
@@ -59,11 +59,11 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
          move.setCapture(board.getPiece(posMove)->getLetter());
          if (posMove.getRow() == 7 || posMove.getRow() == 0)
          {
-            addPromotion(*moves, move);
+            addPromotion(moves, move);
          }
          else
          {
-            moves->insert(move);
+            moves.insert(move);
          }
       }
    }
@@ -84,7 +84,7 @@ set<Move> * Pawn::getPossibleMoves(const Board & board)
          move.setWhiteMove(isWhite());
          move.setCapture(board.getPiece(posMove)->getLetter());
          move.setEnPassant();
-         moves->insert(move);
+         moves.insert(move);
       }
    }
    return moves;

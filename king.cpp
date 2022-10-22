@@ -6,7 +6,7 @@
  * KING::GET POSSIBLE MOVES
  * Returns the possible moves for the King.
  ******************************************************************************/
-set<Move>* King::getPossibleMoves(const Board& board)
+set<Move> King::getPossibleMoves(const Board& board)
 {
 
    // Moves the King can make
@@ -17,7 +17,7 @@ set<Move>* King::getPossibleMoves(const Board& board)
       Delta(-1, -1), Delta(0, -1), Delta(1, -1)
    };
 
-   set<Move>* moves = getMovesNoSlide(board, deltas);
+   set<Move> moves = getMovesNoSlide(board, deltas);
 
    // King side castle
    if (!isMove())
@@ -36,7 +36,7 @@ set<Move>* King::getPossibleMoves(const Board& board)
          move.setDest(posMove);
          move.setWhiteMove(isWhite());
          move.setCastle(true);
-         moves->insert(move);
+         moves.insert(move);
       }
    }
 
@@ -59,7 +59,7 @@ set<Move>* King::getPossibleMoves(const Board& board)
          move.setDest(posMove);
          move.setWhiteMove(isWhite());
          move.setCastle(false);
-         moves->insert(move);
+         moves.insert(move);
       }
    }
 

@@ -45,7 +45,7 @@ public:
       testBoard->setPiece(blackPawn);
 
       // Excercise
-      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
+      set<Move> whitePawnMoves = (whitePawn->getPossibleMoves(*testBoard));
 
       // Verify
       assert(whitePawnMoves.size() == 0);
@@ -75,7 +75,7 @@ public:
       
       
       // Exercise
-      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
+      set<Move> whitePawnMoves = (whitePawn->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
@@ -111,7 +111,7 @@ public:
       testBoard->board[9] = whitePawn;
       
       // Exercise
-      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
+      set<Move> whitePawnMoves = (whitePawn->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
@@ -164,7 +164,7 @@ public:
       testBoard->board[10] = blackPawn2;
       
       // Exercise
-      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
+      set<Move> whitePawnMoves = (whitePawn->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);
@@ -225,7 +225,7 @@ public:
       testBoard->board[10] = blackPawn3;
       
       // Exercise
-      set<Move> whitePawnMoves = *(whitePawn->getPossibleMoves(*testBoard));
+      set<Move> whitePawnMoves = (whitePawn->getPossibleMoves(*testBoard));
       
       // Verify
       set<string> * moves = compileMoves(whitePawnMoves);

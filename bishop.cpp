@@ -11,7 +11,7 @@
  * BISHOP::GET POSSIBLE MOVES
  * Returns a set of moves for Bishop.
  ******************************************************************************/
-set<Move>* Bishop::getPossibleMoves(const Board& board)
+set<Move> Bishop::getPossibleMoves(const Board& board)
 {
    array<Delta, 8> deltas = 
    { 

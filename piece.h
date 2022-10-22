@@ -34,12 +34,12 @@ public:
    void move(const Position& position, int move);
 
    // Get Moves
-   set<Move>* getMovesSlide(const Board& board, array<Delta, 8> deltas);
-   set<Move>* getMovesNoSlide(const Board& board, array<Delta, 8> deltas);
+   set<Move> getMovesSlide(const Board& board, array<Delta, 8> deltas);
+   set<Move> getMovesNoSlide(const Board& board, array<Delta, 8> deltas);
 
    // Virtual Methods
    virtual char getLetter();
-   virtual set<Move>* getPossibleMoves(const Board& board);
+   virtual set<Move> getPossibleMoves(const Board& board);
    virtual void display(ogstream& gout);
 
    // Friend Classes
@@ -56,7 +56,7 @@ public:
    void addPromotion(set<Move> &Moves, Move& move);
    
    virtual char getLetter() { return 'p'; }
-   virtual set<Move>* getPossibleMoves(const Board& board);
+   virtual set<Move> getPossibleMoves(const Board& board);
    virtual void display(ogstream& gout);
 
    friend class TestPawn;
@@ -69,7 +69,7 @@ public:
    Space(int r, int c, bool isWhite) : Piece(r, c, isWhite) {}
 
    virtual char getLetter() { return 's'; }
-   virtual set<Move>* getPossibleMoves(const Board& board) { return new set<Move>(); };
+   //virtual set<Move> getPossibleMoves(const Board& board) { return new set<Move>(); };
    virtual void display(ogstream& gout) {}
 };
 
@@ -80,7 +80,7 @@ public:
    King(int r, int c, bool isWhite) : Piece(r, c, isWhite) {}
 
    virtual char getLetter() { return 'k'; }
-   virtual set<Move>* getPossibleMoves(const Board& board);
+   virtual set<Move> getPossibleMoves(const Board& board);
    virtual void display(ogstream& gout) { gout.drawKing(position.getLocation(), !isWhite()); }
 };
 
@@ -91,7 +91,7 @@ public:
    Rook(int r, int c, bool isWhite) : Piece(r, c, isWhite) {};
 
    virtual char getLetter() { return 'r'; }
-   virtual set<Move>* getPossibleMoves(const Board& board);
+   virtual set<Move> getPossibleMoves(const Board& board);
    virtual void display(ogstream& gout) { gout.drawRook(position.getLocation(), !isWhite()); }
 };
 
@@ -102,7 +102,7 @@ public:
    Knight(int r, int c, bool isWhite) : Piece(r, c, isWhite) {}
 
    virtual char getLetter() { return 'k'; }
-   virtual set<Move>* getPossibleMoves(const Board& board);
+   virtual set<Move> getPossibleMoves(const Board& board);
    virtual void display(ogstream& gout) { gout.drawKnight(position.getLocation(), !isWhite()); }
 };
 
@@ -113,7 +113,7 @@ public:
    Bishop(int r, int c, bool isWhite) : Piece(r, c, isWhite) {}
 
    virtual char getLetter() { return 'b'; }
-   virtual set<Move>* getPossibleMoves(const Board& board);
+   virtual set<Move> getPossibleMoves(const Board& board);
    virtual void display(ogstream& gout) { gout.drawBishop(position.getLocation(), !isWhite()); }
 };
 
@@ -124,6 +124,6 @@ public:
    Queen(int r, int c, bool isWhite) : Piece(r, c, isWhite) {}
 
    virtual char getLetter() { return 'b'; }
-   virtual set<Move>* getPossibleMoves(const Board& board);
+   virtual set<Move> getPossibleMoves(const Board& board);
    virtual void display(ogstream& gout) { gout.drawQueen(position.getLocation(), !isWhite()); }
 };

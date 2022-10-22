@@ -189,10 +189,10 @@ bool Board::move(Position& positionFrom, Position& positionTo)
    }
 
    Piece* piece = getPiece(positionFrom);
-   set<Move>* moves = piece->getPossibleMoves(*this);
+   set<Move> moves = piece->getPossibleMoves(*this);
    bool found = false;
    Move selectedMove;
-   for (auto move : *moves)
+   for (auto move : moves)
    {
       if (move.getDes() == positionTo)
       {

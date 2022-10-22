@@ -4,64 +4,36 @@
  * draw something on the window, and accept simple user input
  **********************************************************************/
 
-#include "uiinteract.h"   // for interface
-#include "uidraw.h"       // for draw*
+#include "uiInteract.h"   // for interface
+#include "uiDraw.h"       // for draw*
 #include <set>            // for std::set
 #include <cassert>        // for assert
 #include <fstream>        // for ifstream
 #include <string>         // for string
 #include "position.h"
 #include "board.h"
-#include "testrunner.h"
-#include "testking.h"
-#include "testpawn.h"
+#include "testRunner.h"
+#include "testKing.h"
+#include "testPawn.h"
 #include "move.h"
 #include "piece.h"
-#include "testrunner.h"
+#include "testRunner.h"
 using namespace std;
 
-/***************************************************
- * DRAW
- * Draws the current state of the game
- ***************************************************/
-void draw(const char* board, const interface& ui, const set <int>& possible)
-{
-   ogstream gout;
 
-   // draw the checkerboard
-   //gout.drawboard();
-   board board2;
-   board2.display(gout);
-
-   // draw any selections
-   gout.drawhover(ui.gethoverposition());
-   gout.drawselected(ui.getselectposition());
-   int selected = ui.getselectposition();
-
-   if (0 <= selected && selected < 64)
-   {
-      auto piece2 = board2.getpiece(position(selected));
-      auto moves = piece2->getpossiblemoves(board2);
-      for (auto move : *moves)
-      {
-         move.display(gout);
-      }
-   }
-   board2.displaypieces(gout);
-}
 
 /*********************************************
- * MOVE
- * Executes one movement. Returns true if successful.
+ * GET SLECTED MOVE
+ * Returns the selected move out of the set. 
  *********************************************/
-move getselectedmove(set<move>& moves, int location)
+Move getselectedmove(set<Move>& moves, int location)
 {
    for (auto move : moves)
    {
-      if (move.getdes().getlocation() == location)
+      if (move.getDes().getLocation() == location)
          return move;
    }
-   move move;
+   Move move;
    return move;
 }
 
@@ -72,42 +44,48 @@ move getselectedmove(set<move>& moves, int location)
  * engine will wait until the proper amount of
  * time has passed and put the drawing on the screen.
  **************************************/
-void callback(interface* pui, void* p)
+void callback(Interface* pui, void* p)
 {
-   set <int> possible;
-   ogstream gout;
    // The first step is to cast the void pointer into a game object. This
-   // is the first step of every single callback function in opengl. 
-   // board * board = (board *)p;
-   board* board = (board*)p;
-   // move
+   // is the first step of every single callback function in opengl.
+   Board * board = (Board*) p;
+   ogstream gout;
+   
+   
+   // Holds possible moves.
+   set <int> possible;
+   
+   
+   // Get User Input
    auto ui = *pui;
-   position selectedposition(ui.getselectposition(), true);
-   position hoverposition(ui.gethoverposition(), true);
-   position previousposition(ui.getpreviousposition(), true);
+   Position selectedPosition(ui.getSelectPosition(), true);
+   Position hoverPosition(ui.getHoverPosition(), true);
+   Position previousPosition(ui.getPreviousPosition(), true);
 
+   // Draw
    board->display(gout);
-   gout.drawhover(ui.gethoverposition());
-   gout.drawselected(ui.getselectposition());
-   board->displaypieces(gout);
+   gout.drawHover(ui.getHoverPosition());
+   gout.drawSelected(ui.getSelectPosition());
+   board->displayPieces(gout);
 
-   if (board->move(previousposition, selectedposition))
+   // Move
+   if (board->move(previousPosition, selectedPosition))
    {
-      pui->clearselectposition();
+      pui->clearSelectPosition();
    }
-   else if (selectedposition.isvalid() && board->getpiece(selectedposition)->iswhite() == board->iswhiteturn())
+   else if (selectedPosition.isValid() && board->getPiece(selectedPosition)->isWhite() == board->isWhiteTurn())
    {
-      auto piece3 = board->getpiece(selectedposition);
-      auto moves = piece3->getpossiblemoves(*board);
-      for (auto move : *moves)
+      auto piece3 = board->getPiece(selectedPosition);
+      auto moves = piece3->getPossibleMoves(*board);
+      for (auto move : moves)
       {
          move.display(gout);
       }
    }
 
-   // Draw any selections
-   if (pui->getselectposition() != -1 && board->getpiece(selectedposition)->getletter() == 's')
-      pui->clearselectposition();
+
+   if (pui->getSelectPosition() != -1 && board->getPiece(selectedPosition)->getLetter() == 's')
+      pui->clearSelectPosition();
 }
 
 
@@ -127,14 +105,14 @@ int winapi winmain(
 int main(int argc, char** argv)
 #endif // !_win32
 {
-   interface ui("chess");
-   board chessboard;
+   Interface ui("chess");
+   
+   Board chessboard;
 
-   testrunner tests;
+   TestRunner tests;
    tests.run();
-   // set everything into action
-   // (void *) (&board);
-   // (board * p)
+   
+   
    ui.run(callback, (void*)&chessboard);
 
    return 0;
